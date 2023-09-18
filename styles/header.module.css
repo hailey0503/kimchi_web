@@ -1,0 +1,50 @@
+.container {
+	height: 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 35px;
+	margin: 0 20px;
+	font-weight: bold;
+	transition: color 0.3s ease;
+  }
+  
+  .logo {
+	font-weight: bold;
+	font-size: 25px;
+	color: #666;
+	text-decoration: none;
+  }
+  
+  .links {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	color: #666;
+	text-decoration: none;
+  }
+  
+  /* Rest of your CSS styles */
+  
+  /* Transaction Tab */
+  .transaction-tab {
+	cursor: pointer;
+	height: 40px; /* Fixed height */
+	position: relative;
+  }
+  
+  .transaction-options {
+	display: none;
+	position: absolute;
+	top: calc(100% + 5px); /* Position it below the tab */
+	right: 0; /* Align to the right of the tab */
+	background-color: #fff;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+  }
+  
+  .transaction-tab.active .transaction-options {
+	display: block; /* Show options when active */
+  }
+  

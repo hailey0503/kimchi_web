@@ -1,0 +1,20 @@
+/* Mission section styles */
+.mission {
+	padding: 100px 0;
+	text-align: center;
+  }
+  
+  .mission h2 {
+	font-size: 28px;
+	margin-bottom: 20px;
+	color: #333;
+  }
+  
+  .mission p {
+	font-size: 16px;
+	color: #666;
+	line-height: 1.6;
+	max-width: 800px;
+	margin: 0 auto;
+  }
+  

@@ -23,7 +23,7 @@ const Header = () => {
           alt="kimchi Twitter"
         />
       ),
-      url: "/",
+      url: "https://twitter.com/cryptoduckb",
     },
     {
       id: 2,
@@ -36,7 +36,7 @@ const Header = () => {
           alt="kimchi discord"
         />
       ),
-      url: "/discord",
+      url: "https://discord.gg/tNtCXHfE",
     },
     {
       id: 3,
@@ -49,7 +49,7 @@ const Header = () => {
           alt="kimchi telegram"
         />
       ),
-      url: "/telegram",
+      url: "https://t.me/kimchiWhaleAlert",
     },
     {
       id: 4,
@@ -67,7 +67,11 @@ const Header = () => {
                 showOptions ? "show" : ""
               }`}
             >
-              <Link href={"./pages/0xe3c2678562ecdadf2dfcbb0f5fe18d970708736a30f4b4a009c4b43a907b5c75"}>
+              <Link
+                href={
+                  "./pages/0xe3c2678562ecdadf2dfcbb0f5fe18d970708736a30f4b4a009c4b43a907b5c75"
+                }
+              >
                 <p>Klaytn</p>
               </Link>
               <Link href={"./"}>

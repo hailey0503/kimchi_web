@@ -67,7 +67,7 @@ const Header = () => {
                 showOptions ? "show" : ""
               }`}
             >
-              <Link href={"./"}>
+              <Link href={"./pages/0xe3c2678562ecdadf2dfcbb0f5fe18d970708736a30f4b4a009c4b43a907b5c75"}>
                 <p>Klaytn</p>
               </Link>
               <Link href={"./"}>
@@ -77,7 +77,7 @@ const Header = () => {
           )}
         </div>
       ),
-      url: "/tx",
+      url: "/",
     },
     {
       id: 5,

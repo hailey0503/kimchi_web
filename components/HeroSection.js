@@ -42,7 +42,7 @@ const HeroSection = () => {
         <div className={styles.inputContainer}>
           <input
             type="text"
-            placeholder="   Search blockchain..."
+            placeholder="   Search whale address"
             className={styles.inputWithIcon}
             id="searchInput"
           />

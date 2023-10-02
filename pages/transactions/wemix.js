@@ -39,8 +39,8 @@ const TransactionQuery = () => {
       <h1 className={styles.title}>WeMix Transaction Finder</h1> {/* Apply the title class */}
       <input
         type="text"
-        className={styles.queryBar}
-        placeholder="Enter Transaction Hash"
+        className={styles.inputWithIcon}
+        placeholder="    Enter Transaction Hash"
         value={query}
         onChange={handleQueryChange}
       />

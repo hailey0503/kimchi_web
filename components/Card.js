@@ -29,10 +29,10 @@ const Card = ({ logoSrc, companyName, children }) => {
       </div>
       <div className={styles.cardBottom}>
 	  <div className={styles.trend}>
-        <div>recent trend</div>
+        <div>recent trend(bigsell or big buy)</div>
 	</div>
 	<div className={styles.holder}>
-        <div>top holder</div>
+        <div>top holder (give link for other holdings & recent tx)</div>
 		</div>
       </div>
     </div>

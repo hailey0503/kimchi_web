@@ -1,62 +1,80 @@
-.over_container{
-	margin-left: 15px;
-	margin-right: 15px;
-}
-
-.container {
-	display: flex;
-	align-items: center;
-	gap: 100px;
-	max-width: 1000px;
-  	margin: 0 auto;
-  	padding: 40px 0; 
-	padding-top: 20px;
-	padding-bottom: 60px;
-  }
-  
-  .item {
-	flex: 2;
+.section {
+	position: relative;
+	height: 160vh; /* Increased the min-height to make the hero section taller */
+	scroll-snap-align: center;
 	display: flex;
 	flex-direction: column;
-	gap: 35px;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
   }
   
+  /* Update the video styling to cover the entire section */
+  .videoContainer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	overflow: hidden;
+  }
+  
+  .video {
+	min-width: 100%;
+	min-height: 100%;
+	object-fit: cover;
+	animation: animate 102s infinite linear alternate; /* Adjust the animation duration as needed (e.g., 12s) */
+  }
   
   .title {
-	font-size: 68px;
-	background: linear-gradient(to bottom, #6096B4, #DAF5FF);
+	font-size: 62px;
+	background: linear-gradient(to bottom, #3aa9e4, #90a2b0);
+	font-weight: bold;
+	cursor: pointer;
+	color: transparent;
+	-webkit-text-stroke: 1px white;
+	position: relative;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
   }
   
-  .img {
-	width: 100%;
-	height: 600px;
-	object-fit: contain;
-	opacity: 0.8;
-	/* animation: move 3s infinite ease alternate; */
+  .title.hovered {
+	/* Define the style when hovering */
+	color: pink; /* Change the color to pink */
+	-webkit-text-stroke: 0px;
   }
+  
+  @keyframes moveText {
+	  to {
+		width: 100%;
+	  }
+	}
   
   .description {
 	font-size: 24px;
 	font-weight: 300;
 	color: #666;
-	
   }
-  
   .button {
 	padding: 15px;
 	cursor: pointer;
-	background-color: #FEFF86;
+	background-color: #feff86;
 	border: none;
 	border-radius: 5px;
 	width: max-content;
+	transition: background-color 0.3s ease; /* Add a smooth transition to the background-color property */
   }
-  @keyframes move {
-	from {
-	  transform: translateY(-10px);
-	}
-	to {
-	  transform: translateY(10px);
-	}
+  
+  /* Add a hover style to apply the color change */
+  .button:hover {
+	background-color: #fede5e; /* Change to the desired color when hovered */
+  }
+  
+  .header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
   }

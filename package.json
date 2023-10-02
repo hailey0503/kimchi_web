@@ -14,10 +14,10 @@
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
+    "axios": "^1.5.1",
     "dotenv": "^16.3.1",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.19",
-    "file-loader": "^6.2.0",
     "mongodb": "^6.1.0",
     "next": "13.4.19",
     "next-connect": "^1.0.0",
@@ -27,5 +27,8 @@
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2"
+  },
+  "devDependencies": {
+    "file-loader": "^6.2.0"
   }
 }

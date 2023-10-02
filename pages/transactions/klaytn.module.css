@@ -1,0 +1,63 @@
+/* styles/klaytn.module.css */
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	text-align: center;
+  }
+  
+  .queryBar {
+	width: 300px;
+	height: 40px;
+	padding: 10px;
+	margin-bottom: 20px;
+	font-size: 18px;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	transition: all 0.3s ease; /* Add animation to input */
+  }
+  
+  .queryBar:focus {
+	border-color: #0070f3; /* Change border color when focused */
+  }
+  
+  .button {
+	width: 150px;
+	height: 50px;
+	font-size: 20px;
+	background-color: #0070f3;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease; /* Add animation to button */
+  }
+  
+  .button:hover {
+	background-color: #0050c8; /* Change background color on hover */
+  }
+  
+  .title {
+	margin-bottom: 80px; /* Add a big space (adjust the value as needed) */
+	font-size: 50px;
+  }
+  /* Rest of your existing styles */
+  .animate {
+	animation-name: myAnimation;
+	animation-duration: 1s; /* Adjust the duration as needed */
+  }
+  
+  @keyframes myAnimation {
+	0% {
+	  transform: scale(1);
+	}
+	50% {
+	  transform: scale(1.1); /* Adjust the scale factor for the desired effect */
+	}
+	100% {
+	  transform: scale(1);
+	}
+  }
+  

@@ -5,6 +5,7 @@ import styles from "../styles/header.module.css";
 import DarkMode from "./darkMode";
 import Image from "next/image";
 
+
 const Header = () => {
   const [showOptions, setShowOptions] = useState(false);
 
@@ -69,19 +70,19 @@ const Header = () => {
             >
               <Link
                 href={
-                  "./pages/0xe3c2678562ecdadf2dfcbb0f5fe18d970708736a30f4b4a009c4b43a907b5c75"
+                  "http://localhost:4200/transactions/klaytn"
                 }
               >
                 <p>Klaytn</p>
               </Link>
-              <Link href={"./"}>
+              <Link href={"http://localhost:4200/transactions/wemix"}>
                 <p>WeMix</p>
               </Link>
             </div>
           )}
         </div>
       ),
-      url: "/",
+      url: "",
     },
     {
       id: 5,
@@ -94,20 +95,22 @@ const Header = () => {
     <div className={styles.container}>
       <a href="/" title="Go to Home">
         <Image
-          src="/kimchi.png"
-          width={110}
-          height={75}
+          src="/kimchi_bg.png"
+          width={130}
+          height={80}
           className={styles.icon}
           alt="uluwatu lab"
         />
       </a>
       <div className={styles.links}>
-        <DarkMode />
+       
         {links.map((link) => (
           <Link key={link.id} href={link.url}>
             {link.title}
+           
           </Link>
         ))}
+         <DarkMode />
       </div>
     </div>
   );

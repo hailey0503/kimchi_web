@@ -18,8 +18,8 @@ const Header = () => {
       title: (
         <Image
           src="/3.png"
-          width={15}
-          height={15}
+          width={20}
+          height={20}
           className={styles.icon}
           alt="kimchi Twitter"
         />
@@ -31,8 +31,8 @@ const Header = () => {
       title: (
         <Image
           src="/discord.png"
-          width={25}
-          height={25}
+          width={35}
+          height={35}
           className={styles.icon}
           alt="kimchi discord"
         />
@@ -44,8 +44,8 @@ const Header = () => {
       title: (
         <Image
           src="/telegram.webp"
-          width={15}
-          height={15}
+          width={22}
+          height={22}
           className={styles.icon}
           alt="kimchi telegram"
         />
@@ -107,7 +107,6 @@ const Header = () => {
         {links.map((link) => (
           <Link key={link.id} href={link.url}>
             {link.title}
-           
           </Link>
         ))}
          <DarkMode />

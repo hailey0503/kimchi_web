@@ -3,9 +3,10 @@ import styles from "../styles/heroSection.module.css";
 import Image from "next/image";
 import { useState } from "react";
 import BG from "public/bg_move1.mp4";
-import Header from "./Header.js"
+import Header from "./Header.js";
+import Card from "./Card.js";
 
-const data = ["Empowering Crypto Decisions", "With Data-Driven Insights"];
+const data = ["", ""];
 const HeroSection = () => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -28,22 +29,45 @@ const HeroSection = () => {
       <div className={styles.header}>
         <Header />
       </div>
+      <div className={styles.titleContainer}>
+        <div
+          className={`${styles.title} ${isHovered ? styles.hovered : ""}`}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          {data.map((item) => (
+            <div key={item}>{item}</div>
+          ))}
+        </div>
+        <div className={styles.inputContainer}>
+          <input
+            type="text"
+            placeholder="   Search blockchain..."
+            className={styles.inputWithIcon}
+            id="searchInput"
+          />
+        </div>
 
-      <div
-        className={`${styles.title} ${isHovered ? styles.hovered : ""}`}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        {data.map((item) => (
-          <div key={item}>{item}</div>
-        ))}
+        <div className={styles.cardContainer}>
+          {/* Replace this with your card components */}
+
+          <div className={styles.cardContainer}>
+            {/* Replace this with your card components */}
+            <Card logoSrc="/klaytn_logo.png" companyName="Klaytn">
+              {/* Add content for price action and chart */}
+             
+            </Card>
+            <Card logoSrc="/another_logo.png" companyName="Company Name">
+              {/* Add content for price action and chart */}
+             
+            </Card>
+            <Card logoSrc="/yet_another_logo.png" companyName="Another Company">
+              {/* Add content for price action and chart */}
+             
+            </Card>
+          </div>
+        </div>
       </div>
-      <p className={styles.description}>
-        Navigating the Blockchain Revolution with Confidence
-      </p>
-      <button className={styles.button}>
-        <Link href="/service">See transactions</Link>
-      </button>
     </div>
   );
 };

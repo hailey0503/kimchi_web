@@ -5,7 +5,7 @@ import { useState } from "react";
 import BG from "public/bg_move1.mp4";
 import Header from "./Header.js"
 
-const data = ["Empowering Crypto Decisions", "Data-Driven Insights"];
+const data = ["Empowering Crypto Decisions", "With Data-Driven Insights"];
 const HeroSection = () => {
   const [isHovered, setIsHovered] = useState(false);
 

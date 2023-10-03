@@ -3,6 +3,7 @@ import styles from "../../styles/tx.module.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import clientPromise from "../../lib/mongodb";
+import Link from "next/link";
 
 export async function getStaticProps({ params }) {
   try {
@@ -74,7 +75,10 @@ const TX = ({ data: formattedTransaction }) => {
             <strong>Timestamp:</strong> {formattedTransaction.timestamp}
           </p>
           <p>
-            <strong>Hash:</strong> {formattedTransaction.txHash}
+            <strong>Hash:</strong>{" "}
+            <Link href={formattedTransaction.link+formattedTransaction.txHash} className={styles.txHash}>
+              {formattedTransaction.txHash}
+            </Link>
           </p>
           <p>
             <strong>Fee:</strong> {formattedTransaction.fee}
@@ -82,15 +86,45 @@ const TX = ({ data: formattedTransaction }) => {
         </div>
         <div className={`${styles.card} ${styles.transferCard}`}>
           <h2>Transfer</h2>
-          <p>
-            <strong>Sender:</strong> {formattedTransaction.sender}
-          </p>
-          <p>
-            <strong>Receiver:</strong> {formattedTransaction.receiver}
-          </p>
-          <p>
-          <strong>Amount:</strong> {formattedTransaction.amount}
-          </p>
+          <div className={styles.fromTo}>
+            <p>
+              <strong>Sender:</strong>{" "}
+              {formattedTransaction.sender.slice(0, 2) !== "0x" ? (
+                <>
+                 <Link href={formattedTransaction.link+formattedTransaction.sender_full} className={styles.txHash}>
+              {formattedTransaction.sender_full}
+            </Link>
+                 {"     "}
+                  {formattedTransaction.sender}
+                </>
+              ) : (
+                <Link href={formattedTransaction.link+formattedTransaction.sender_full} className={styles.txHash}>
+                {formattedTransaction.sender_full}
+              </Link>
+                
+              )}
+            </p>
+
+            <p>
+              <strong>Reciever:</strong>{" "}
+              {formattedTransaction.receiver.slice(0, 2) !== "0x" ? (
+                <>
+                   <Link href={formattedTransaction.link+formattedTransaction.receiver_full} className={styles.txHash}>
+              {formattedTransaction.receiver_full}
+            </Link>{"     "}
+                  {formattedTransaction.receiver}
+                </>
+              ) : (
+                <Link href={formattedTransaction.link+formattedTransaction.receiver_full} className={styles.txHash}>
+                {formattedTransaction.receiver_full}
+              </Link>
+             
+              )}
+            </p>
+            <p>
+              <strong>Amount: </strong>{formattedTransaction.amount} {formattedTransaction.blockchainName} 
+            </p>
+          </div>
         </div>
       </div>
       <Footer />

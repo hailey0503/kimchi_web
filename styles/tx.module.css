@@ -7,7 +7,7 @@
 	justify-content: center; /* Center the cards vertically and horizontally */
 	height: 100vh;
 	padding: 40px 0; /* Add padding to create space at the top and bottom */
-	gap: 60px; /* Space between cards */
+	gap: 150px; /* Space between cards */
   }
   
   /* Transaction card styles */
@@ -28,7 +28,7 @@
   .transactionCard h2 {
 	font-size: 32px;
 	margin-bottom: 60px;
-	color: #1e90ff; /* Dark sky blue color */
+	color: #6b4f34; /* Dark sky blue color */
   	text-align: left; /* Align to the left */
   }
   
@@ -50,7 +50,7 @@
   .transferCard h2 {
 	font-size: 32px;
 	margin-bottom: 60px;
-	color: #1e90ff; /* Dark sky blue color */
+	color: #6b4f34; /* Dark sky blue color */
   	text-align: left; /* Align to the left */
   }
   .transactionCard p {
@@ -63,5 +63,19 @@
 	margin-bottom: 20px; /* Margin at the bottom to create space */
   }
 
+  .txHash {
+	color: #4d7aad; /* Set the default text color */
+	text-decoration: none; /* Remove the underline from links */
+	transition: color 0.3s; /* Add a smooth color transition on hover */
+	font: bold;
+  }
+  
+  /* Add a hover effect for the link */
+  .txHash:hover {
+	color: #224983; /* Change the text color on hover */
+  }
 
+.fromTo {
+
+}
   

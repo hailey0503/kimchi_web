@@ -36,8 +36,8 @@
   }
   
   .button {
-	width: 150px;
-	height: 50px;
+	width: 130px;
+	height: 40px;
 	font-size: 20px;
 	background-color: #2763a7;
 	color: white;
@@ -45,6 +45,7 @@
 	border-radius: 5px;
 	cursor: pointer;
 	transition: background-color 0.3s ease; /* Add animation to button */
+	margin-bottom: 30px;
   }
   
   .button:hover {
@@ -53,7 +54,7 @@
   
   .title {
 	margin-bottom: 80px; /* Add a big space (adjust the value as needed) */
-	font-size: 50px;
+	font-size: 35px;
   }
   /* Rest of your existing styles */
   .animate {
@@ -72,4 +73,83 @@
 	  transform: scale(1);
 	}
   }
+  .pagination {
+	display: flex;
+	list-style-type: none; /* Remove bullet points */
+	margin: 0;
+	padding: 0;
+  }
   
+  .pageItem {
+	margin: 0 5px;
+	padding: 0;
+  }
+  
+  .pageLink {
+	background-color: #0056b3;
+	color: #fff;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	margin: 0 5px; /* Add margin between buttons */
+	
+  }
+  
+  .pageLink:hover {
+	background-color: #a3c6eb;
+  }
+  
+  .disabled,
+  .active .pageLink {
+	background-color: #ccc;
+	cursor: not-allowed;
+  }
+  .pageNum {
+	margin: 0 10px; /* Add margin between page number and buttons */
+  }
+  /* klaytn.module.css */
+.table {
+	width: 100%;
+	border-collapse: collapse; /* Remove spacing between table cells */
+	margin-top: 40px;
+	margin-bottom: 20px;
+	
+  }
+  
+  .tableHeader {
+	background-color: #a3c6eb;
+	color: white;
+	padding: 10px;
+	text-align: center;
+  }
+  
+  .tableRow:nth-child(even) {
+	background-color: #f2f2f2; /* Alternate row background color */
+  }
+  
+  .tableCell {
+	padding: 10px;
+	border: 1px solid #ddd; /* Add borders to table cells */
+	text-align: center;
+  }
+  
+  .tableCell:first-child {
+	border-left: none; /* Remove left border for the first cell in each row */
+  }
+  
+  .tableCell:last-child {
+	border-right: none; /* Remove right border for the last cell in each row */
+  }
+  
+  /* klaytn.module.css */
+
+    .pagination {
+	margin-top: 20px; /* Add spacing between the pagination and other content */
+	margin-bottom: 50px;
+  }
+  .filterSection {
+	margin-bottom: 10px;
+  }
+  .filterbox {
+	width: 100px;
+  }

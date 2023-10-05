@@ -81,7 +81,7 @@ const TX = ({ data: formattedTransaction }) => {
             </Link>
           </p>
           <p>
-            <strong>Fee:</strong> {formattedTransaction.fee}
+            <strong>Fee:</strong> {formattedTransaction.fee} {formattedTransaction.blockchainName} 
           </p>
         </div>
         <div className={`${styles.card} ${styles.transferCard}`}>

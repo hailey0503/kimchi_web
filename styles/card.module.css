@@ -4,14 +4,15 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	border: 1px solid #ccc;
+	border: 1px solid #333; /* Dark border */
 	border-radius: 10px;
 	padding: 20px;
 	margin: 20px 20px;
 	width: calc(33.33% - 10px); /* Adjust as needed for spacing between cards */
 	height: calc(130% * (calc(33.33% - 10px))); /* Set the height to 130% of the width */
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	background-color: #fff;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Slight shadow */
+	background-color: #2a486c;
+	font-family: "Helvetica Neue", sans-serif; /* Modern sans-serif font */
   }
   
   .cardTop {
@@ -19,7 +20,7 @@
 	align-items: center;
 	text-align: center;
 	padding: 20px;
-	height: 12%; 
+	height: 12%;
   }
   
   .logo img {
@@ -30,13 +31,13 @@
   
   .name h3 {
 	margin: 10px 0;
-	font-size: 18px;
+	font-size: 24px;
   }
   
   .cardMiddle {
 	display: flex;
 	align-items: center;
-	padding: 20px; 
+	padding: 20px;
 	margin: 10px 0; /* Add margin to the top and bottom */
 	width: 100%; /* Use the whole width of the card */
 	height: 65%; /* Set the middle section's height to 50% (2/4) of the card's height */
@@ -46,6 +47,11 @@
 	max-width: 33.33%; /* Set the max width to 1/3 of the container */
 	max-height: 80px;
 	flex: 1; /* Use 1/2 of the available space horizontally */
+	background-color: #f0f0f0; /* Light gray background */
+	border-radius: 10px; /* Rounded corners */
+	padding: 10px;
+	text-align: center;
+	
   }
   
   .graph {
@@ -53,28 +59,62 @@
 	max-width: 66.66%; /* Set the max width to 2/3 of the container */
 	max-height: 80px;
 	flex: 2; /* Use 1/2 of the available space horizontally */
+	background-color: #f0f0f0; /* Light gray background */
+	border-radius: 10px; /* Rounded corners */
+	padding-left: 10px;
   }
   
-  .cardBottom {
-	
+  /* Card.module.css */
+
+.cardBottom {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: center; /* Align the text to the left */
 	justify-content: center;
 	width: 100%; /* Use the whole width of the card */
-	height: 23%; 
+	height: 23%;
 	padding: 20px;
+	font-family: 'Nunito', sans-serif;
+	font-weight: bold;
+	font-size: 16px; /* Adjust font size as needed */
+	padding-bottom: 20px;
+
   }
   
   .trend {
+	display: flex;
+	justify-content: space-between; /* Distribute content to the left and right */
 	margin: 10px 0;
-	max-width: 80px;
+	max-width: 88%;
 	max-height: 80px;
+	font-size: 14px; 
   }
   
+  
   .holder {
+	display: flex;
+	justify-content: space-between; /* Distribute content to the left and right */
 	margin: 10px 0;
-	max-width: 80px;
+	max-width: 88%;
 	max-height: 80px;
+	font-size: 14px; 
+  }
+  .leftContent {
+	width: 30%; /* 1/3 of the container width for left content */
+	padding-top: 10px;
+  }
+  
+  .rightContent {
+	width: 68%; /* 2/3 of the container width for right content */
+  }
+  
+  .leftHolder {
+	width: 30%; /* 1/3 of the container width for left content */
+	padding-top: 10px;
+  }
+  
+  .rightHolder {
+	width: 68%; /* 2/3 of the container width for right content */
+	padding-top: 10px; /* Add padding to center the content vertically */
   }
   

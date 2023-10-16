@@ -6,12 +6,12 @@ a {
 	transition: 1s all ease;
   }
   .lgiht{
-	 background-color:white;
-	 color: #111
+	 background-color:#EEE9DA;
+	 color: #212422
   }
   .dark{
-	background-color: #111;
-	 color: #DAF5FF
+	background-color: #212422;
+	 color: #6096B4
   }
   .container {
 	max-width: 1366px;

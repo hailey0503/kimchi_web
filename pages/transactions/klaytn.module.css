@@ -6,6 +6,7 @@
 	justify-content: center;
 	min-height: 100vh;
 	text-align: center;
+	font-family: 'Nunito', sans-serif;
   }
   
   
@@ -39,7 +40,7 @@
 	width: 130px;
 	height: 40px;
 	font-size: 20px;
-	background-color: #2763a7;
+	background-color: #6096B4;
 	color: white;
 	border: none;
 	border-radius: 5px;
@@ -49,7 +50,7 @@
   }
   
   .button:hover {
-	background-color: #0c3a7f; /* Change background color on hover */
+	background-color: #93BFCF; /* Change background color on hover */
   }
   
   .title {
@@ -86,7 +87,7 @@
   }
   
   .pageLink {
-	background-color: #0056b3;
+	background-color: #6096B4;
 	color: #fff;
 	border: none;
 	padding: 5px 10px;
@@ -96,7 +97,7 @@
   }
   
   .pageLink:hover {
-	background-color: #a3c6eb;
+	background-color: #93BFCF;
   }
   
   .disabled,
@@ -117,7 +118,7 @@
   }
   
   .tableHeader {
-	background-color: #a3c6eb;
+	background-color: #93BFCF;
 	color: white;
 	padding: 10px;
 	text-align: center;
@@ -149,7 +150,17 @@
   }
   .filterSection {
 	margin-bottom: 10px;
+	padding-right: 10px;
   }
   .filterbox {
 	width: 100px;
+  }
+  .sortSection{
+	padding-left: 10px;
+  }
+  .filterSortSection{
+	display: flex;
+  flex-direction: row; /* Arrange items horizontally */
+  justify-content: flex-end; /* Align items to the end (right) */
+  margin-top: 10px; /* Adjust the margin as needed */
   }

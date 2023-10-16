@@ -7,6 +7,8 @@
 	margin: 0 20px;
 	font-weight: bold;
 	transition: color 0.3s ease;
+	font-family: 'Nunito', sans-serif;
+
   }
   
   .logo {
@@ -44,6 +46,7 @@
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	border: none;
+	font-size:16px
   }
   
   .transaction-tab.active .transaction-options {

@@ -3,6 +3,7 @@ import styles from "../styles/card.module.css";
 import Image from "next/image";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
+import Link from "next/link";
 
 const Card = ({ logoSrc, companyName, children }) => {
   const [cryptoData, setCryptoData] = useState(null);
@@ -11,10 +12,11 @@ const Card = ({ logoSrc, companyName, children }) => {
   useEffect(() => {
     // Make a GET request to your server's API endpoint for cryptocurrency data
     axios
-      .get("http://localhost:4500/api/coinmarketcap")
+      .get("http://localhost:4200/api/coinmarketcap")
       .then((response) => {
         // Handle the response data here
         setCryptoData(response.data);
+		
       })
       .catch((error) => {
         // Handle any errors here
@@ -94,8 +96,8 @@ const Card = ({ logoSrc, companyName, children }) => {
         <div className={styles.price}>
           {cryptoData ? (
             <div>
-              <p>Current Price ${formattedCurrentPriceUSD}</p>
-              <p>Price Change (24h): {formattedPriceChange}%</p>
+              <p className={styles.price_p}>$ {formattedCurrentPriceUSD}</p>
+              <p className={styles.percent}>{formattedPriceChange}%</p>
             </div>
           ) : (
             <p>Loading cryptocurrency data...</p>
@@ -128,39 +130,41 @@ const Card = ({ logoSrc, companyName, children }) => {
           )}
         </div>
       </div>
-	  <div className={styles.cardBottom}>
-  <div className={styles.trend}>
-    <div className={styles.leftContent}>
-      <p>Biggest TX (6h):</p>
-    </div>
-    <div className={styles.rightContent}>
-      {biggestTransaction ? (
-        <div>
-          <p>Amount: {parseFloat(biggestTransaction.amount).toFixed(2)}</p>
-          <p>Sender: {biggestTransaction.sender}</p>
+      <div className={styles.cardBottom}>
+        <div className={styles.trend}>
+          <div className={styles.leftContent}>
+            <p>Biggest TX (6h):</p>
+          </div>
+          <div className={styles.rightContent}>
+            {biggestTransaction ? (
+              <div>
+                <Link href="/transactions/klaytn" className={styles.bigTx}>
+                  {parseFloat(biggestTransaction.amount).toFixed(2)} Klaytn 
+                </Link>
+              </div>
+            ) : (
+              <p>Loading biggest transaction data...</p>
+            )}
+          </div>
         </div>
-      ) : (
-        <p>Loading biggest transaction data...</p>
-      )}
-    </div>
-  </div>
 
-  <div className={styles.holder}>
-    <div className={styles.leftHolder}>
-      <p>Top holder (24h): </p>
-    </div>
-    <div className={styles.rightHolder}>
-      {biggestTransaction ? (
-        <div>  
-          <p>whale: {biggestTransaction.sender}</p>
+        <div className={styles.holder}>
+          <div className={styles.leftHolder}>
+            <p>Top Whale (24h): </p>
+          </div>
+          <div className={styles.rightHolder}>
+            {biggestTransaction ? (
+              <div>
+                <Link href="/transactions/klaytn" className={styles.whaleAddr}>
+                  {biggestTransaction.sender} 
+                </Link>
+              </div>
+            ) : (
+              <p>Give link for other holdings & recent tx...</p>
+            )}
+          </div>
         </div>
-      ) : (
-        <p>Give link for other holdings & recent tx...</p>
-      )}
-    </div>
-  </div>
-</div>
-
+      </div>
     </div>
   );
 };

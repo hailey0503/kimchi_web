@@ -1,18 +1,20 @@
 /* Contact section styles */
 .contact {
-	padding: 100px 0;
+	
 	text-align: center;
+	height: 60vh;
+	padding-top: 80px;
   }
   
   .contact h2 {
 	font-size: 28px;
 	margin-bottom: 20px;
-	color: #333;
+	color: #93BFCF;
   }
   
   .contact p {
 	font-size: 16px;
-	color: #666;
+	color: #93BFCF;
 	line-height: 1.6;
 	max-width: 800px;
 	margin: 0 auto 40px;
@@ -27,7 +29,7 @@
 	display: block;
 	font-weight: bold;
 	margin-bottom: 8px;
-	color: #333;
+	color: #93BFCF;
   }
   
   .contact input,
@@ -51,7 +53,7 @@
   }
   
   .contact button:hover {
-	background-color:#6096B4;
+	background-color:#93BFCF;
   }
   .alert {
 	position: fixed;
@@ -85,4 +87,8 @@
 	to {
 	  opacity: 0;
 	}
+  }
+  .page {
+	height: 100vh;
+	
   }

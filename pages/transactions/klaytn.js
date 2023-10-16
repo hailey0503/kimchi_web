@@ -114,11 +114,12 @@ const TransactionQuery = () => {
     <>
       <Header />
       <div className={styles.container}>
+     
         <h1 className={styles.title}>Klaytn Transaction Finder</h1>
         <input
           type="text"
           className={styles.inputWithIcon}
-          placeholder="Enter Transaction Hash or Sender Address"
+          placeholder="    Enter Transaction Hash or Sender Address"
           value={query}
           onChange={handleQueryChange}
         />
@@ -159,7 +160,7 @@ const TransactionQuery = () => {
               <thead>
                 <tr>
                   <th className={styles.tableHeader}>Amount</th>
-                  <th className={styles.tableHeader}>Sell/Buy</th>
+                 
                   <th className={styles.tableHeader}>From</th>
                   <th className={styles.tableHeader}>To</th>
                   <th className={styles.tableHeader}>Timestamp</th>
@@ -171,9 +172,7 @@ const TransactionQuery = () => {
                     <td className={styles.tableCell}>
                       {parseFloat(transaction.amount).toFixed(2)}
                     </td>
-                    <td className={styles.tableCell}>
-                      <p>Sell/Buy</p>
-                    </td>
+                   
                     <td className={styles.tableCell}>
                       {transaction.sender.startsWith("0x")
                         ? transaction.sender_full

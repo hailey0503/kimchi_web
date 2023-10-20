@@ -43,8 +43,16 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   try {
-    const response = await fetch("http://kimch_web.vercel.app/api/transactions");
-    const { data: transactions } = await response.json();
+    const client = await clientPromise;
+    const db = client.db("kimchi");
+    const transactions = await db
+      .collection("transactions")
+      .find({})
+      .sort({ timestamp: -1 }) // Sort by timestamp in descending order
+      .toArray();
+    res.json({ status: 200, data: transactions });
+    //const response = await fetch("http://kimch_web.vercel.app/api/transactions");
+    //const { data: transactions } = await response.json();
 
     const paths = transactions.map((transaction) => ({
       params: { id: transaction.txHash }, // Use txHash as the parameter

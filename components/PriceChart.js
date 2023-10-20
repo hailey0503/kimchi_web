@@ -9,7 +9,7 @@ const PriceChart = () => {
   useEffect(() => {
     // Make a GET request to fetch 24-hour price data from CoinMarketCap API
     axios
-      .get("http://localhost:4500/api/coinmarketcap")
+      .get("http://kimch_web.vercel.app/api/coinmarketcap")
       .then((response) => {
         // Process the API response and extract historical price data
         const historicalData = response.data.priceChange.priceData;

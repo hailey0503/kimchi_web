@@ -43,7 +43,7 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   try {
-    const response = await fetch("http://localhost:4200/api/transactions");
+    const response = await fetch("http://kimch_web.vercel.app/api/transactions");
     const { data: transactions } = await response.json();
 
     const paths = transactions.map((transaction) => ({

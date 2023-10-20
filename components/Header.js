@@ -70,12 +70,12 @@ const Header = () => {
             >
               <Link
                 href={
-                  "http://localhost:4200/transactions/klaytn"
+                  "http://kimch_web.vercel.app/api/transactions/klaytn"
                 }
               >
                 <p>Klaytn</p>
               </Link>
-              <Link href={"http://localhost:4200/transactions/wemix"}>
+              <Link href={"http://kimch_web.vercel.app/api/transactions/wemix"}>
                 <p>WeMix</p>
               </Link>
             </div>

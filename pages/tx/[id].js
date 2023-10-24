@@ -7,6 +7,7 @@ import Link from "next/link";
 
 export async function getStaticProps({ params }) {
   try {
+    //console.log("100000");
     const client = await clientPromise;
     const db = client.db("kimchi");
     const txHash = params.id;
@@ -15,7 +16,7 @@ export async function getStaticProps({ params }) {
     const transaction = await db
       .collection("transactions")
       .findOne({ txHash }, { projection: { _id: 0 } });
-
+    //console.log("txxxxxx", transaction);
     if (!transaction) {
       return {
         notFound: true,
@@ -27,7 +28,7 @@ export async function getStaticProps({ params }) {
       ...transaction,
       timestamp: transaction.timestamp.toString(),
     };
-
+   // console.log("FORMAT", formattedTransaction)
     return {
       props: {
         status: 200,
@@ -37,42 +38,45 @@ export async function getStaticProps({ params }) {
     };
   } catch (e) {
     console.error(e);
+    console.log("ERROR!!!", e);
   }
   return { props: {} };
 }
+
 
 export async function getStaticPaths() {
   try {
     const client = await clientPromise;
     const db = client.db("kimchi");
-    const transactions = await db
+    const allTransactions = await db
       .collection("transactions")
-      .find({})
+      .find({}).limit(10)
       .sort({ timestamp: -1 }) // Sort by timestamp in descending order
       .toArray();
-    res.json({ status: 200, data: transactions });
-    //const response = await fetch("http://kimch_web.vercel.app/api/transactions");
-    //const { data: transactions } = await response.json();
+    //const all_json = JSON.stringify(all)
+    //const allTransactions = JSON.parse(all_json)
 
-    const paths = transactions.map((transaction) => ({
+
+    const paths = allTransactions.map((transaction) => ({
       params: { id: transaction.txHash }, // Use txHash as the parameter
     }));
-
+   
     return {
       paths,
-      fallback: true, // or 'blocking' if you want to generate pages on demand
+      fallback: "blocking", // or 'blocking' if you want to generate pages on demand
     };
   } catch (e) {
     console.error(e);
   }
 
-  return { paths: [], fallback: true };
+  return { paths: [], fallback: "blocking" };
 }
 
-const TX = ({ data: formattedTransaction }) => {
+const TX = ({ data : formattedTransaction }) => {
   return (
     <>
       <Header />
+    
       <div className={styles["card-container"]}>
         <div className={`${styles.card} ${styles.transactionCard}`}>
           <h2>Transaction Details</h2>
@@ -84,12 +88,16 @@ const TX = ({ data: formattedTransaction }) => {
           </p>
           <p>
             <strong>Hash:</strong>{" "}
-            <Link href={formattedTransaction.link+formattedTransaction.txHash} className={styles.txHash}>
+            <Link
+              href={formattedTransaction.link + formattedTransaction.txHash}
+              className={styles.txHash}
+            >
               {formattedTransaction.txHash}
             </Link>
           </p>
           <p>
-            <strong>Fee:</strong> {formattedTransaction.fee} {formattedTransaction.blockchainName} 
+            <strong>Fee:</strong> {formattedTransaction.fee}{" "}
+            {formattedTransaction.blockchainName}
           </p>
         </div>
         <div className={`${styles.card} ${styles.transferCard}`}>
@@ -99,17 +107,27 @@ const TX = ({ data: formattedTransaction }) => {
               <strong>Sender:</strong>{" "}
               {formattedTransaction.sender.slice(0, 2) !== "0x" ? (
                 <>
-                 <Link href={formattedTransaction.link+formattedTransaction.sender_full} className={styles.txHash}>
-              {formattedTransaction.sender_full}
-            </Link>
-                 {"     "}
+                  <Link
+                    href={
+                      formattedTransaction.link +
+                      formattedTransaction.sender_full
+                    }
+                    className={styles.txHash}
+                  >
+                    {formattedTransaction.sender_full}
+                  </Link>
+                  {"     "}
                   {formattedTransaction.sender}
                 </>
               ) : (
-                <Link href={formattedTransaction.link+formattedTransaction.sender_full} className={styles.txHash}>
-                {formattedTransaction.sender_full}
-              </Link>
-                
+                <Link
+                  href={
+                    formattedTransaction.link + formattedTransaction.sender_full
+                  }
+                  className={styles.txHash}
+                >
+                  {formattedTransaction.sender_full}
+                </Link>
               )}
             </p>
 
@@ -117,20 +135,34 @@ const TX = ({ data: formattedTransaction }) => {
               <strong>Reciever:</strong>{" "}
               {formattedTransaction.receiver.slice(0, 2) !== "0x" ? (
                 <>
-                   <Link href={formattedTransaction.link+formattedTransaction.receiver_full} className={styles.txHash}>
-              {formattedTransaction.receiver_full}
-            </Link>{"     "}
+                  <Link
+                    href={
+                      formattedTransaction.link +
+                      formattedTransaction.receiver_full
+                    }
+                    className={styles.txHash}
+                  >
+                    {formattedTransaction.receiver_full}
+                  </Link>
+                  {"     "}
                   {formattedTransaction.receiver}
                 </>
               ) : (
-                <Link href={formattedTransaction.link+formattedTransaction.receiver_full} className={styles.txHash}>
-                {formattedTransaction.receiver_full}
-              </Link>
-             
+                <Link
+                  href={
+                    formattedTransaction.link +
+                    formattedTransaction.receiver_full
+                  }
+                  className={styles.txHash}
+                >
+                  {formattedTransaction.receiver_full}
+                </Link>
               )}
             </p>
             <p>
-              <strong>Amount: </strong>{formattedTransaction.amount} {formattedTransaction.blockchainName} 
+              <strong>Amount: </strong>
+              {formattedTransaction.amount}{" "}
+              {formattedTransaction.blockchainName}
             </p>
           </div>
         </div>

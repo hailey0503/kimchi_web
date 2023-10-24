@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  complier: { removeConsole: false },
   eslint: {
     ignoreDuringBuilds: true,
   },

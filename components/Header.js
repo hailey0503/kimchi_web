@@ -5,7 +5,6 @@ import styles from "../styles/header.module.css";
 import DarkMode from "./darkMode";
 import Image from "next/image";
 
-
 const Header = () => {
   const [showOptions, setShowOptions] = useState(false);
 
@@ -68,11 +67,7 @@ const Header = () => {
                 showOptions ? "show" : ""
               }`}
             >
-              <Link
-                href={
-                  "/transactions/klaytn"
-                }
-              >
+              <Link href={"/transactions/klaytn"}>
                 <p>Klaytn</p>
               </Link>
               <Link href={"/transactions/wemix"}>
@@ -103,13 +98,12 @@ const Header = () => {
         />
       </a>
       <div className={styles.links}>
-       
         {links.map((link) => (
           <Link key={link.id} href={link.url}>
             {link.title}
           </Link>
         ))}
-         <DarkMode />
+        <DarkMode />
       </div>
     </div>
   );

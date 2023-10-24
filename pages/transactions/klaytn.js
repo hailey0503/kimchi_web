@@ -22,8 +22,10 @@ const TransactionQuery = () => {
 
   const fetchTransactions = (sortingOption) => {
     axios
-      .get(`api/transactions?sort=${sortingOption}`)
+      .get(`../api/transactions?sort=${sortingOption}`)
+      //.get("../api/transactions")
       .then((response) => {
+        console.log("RESPONSE", response)
         if (Array.isArray(response.data.data)) {
           setTransactions(response.data.data);
         } else {

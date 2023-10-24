@@ -6,10 +6,10 @@ export default async function handler(req, res) {
     const db = client.db("kimchi");
     const allTransactions = await db
       .collection("transactions")
-      .find({}).limit(10)
+      .find({})
       .sort({ timestamp: -1 }) // Sort by timestamp in descending order
       .toArray();
-    res.json({ status: 200, data: allTransactions });
+    res.json({ data: allTransactions });
   } catch (e) {
     console.error(e);
   }

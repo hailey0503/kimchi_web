@@ -22,7 +22,7 @@ const TransactionQuery = () => {
 
   const fetchTransactions = (sortingOption) => {
     axios
-      .get(`http://kimch_web.vercel.app/api/transactions/api/transactions?sort=${sortingOption}`)
+      .get(`api/transactions?sort=${sortingOption}`)
       .then((response) => {
         if (Array.isArray(response.data.data)) {
           setTransactions(response.data.data);

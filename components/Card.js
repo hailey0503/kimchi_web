@@ -12,7 +12,7 @@ const Card = ({ logoSrc, companyName, children }) => {
   useEffect(() => {
     // Make a GET request to your server's API endpoint for cryptocurrency data
     axios
-      .get("/api/transactions/api/coinmarketcap")
+      .get("api/coinmarketcap")
       .then((response) => {
         // Handle the response data here
         setCryptoData(response.data);
@@ -25,7 +25,7 @@ const Card = ({ logoSrc, companyName, children }) => {
 
     // Make a GET request to your server's API endpoint for transaction data
     axios
-      .get("/api/transactions/api/transactions")
+      .get("/api/transactions")
       .then((response) => {
         // Handle the response data here
         console.log("Transaction data:", response.data.data);

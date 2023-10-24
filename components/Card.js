@@ -12,7 +12,7 @@ const Card = ({ logoSrc, companyName, children }) => {
   useEffect(() => {
     // Make a GET request to your server's API endpoint for cryptocurrency data
     axios
-      .get("http://kimch_web.vercel.app/api/transactions/api/coinmarketcap")
+      .get("/api/transactions/api/coinmarketcap")
       .then((response) => {
         // Handle the response data here
         setCryptoData(response.data);
@@ -25,7 +25,7 @@ const Card = ({ logoSrc, companyName, children }) => {
 
     // Make a GET request to your server's API endpoint for transaction data
     axios
-      .get("http://kimch_web.vercel.app/api/transactions/api/transactions")
+      .get("/api/transactions/api/transactions")
       .then((response) => {
         // Handle the response data here
         console.log("Transaction data:", response.data.data);

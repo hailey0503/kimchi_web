@@ -19,7 +19,7 @@
 	border: 1px solid #e0e0e0; /* Light border */
 	border-radius: 10px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-	padding: 20px; /* Reduce the padding inside the cards */
+	padding: 50px; /* Reduce the padding inside the cards */
   width: 100%; /* Full width of the container */
   max-width: 800px; /* Set a maximum width for the cards */
   text-align: left;

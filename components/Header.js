@@ -17,8 +17,8 @@ const Header = () => {
       title: (
         <Image
           src="/3.png"
-          width={20}
-          height={20}
+          width={18}
+          height={18}
           className={styles.icon}
           alt="kimchi Twitter"
         />
@@ -30,8 +30,8 @@ const Header = () => {
       title: (
         <Image
           src="/discord.png"
-          width={35}
-          height={35}
+          width={30}
+          height={30}
           className={styles.icon}
           alt="kimchi discord"
         />
@@ -43,8 +43,8 @@ const Header = () => {
       title: (
         <Image
           src="/telegram.webp"
-          width={22}
-          height={22}
+          width={18}
+          height={18}
           className={styles.icon}
           alt="kimchi telegram"
         />

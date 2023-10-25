@@ -96,8 +96,8 @@ const Card = ({ logoSrc, companyName, children }) => {
         <div className={styles.price}>
           {cryptoData ? (
             <div>
-              <p className={styles.price_p}>$ {formattedCurrentPriceUSD}</p>
-              <p className={styles.percent}>{formattedPriceChange}%</p>
+              <p className={styles.price_p}  style={{ marginBottom: '10px' }}>$ {formattedCurrentPriceUSD}</p>
+              <p className={styles.percent} style={{ marginTop: '10px' }}>{formattedPriceChange}%</p>
             </div>
           ) : (
             <p>Loading cryptocurrency data...</p>

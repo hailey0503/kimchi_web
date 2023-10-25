@@ -119,7 +119,7 @@
   .rightContent {
 	width: 68%; /* 2/3 of the container width for right content */
 	padding-top: 15px; /* Add padding to center the content vertically */
-	font-size: 14px; 
+	font-size: 13px; 
   }
   
   .leftHolder {
@@ -129,7 +129,7 @@
   .rightHolder {
 	width: 68%; /* 2/3 of the container width for right content */
 	padding-top: 15px; /* Add padding to center the content vertically */
-	font-size: 14px; 
+	font-size: 13px; 
   }
   .bigTx {
 	font-size: 20px;

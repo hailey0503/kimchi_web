@@ -4,6 +4,7 @@ import styles from "./klaytn.module.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const TransactionQuery = () => {
   const [query, setQuery] = useState("");
@@ -25,7 +26,7 @@ const TransactionQuery = () => {
       .get(`../api/transactions?sort=${sortingOption}`)
       //.get("../api/transactions")
       .then((response) => {
-        console.log("RESPONSE", response)
+        console.log("RESPONSE", response);
         if (Array.isArray(response.data.data)) {
           setTransactions(response.data.data);
         } else {
@@ -39,8 +40,7 @@ const TransactionQuery = () => {
         console.error("Error fetching transactions:", error);
       });
   };
-  
-  
+
   const handleQueryChange = (e) => {
     setQuery(e.target.value);
   };
@@ -116,7 +116,6 @@ const TransactionQuery = () => {
     <>
       <Header />
       <div className={styles.container}>
-     
         <h1 className={styles.title}>Klaytn Transaction Finder</h1>
         <input
           type="text"
@@ -162,10 +161,10 @@ const TransactionQuery = () => {
               <thead>
                 <tr>
                   <th className={styles.tableHeader}>Amount</th>
-                 
                   <th className={styles.tableHeader}>From</th>
                   <th className={styles.tableHeader}>To</th>
                   <th className={styles.tableHeader}>Timestamp</th>
+                  <th className={styles.tableHeader}>See Details</th>
                 </tr>
               </thead>
               <tbody>
@@ -174,20 +173,19 @@ const TransactionQuery = () => {
                     <td className={styles.tableCell}>
                       {parseFloat(transaction.amount).toFixed(2)}
                     </td>
-                   
-                    <td className={styles.tableCell}>
-                      {transaction.sender.startsWith("0x")
-                        ? transaction.sender_full
-                        : transaction.sender}
-                    </td>
-                    <td className={styles.tableCell}>
-                      {transaction.receiver.startsWith("0x")
-                        ? transaction.receiver_full
-                        : transaction.receiver}
-                    </td>
+
+                    <td className={styles.tableCell}>{transaction.sender}</td>
+                    <td className={styles.tableCell}>{transaction.receiver}</td>
 
                     <td className={styles.tableCell}>
                       {formatTimestamp(transaction.timestamp)}
+                    </td>
+                    <td className={styles.tableCell}>
+                    
+                    <Link href= {`/tx/${transaction.txHash}`} className={styles.bigTx}>
+                      {transaction.txHash.slice(0, 7)}...
+                      {transaction.txHash.slice(37, 42)}
+                      </Link>
                     </td>
                   </tr>
                 ))}

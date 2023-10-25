@@ -94,7 +94,7 @@
 }
 
 .inputWithIcon {
-  height: 40px; /* Adjust the height as needed */
+  height: 34px; /* Adjust the height as needed */
 
   padding-left: 30px; /* Adjust the padding as needed */
   background-image: url("../public/glass.png");

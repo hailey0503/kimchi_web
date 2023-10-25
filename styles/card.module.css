@@ -7,9 +7,10 @@
 	border: 1px solid #333; /* Dark border */
 	border-radius: 10px;
 	padding: 20px;
-	margin: 20px 20px;
-	width: calc(33.33% - 10px); /* Adjust as needed for spacing between cards */
-	height: calc(130% * (calc(33.33% - 10px))); /* Set the height to 130% of the width */
+	margin: 10px;
+	width: calc(33.33% - 20px); /* Adjust as needed for spacing between cards */
+	height: calc(120% * (calc(33.33% - 10px))); /* Set the height to 130% of the width */
+	min-width: 300px; /* Add a minimum width to prevent excessive narrowing */
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Slight shadow */
 	background-color: #2a486c;
 	font-family: "Helvetica Neue", sans-serif; /* Modern sans-serif font */

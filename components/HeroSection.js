@@ -49,26 +49,25 @@ const HeroSection = () => {
         </div>
 
         <div className={styles.cardContainer}>
-          {/* Replace this with your card components */}
+          <div className={styles.cardWrapper}>
 
-          <div className={styles.cardContainer}>
-            {/* Replace this with your card components */}
             <Card logoSrc="/klaytn_logo.png" companyName="Klaytn">
               {/* Add content for price action and chart */}
              
             </Card>
+          </div>
+          <div className={styles.cardWrapper}>
             <Card logoSrc="/another_logo.png" companyName="Company Name">
-              {/* Add content for price action and chart */}
-             
             </Card>
+          </div>
+          <div className={styles.cardWrapper}>
             <Card logoSrc="/yet_another_logo.png" companyName="Another Company">
-              {/* Add content for price action and chart */}
-             
+              {/* Add content for price action and chart */} 
             </Card>
           </div>
         </div>
       </div>
-    </div>
+      </div>
   );
 };
 

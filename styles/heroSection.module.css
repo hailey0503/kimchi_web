@@ -85,12 +85,27 @@
 
 .cardContainer {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap; /* Allow cards to wrap to the next line on smaller screens */
+  justify-content: space-between; /* Add space between cards */
   margin-top: 30px;
   padding-top: 40px;
-  width: 90%; /* Adjust the width to make the container wider */
-  max-width: 1400px; /* Set a maximum width if needed */
-  margin: 0 auto; /* Center the container horizontally */
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.cardWrapper {
+  flex: 1; /* Equal width for all cards */
+  max-width: calc(33.33% - 20px);
+  margin-bottom: 20px; /* Add spacing between rows */
+}
+
+/* Add media queries for responsiveness */
+@media (max-width: 768px) {
+  .cardWrapper {
+    max-width: 100%; /* Cards take full width on smaller screens */
+    margin-right: 0; /* Remove spacing between cards */
+  }
 }
 
 .inputWithIcon {

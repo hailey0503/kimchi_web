@@ -70,7 +70,7 @@ const Card = ({ logoSrc, companyName, children }) => {
 
   // Define formattedCurrentPriceUSD here after fetching data
   const formattedCurrentPriceUSD = cryptoData
-    ? cryptoData.currentPriceUSD.toFixed(2)
+    ? cryptoData.currentPriceUSD.toFixed(3)
     : null;
 
   const formattedPriceChange = cryptoData

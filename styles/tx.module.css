@@ -6,7 +6,7 @@
 	align-items: center;
 	justify-content: center; /* Center the cards vertically and horizontally */
 	height: 100vh;
-	padding: 40px 0; /* Add padding to create space at the top and bottom */
+	padding: 30px 0; /* Add padding to create space at the top and bottom */
 	gap: 150px; /* Space between cards */
   }
   
@@ -16,52 +16,46 @@
 	border: 1px solid #e0e0e0; /* Light border */
 	border-radius: 10px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-	padding: 30px;
-	width: 100%; /* Full width of the container */
-	max-width: calc(100vw - 300px); /* Set the maximum width to screen width - 40px for padding */
-	text-align: center;
-	font-family: Arial, sans-serif; /* Choose a suitable font */
-	color: #966b6b; /* Text color for Transaction card */
-	text-align: left; /* Align to the left */
+	padding: 20px; /* Reduce the padding inside the cards */
+  width: 100%; /* Full width of the container */
+  max-width: 800px; /* Set a maximum width for the cards */
+  text-align: left;
+  font-family: Arial, sans-serif;
+  color: #966b6b; /* Text color for Transaction card */
+  margin-bottom: 20px; /* Add margin between the cards for ads */
   }
   
-  .transactionCard h2 {
-	font-size: 32px;
-	margin-bottom: 60px;
-	color: #6b4f34; /* Dark sky blue color */
-  	text-align: left; /* Align to the left */
-  }
-  
-  /* Transfer card styles */
-  .transferCard {
-	background-color: #f8f8f8; /* Light background color */
-	border: 1px solid #e0e0e0; /* Light border */
-	border-radius: 10px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-	padding: 30px;
-	width: 100%; /* Full width of the container */
-	max-width: calc(100vw - 300px); /* Set the maximum width to screen width - 40px for padding */
-	text-align: center;
-	font-family: Arial, sans-serif; /* Choose a suitable font */
-	color: #7a5f5f; /* Text color for Transfer card */
-	text-align: left; /* Align to the left */
-  }
-  
+
+  .transactionCard h2,
   .transferCard h2 {
 	font-size: 32px;
-	margin-bottom: 60px;
-	color: #6b4f34; /* Dark sky blue color */
-  	text-align: left; /* Align to the left */
-  }
-  .transactionCard p {
-	font-size: 20px; /* Set the desired font size */
-	margin-bottom: 20px; /* Margin at the bottom to create space */
+	margin-bottom: 50px; /* Reduce the margin below the heading */
+	color: #6b4f34;
+	text-align: left;
   }
   
-  .transferCard p {
-	font-size: 20px; /* Set the desired font size */
-	margin-bottom: 20px; /* Margin at the bottom to create space */
-  }
+  .transactionCard,
+.transferCard {
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 50px; /* Reduce the padding inside the cards */
+  width: 100%; /* Full width of the container */
+  max-width: 900px; /* Set a maximum width for the cards */
+  text-align: left;
+  font-family: Arial, sans-serif;
+  color: #966b6b; /* Text color for Transaction card */
+  margin-bottom: 20px; /* Add margin between the cards for ads */
+}
+  
+
+/* Additional styles for paragraphs inside the cards */
+.transactionCard p,
+.transferCard p {
+  font-size: 20px;
+  margin-bottom: 15px; /* Reduce the margin between paragraphs */
+}
 
   .txHash {
 	color: #4d7aad; /* Set the default text color */
@@ -75,7 +69,5 @@
 	color: #224983; /* Change the text color on hover */
   }
 
-.fromTo {
 
-}
   

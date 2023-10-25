@@ -80,7 +80,7 @@ const TX = ({ data: formattedTransaction }) => {
         <meta property="og:url" content="https://kimchi-web.vercel.app/"/>
         <meta
           property="og:image"
-          content="https://kimchi-web.vercel.app/kimchi_bg.png"
+          content="https://kimchi-web.vercel.app/kimchi_rec.png"
         />
         <meta
           property="og:description"
@@ -96,7 +96,7 @@ const TX = ({ data: formattedTransaction }) => {
         />
         <meta
           name="twitter:image"
-          content="https://kimchi-web.vercel.app/kimchi_bg.png"
+          content="https://kimchi-web.vercel.app/kimchi_rec.png"
         />
         <meta
           name="twitter:description"

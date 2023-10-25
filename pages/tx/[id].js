@@ -75,32 +75,33 @@ const TX = ({ data: formattedTransaction }) => {
   return (
     <>
       <Head>
-        <meta property="og:title" content="kimchi-web"></meta>
-        <meta property="og:url" content="https://kimchi-web.vercel.app/"></meta>
+      <meta name="keywords" content="klay, klaytn, whalealert, search, blockchain, crypto, currency, 클레이, 클레이튼, 블록체인, 카카오 클레이, 카카오 클레이튼, 김치코인"/>
+        <meta property="og:title" content="kimchi-web"/>
+        <meta property="og:url" content="https://kimchi-web.vercel.app/"/>
         <meta
           property="og:image"
           content="https://kimchi-web.vercel.app/kimchi_bg.png"
-        ></meta>
+        />
         <meta
           property="og:description"
           content="KimchiAlert allows you to find transaction data on K-blockchain."
-        ></meta>
-        <meta name="twitter:card" content="summary">
-          {" "}
-        </meta>
-        <meta name="twitter:title" content="kimchi-web"></meta>
+        />
+        <meta name="twitter:card" content="summary"/>
+          
+       
+        <meta name="twitter:title" content="kimchi-web"/>
         <meta
           name="twitter:url"
           content="https://kimchi-web.vercel.app/"
-        ></meta>
+        />
         <meta
           name="twitter:image"
           content="https://kimchi-web.vercel.app/kimchi_bg.png"
-        ></meta>
+        />
         <meta
           name="twitter:description"
           content="KimchiAlert allows you to find transaction data on K-blockchain."
-        ></meta>
+        />
       </Head>
 
       <Header />

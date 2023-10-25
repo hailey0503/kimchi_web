@@ -10,7 +10,7 @@
 	margin: 10px;
 	width: calc(33.33% - 20px); /* Adjust as needed for spacing between cards */
 	height: calc(120% * (calc(33.33% - 10px))); /* Set the height to 130% of the width */
-	min-width: 300px; /* Add a minimum width to prevent excessive narrowing */
+	min-width: 280px; /* Add a minimum width to prevent excessive narrowing */
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Slight shadow */
 	background-color: #2a486c;
 	font-family: "Helvetica Neue", sans-serif; /* Modern sans-serif font */

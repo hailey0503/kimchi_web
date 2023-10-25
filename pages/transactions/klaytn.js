@@ -111,6 +111,7 @@ const TransactionQuery = () => {
   const pageNumbers = Math.ceil(
     currentTransactions.length / transactionsPerPage
   );
+ 
 
   return (
     <>
@@ -171,7 +172,8 @@ const TransactionQuery = () => {
                 {paginatedTransactions.map((transaction) => (
                   <tr key={transaction.txHash} className={styles.tableRow}>
                     <td className={styles.tableCell}>
-                      {parseFloat(transaction.amount).toFixed(2)}
+                    
+                      {Number(transaction.amount).toLocaleString("en-US", { maximumFractionDigits: 0 })}
                     </td>
 
                     <td className={styles.tableCell}>{transaction.sender}</td>

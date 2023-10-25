@@ -4,6 +4,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import clientPromise from "../../lib/mongodb";
 import Link from "next/link";
+import Head from "next/head";
 
 export async function getStaticProps({ params }) {
   try {
@@ -28,7 +29,7 @@ export async function getStaticProps({ params }) {
       ...transaction,
       timestamp: transaction.timestamp.toString(),
     };
-   // console.log("FORMAT", formattedTransaction)
+    // console.log("FORMAT", formattedTransaction)
     return {
       props: {
         status: 200,
@@ -43,7 +44,6 @@ export async function getStaticProps({ params }) {
   return { props: {} };
 }
 
-
 export async function getStaticPaths() {
   try {
     const client = await clientPromise;
@@ -56,11 +56,10 @@ export async function getStaticPaths() {
     //const all_json = JSON.stringify(all)
     //const allTransactions = JSON.parse(all_json)
 
-
     const paths = allTransactions.map((transaction) => ({
       params: { id: transaction.txHash }, // Use txHash as the parameter
     }));
-   
+
     return {
       paths,
       fallback: "blocking", // or 'blocking' if you want to generate pages on demand
@@ -72,11 +71,40 @@ export async function getStaticPaths() {
   return { paths: [], fallback: "blocking" };
 }
 
-const TX = ({ data : formattedTransaction }) => {
+const TX = ({ data: formattedTransaction }) => {
   return (
     <>
+      <Head>
+        <meta property="og:title" content="kimchi-web"></meta>
+        <meta property="og:url" content="https://kimchi-web.vercel.app/"></meta>
+        <meta
+          property="og:image"
+          content="https://kimchi-web.vercel.app/kimchi_bg.png"
+        ></meta>
+        <meta
+          property="og:description"
+          content="KimchiAlert allows you to find transaction data on K-blockchain."
+        ></meta>
+        <meta name="twitter:card" content="summary">
+          {" "}
+        </meta>
+        <meta name="twitter:title" content="kimchi-web"></meta>
+        <meta
+          name="twitter:url"
+          content="https://kimchi-web.vercel.app/"
+        ></meta>
+        <meta
+          name="twitter:image"
+          content="https://kimchi-web.vercel.app/kimchi_bg.png"
+        ></meta>
+        <meta
+          name="twitter:description"
+          content="KimchiAlert allows you to find transaction data on K-blockchain."
+        ></meta>
+      </Head>
+
       <Header />
-    
+
       <div className={styles["card-container"]}>
         <div className={`${styles.card} ${styles.transactionCard}`}>
           <h2>Transaction Details</h2>

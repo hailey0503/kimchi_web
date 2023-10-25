@@ -10,7 +10,7 @@ import boat from "public/boat.png"
 const ProductSection = () => {
   return (
     <section className={styles.products}>
-      <h2>The Blockchains</h2>
+      
       <div className={styles.product}>
       <Image src={klaytn}  
              width={500}

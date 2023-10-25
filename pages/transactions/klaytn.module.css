@@ -109,12 +109,12 @@
 	margin: 0 10px; /* Add margin between page number and buttons */
   }
   /* klaytn.module.css */
-.table {
-	width: 100%;
+  .table {
+	width: 95%; /* Reduce table width to 90% of the container */
+	margin: 0 auto; /* Center the table horizontally in the container */
 	border-collapse: collapse; /* Remove spacing between table cells */
 	margin-top: 40px;
 	margin-bottom: 20px;
-	
   }
   
   .tableHeader {
@@ -129,7 +129,7 @@
   }
   
   .tableCell {
-	padding: 10px;
+	padding: 10px 20px; /* Add horizontal padding to the table cells */
 	border: 1px solid #ddd; /* Add borders to table cells */
 	text-align: center;
   }
@@ -141,6 +141,7 @@
   .tableCell:last-child {
 	border-right: none; /* Remove right border for the last cell in each row */
   }
+  
   
   /* klaytn.module.css */
 

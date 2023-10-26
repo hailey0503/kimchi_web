@@ -138,3 +138,22 @@
 	  height: 60px; /* Adjust the height for smaller screens */
 	}
   }
+  
+  @media (max-width: 768px) {
+    .cardWrapper {
+      flex: 1;
+      max-width: calc(50% - 20px); /* Adjust the width for smaller screens */
+      margin-bottom: 20px;
+      margin-left: 0; /* Remove margin between cards horizontally */
+    }
+  }
+  
+  /* Reset card styles for larger screens */
+  @media (min-width: 769px) {
+    .cardWrapper {
+      flex: 1;
+      max-width: calc(33.33% - 20px);
+      margin-bottom: 20px;
+      margin-left: 20px;
+    }
+  }

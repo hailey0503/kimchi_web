@@ -119,6 +119,7 @@ const TransactionQuery = () => {
       <Header />
       </div>
       <div className={styles.container}>
+        <div className={styles.upperContainer}>
         <h1 className={styles.title}>Klaytn Transaction Finder</h1>
         <input
           type="text"
@@ -157,6 +158,7 @@ const TransactionQuery = () => {
               <option value="amount_asc">Amount (Low to High)</option>
             </select>
           </div>
+        </div>
         </div>
         {paginatedTransactions.length > 0 && (
           <>

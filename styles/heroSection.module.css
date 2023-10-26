@@ -1,11 +1,15 @@
 .section {
   position: relative;
-  height: 180vh; /* Increased the min-height to make the hero section taller */
+  min-height: 100vh; /* Increased the min-height to make the hero section taller */
   scroll-snap-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+
+  @media (min-width: 768px) {
+    min-height: 150vh; /* Set a minimum height greater than 100vh for larger screens */
+  }
 }
 
 /* Update the video styling to cover the entire section */

@@ -1,5 +1,6 @@
 body {
 	margin: 0;
+	padding: 0; 
 }
 
 a {
@@ -19,7 +20,7 @@ a {
 	 align-items: center; /* Add this to center horizontally */
   }
   .container {
-	max-width: 1366px;
+	width: 100%;
 	min-height: 100vh;
 	margin:0 auto;
 	padding: 60px;

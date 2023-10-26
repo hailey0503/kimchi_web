@@ -1,6 +1,8 @@
 /* styles.module.css */
 
-
+.header {
+  justify-content: center; /* Center the cards vertically and horizontally */
+}
 .card-container {
 	display: flex;
 	flex-direction: column; /* Stack cards vertically */
@@ -27,7 +29,7 @@
   font-family: Arial, sans-serif;
   color: #966b6b; /* Text color for Transaction card */
   margin-bottom: 20px; /* Add margin between the cards for ads */
-  overflow: hidden; /* Add overflow hidden to prevent content from sticking out */
+  
   }
   
 

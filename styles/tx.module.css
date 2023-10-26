@@ -6,7 +6,7 @@
 	justify-content: center; /* Center the cards vertically and horizontally */
 	height: 100vh;
 	padding: 30px 0; /* Add padding to create space at the top and bottom */
-	margin-top: 0px;
+	margin-top: 70px;
 	margin-bottom: 70px;
 	gap: 150px; /* Space between cards */
   }
@@ -93,6 +93,7 @@
   .header {
     font-size: 16px; /* Adjust the font size for smaller screens */
     height: 60px; /* Adjust the height for smaller screens */
+    margin-bottom: 40px;
   }
 }
 

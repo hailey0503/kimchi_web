@@ -1,183 +1,206 @@
 /* styles/klaytn.module.css */
 .container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	min-height: 100vh;
-	width: 100%;
-	text-align: center;
-	padding-top: 50px;
-	font-family: 'Nunito', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  text-align: center;
+  padding-top: 50px;
+  font-family: "Nunito", sans-serif;
 
-	background-size: 100% 100%;
+  background-size: 100% 100%;
 
-	@media (max-width: 768px) {
-		padding-top: 130px; /* Adjust the value as needed */
-	  }
-  }
-  
-  
-
-  .inputWithIcon {
-	height: 34px; /* Adjust the height as needed */
-  
-	padding-left: 30px; /* Adjust the padding as needed */
-	background-image: url("../../public/glass.png");
-	background-repeat: no-repeat;
-	background-position: 5px center; /* Adjust the position as needed */
-	background-size: 20px; /* Adjust the size as needed */
-	width: 70%;
-	margin-bottom: 50px;
-	padding: 10px;
-	border: none;
-	border-radius: 20px;
-	outline: none;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .inputWithIcon:focus::placeholder {
-	color: transparent; /* Hide the placeholder text when focused */
-  }
-  .inputWithIcon:focus {
-	background-image: none;
-	border-color: #8cb8ea;
-  }
-  
-  .button {
-	width: 120px;
-	height: 35px;
-	font-size: 20px;
-	background-color: #6096B4;
-	color: white;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.3s ease; /* Add animation to button */
-	margin-bottom: 30px;
-	margin-left: 20px;
-  }
-  
-  .button:hover {
-	background-color: #93BFCF; /* Change background color on hover */
-  }
-  
-  .title {
-	margin-bottom: 80px; /* Add a big space (adjust the value as needed) */
-	font-size: 35px;
-  }
-  /* Rest of your existing styles */
-  .animate {
-	animation-name: myAnimation;
-	animation-duration: 1s; /* Adjust the duration as needed */
-  }
-  
-  @keyframes myAnimation {
-	0% {
-	  transform: scale(1);
-	}
-	50% {
-	  transform: scale(1.1); /* Adjust the scale factor for the desired effect */
-	}
-	100% {
-	  transform: scale(1);
-	}
-  }
-  .pagination {
-	display: flex;
-	list-style-type: none; /* Remove bullet points */
-	margin: 0;
-	padding: 0;
-  }
-  
-  .pageItem {
-	margin: 0 5px;
-	padding: 0;
-  }
-  
-  .pageLink {
-	background-color: #6096B4;
-	color: #fff;
-	border: none;
-	padding: 5px 10px;
-	border-radius: 5px;
-	margin: 0 5px; /* Add margin between buttons */
-	
-  }
-  
-  .pageLink:hover {
-	background-color: #93BFCF;
-  }
-  
-  .disabled,
-  .active .pageLink {
-	background-color: #ccc;
-	cursor: not-allowed;
-  }
-  .pageNum {
-	margin: 0 10px; /* Add margin between page number and buttons */
-  }
- 
-  .table {
-	width: 95%; /* Reduce table width to 90% of the container */
-	max-width: 95%;
-	margin: 0 auto; /* Center the table horizontally in the container */
-	border-collapse: collapse; /* Remove spacing between table cells */
-	margin-top: 40px;
-	margin-bottom: 20px;
-  }
-  
-  .tableHeader {
-	background-color: #93BFCF;
-	color: white;
-	padding: 10px;
-	text-align: center;
-  }
-  
-  .tableRow:nth-child(even) {
-	background-color: #f2f2f2; /* Alternate row background color */
-  }
-  
-  .tableCell {
-	padding: 10px 20px; /* Add horizontal padding to the table cells */
-	border: 1px solid #ddd; /* Add borders to table cells */
-	text-align: center;
-  }
-  
-  .tableCell:first-child {
-	border-left: none; /* Remove left border for the first cell in each row */
-  }
-  
-  .tableCell:last-child {
-	border-right: none; /* Remove right border for the last cell in each row */
-  }
-  
-  
-  /* klaytn.module.css */
-
-    .pagination {
-	margin-top: 20px; /* Add spacing between the pagination and other content */
-	margin-bottom: 50px;
-  }
-  .filterSection {
-	margin-bottom: 10px;
-	padding-right: 10px;
-  }
-  .filterbox {
-	width: 100px;
-  }
-  .sortSection{
-	padding-left: 10px;
-  }
-  .filterSortSection{
-	display: flex;
-  flex-direction: row; /* Arrange items horizontally */
-  justify-content: flex-end; /* Align items to the end (right) */
-  margin-top: 10px; /* Adjust the margin as needed */
-  }
   @media (max-width: 768px) {
-	.header {
-	  font-size: 16px; /* Adjust the font size for smaller screens */
-	  height: 60px; /* Adjust the height for smaller screens */
-	}
+    padding-top: 130px; /* Adjust the value as needed */
   }
+}
+
+.inputButtonRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+  min-width: 600px;
+}
+
+.inputWithIcon {
+  height: 34px;
+  padding-left: 30px;
+  background-image: url("../../public/glass.png");
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  background-size: 20px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  flex: 1; /* Take up remaining space in the row */
+}
+
+.inputWithIcon:focus::placeholder {
+  color: transparent; /* Hide the placeholder text when focused */
+}
+.inputWithIcon:focus {
+  background-image: none;
+  border-color: #1e2124;
+}
+
+.button {
+  width: 100px;
+  height: 35px;
+  font-size: 20px;
+  background-color: #6096b4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 20px;
+}
+
+.button:hover {
+  background-color: #93bfcf; /* Change background color on hover */
+}
+
+.title {
+  margin-bottom: 80px; /* Add a big space (adjust the value as needed) */
+  font-size: 35px;
+}
+/* Rest of your existing styles */
+.animate {
+  animation-name: myAnimation;
+  animation-duration: 1s; /* Adjust the duration as needed */
+}
+
+@keyframes myAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1); /* Adjust the scale factor for the desired effect */
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.pagination {
+  display: flex;
+  list-style-type: none; /* Remove bullet points */
+  margin: 0;
+  padding: 0;
+}
+
+.pageItem {
+  margin: 0 5px;
+  padding: 0;
+}
+
+.pageLink {
+  background-color: #6096b4;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 0 5px; /* Add margin between buttons */
+}
+
+.pageLink:hover {
+  background-color: #93bfcf;
+}
+
+.disabled,
+.active .pageLink {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.pageNum {
+  margin: 0 10px; /* Add margin between page number and buttons */
+}
+
+.table {
+  width: 95%; /* Reduce table width to 90% of the container */
+  max-width: 95%;
+  margin: 0 auto; /* Center the table horizontally in the container */
+  border-collapse: collapse; /* Remove spacing between table cells */
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.tableHeader {
+  background-color: #93bfcf;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.tableRow:nth-child(even) {
+  background-color: #f2f2f2; /* Alternate row background color */
+}
+
+.tableCell {
+  padding: 10px 20px; /* Add horizontal padding to the table cells */
+  border: 1px solid #ddd; /* Add borders to table cells */
+  text-align: center;
+}
+
+.tableCell:first-child {
+  border-left: none; /* Remove left border for the first cell in each row */
+}
+
+.tableCell:last-child {
+  border-right: none; /* Remove right border for the last cell in each row */
+}
+
+/* klaytn.module.css */
+
+.pagination {
+  margin-top: 20px; /* Add spacing between the pagination and other content */
+  margin-bottom: 50px;
+}
+.selectContainer {
+  position: relative;
+  width: 200px; /* Adjust the width as needed */
+  margin-left: 20px; /* Adjust the spacing from the input box */
+}
+
+.select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #f2f2f2; /* Background color of the select */
+  border: none;
+  border-radius: 5px;
+  appearance: none; /* Remove default arrow icon on some browsers */
+  cursor: pointer;
+  font-family: "Nunito", sans-serif; /* Use the same font-family as inputWithIcon */
+}
+
+/* Hover effect for the select */
+.select:hover {
+  background-color: #e0e0e0; /* Change background color on hover */
+}
+
+.filterSortSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end; /* Move items to the right */
+  align-items: center; /* Vertically center items */
+  margin-top: 10px;
+  width: 100%; /* Make it take the full width of the container */
+  margin-right: 120px;
+  height: 30px;
+}
+
+.sortSection {
+  margin-left: 20px; /* Add some space between the input and the sorting dropdown */
+}
+
+@media (max-width: 768px) {
+  .header {
+    font-size: 16px; /* Adjust the font size for smaller screens */
+    height: 60px; /* Adjust the height for smaller screens */
+  }
+}

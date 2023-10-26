@@ -53,6 +53,12 @@ const TransactionQuery = () => {
       console.error("Error fetching data:", error);
     }
   };
+  const handleFilter = () => {
+    console.log("Query for filtering:", query);
+  setFilterSender(query);
+  console.log("Filter set:", filterSender);
+  };
+
 
   const indexOfLastTransaction = currentPage * transactionsPerPage;
   const indexOfFirstTransaction = indexOfLastTransaction - transactionsPerPage;
@@ -60,11 +66,12 @@ const TransactionQuery = () => {
 
   // Filter by sender address
   if (filterSender) {
-    currentTransactions = currentTransactions.filter(
-      (transaction) =>
-        transaction.sender.startsWith("0x") &&
-        transaction.sender.includes(filterSender)
-    );
+    console.log(currentTransactions)
+    console.log("Filtering by sender:", filterSender);
+  currentTransactions = currentTransactions.filter(
+    (transaction) => transaction.sender_full.includes(filterSender)
+  );
+  console.log("filteredTX", currentTransactions);
   }
 
   // Sort transactions based on sortOption
@@ -111,56 +118,52 @@ const TransactionQuery = () => {
   const pageNumbers = Math.ceil(
     currentTransactions.length / transactionsPerPage
   );
- 
 
   return (
     <>
-     <div className={styles.header}>
-      <Header />
+      <div className={styles.header}>
+        <Header />
       </div>
       <div className={styles.container}>
-        <div className={styles.upperContainer}>
-        <h1 className={styles.title}>Klaytn Transaction Finder</h1>
-        <input
-          type="text"
-          className={styles.inputWithIcon}
-          placeholder="    Enter Transaction Hash"
-          value={query}
-          onChange={handleQueryChange}
-        />
-        <button
-          onClick={handleSearch}
-          className={`${styles.button} ${isAnimating ? "animate" : ""}`}
-        >
-          Search
-        </button>
-        <div className={styles.filterSortSection}>
-          <div className={styles.filterSection}>
-            <label>Filter by Sender Address </label>
+      
+          <h1 className={styles.title}>Klaytn Transaction Finder</h1>
+          <div className={styles.inputButtonRow}>
             <input
               type="text"
-              value={filterSender}
-              onChange={(e) => setFilterSender(e.target.value)}
+              className={styles.inputWithIcon}
+              placeholder="    Enter Transaction Hash"
+              value={query}
+              onChange={handleQueryChange}
             />
-          </div>
-          <div className={styles.sortSection}>
-            <label>Sort by </label>
-            <select
-              value={sortOption}
-              onChange={(e) => {
-                setSortOption(e.target.value);
-                fetchTransactions(e.target.value);
-              }}
+            <button
+              onClick={handleSearch}
+              className={`${styles.button} ${isAnimating ? "animate" : ""}`}
             >
-              <option value="">Select Sorting Option</option>
-              <option value="timestamp_desc">Most Recent</option>
-              <option value="amount_desc">Amount (High to Low)</option>
-              <option value="amount_asc">Amount (Low to High)</option>
-            </select>
+              Search
+            </button>
+            <button onClick={handleFilter} className={styles.button}>
+            Filter
+          </button>
           </div>
-        </div>
-        </div>
-     
+          <div className={styles.filterSortSection}>
+            <div className={styles.sortSection}>
+              <select
+                className={`${styles.select}`}
+                value={sortOption}
+                onChange={(e) => {
+                  setSortOption(e.target.value);
+                  fetchTransactions(e.target.value);
+                }}
+              >
+                <option value="">Select Sorting Option</option>
+                <option value="timestamp_desc">Most Recent</option>
+                <option value="amount_desc">Amount (High to Low)</option>
+                <option value="amount_asc">Amount (Low to High)</option>
+              </select>
+            </div>
+          </div>
+  
+
         {paginatedTransactions.length > 0 && (
           <>
             <table className={styles.table}>
@@ -177,8 +180,9 @@ const TransactionQuery = () => {
                 {paginatedTransactions.map((transaction) => (
                   <tr key={transaction.txHash} className={styles.tableRow}>
                     <td className={styles.tableCell}>
-                    
-                      {Number(transaction.amount).toLocaleString("en-US", { maximumFractionDigits: 0 })}
+                      {Number(transaction.amount).toLocaleString("en-US", {
+                        maximumFractionDigits: 0,
+                      })}
                     </td>
 
                     <td className={styles.tableCell}>{transaction.sender}</td>
@@ -188,17 +192,19 @@ const TransactionQuery = () => {
                       {formatTimestamp(transaction.timestamp)}
                     </td>
                     <td className={styles.tableCell}>
-                    
-                    <Link href= {`/tx/${transaction.txHash}`} className={styles.bigTx}>
-                      {transaction.txHash.slice(0, 7)}...
-                      {transaction.txHash.slice(37, 42)}
+                      <Link
+                        href={`/tx/${transaction.txHash}`}
+                        className={styles.bigTx}
+                      >
+                        {transaction.txHash.slice(0, 7)}...
+                        {transaction.txHash.slice(37, 42)}
                       </Link>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-          
+
             <ul className={styles.pagination}>
               <button
                 onClick={() => {
@@ -250,7 +256,6 @@ const TransactionQuery = () => {
             </ul>
           </>
         )}
-       
       </div>
       <Footer />
     </>

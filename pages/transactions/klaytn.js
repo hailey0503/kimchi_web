@@ -124,7 +124,7 @@ const TransactionQuery = () => {
         <input
           type="text"
           className={styles.inputWithIcon}
-          placeholder="    Enter Transaction Hash or Sender Address"
+          placeholder="    Enter Transaction Hash"
           value={query}
           onChange={handleQueryChange}
         />
@@ -160,6 +160,7 @@ const TransactionQuery = () => {
           </div>
         </div>
         </div>
+     
         {paginatedTransactions.length > 0 && (
           <>
             <table className={styles.table}>
@@ -197,6 +198,7 @@ const TransactionQuery = () => {
                 ))}
               </tbody>
             </table>
+          
             <ul className={styles.pagination}>
               <button
                 onClick={() => {
@@ -248,6 +250,7 @@ const TransactionQuery = () => {
             </ul>
           </>
         )}
+       
       </div>
       <Footer />
     </>

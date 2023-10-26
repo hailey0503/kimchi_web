@@ -8,8 +8,11 @@
 	width: 100%;
 	text-align: center;
 	font-family: 'Nunito', sans-serif;
+
+	background-size: 100% 100%;
+
 	@media (max-width: 768px) {
-		padding-top: 110px; /* Adjust the value as needed */
+		padding-top: 130px; /* Adjust the value as needed */
 	  }
   }
   
@@ -51,6 +54,7 @@
 	cursor: pointer;
 	transition: background-color 0.3s ease; /* Add animation to button */
 	margin-bottom: 30px;
+	margin-left: 20px;
   }
   
   .button:hover {
@@ -112,9 +116,10 @@
   .pageNum {
 	margin: 0 10px; /* Add margin between page number and buttons */
   }
-  /* klaytn.module.css */
+ 
   .table {
 	width: 95%; /* Reduce table width to 90% of the container */
+	max-width: 95%;
 	margin: 0 auto; /* Center the table horizontally in the container */
 	border-collapse: collapse; /* Remove spacing between table cells */
 	margin-top: 40px;

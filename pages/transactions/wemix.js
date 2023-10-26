@@ -34,7 +34,9 @@ const TransactionQuery = () => {
 
   return (
 	<>
+   <div className={styles.header}>
       <Header />
+      </div>
 	  <div className={styles.container}>
       <h1 className={styles.title}>WeMix Transaction Finder</h1> {/* Apply the title class */}
       <input

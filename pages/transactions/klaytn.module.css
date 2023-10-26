@@ -165,3 +165,9 @@
   justify-content: flex-end; /* Align items to the end (right) */
   margin-top: 10px; /* Adjust the margin as needed */
   }
+  @media (max-width: 768px) {
+	.header {
+	  font-size: 16px; /* Adjust the font size for smaller screens */
+	  height: 60px; /* Adjust the height for smaller screens */
+	}
+  }

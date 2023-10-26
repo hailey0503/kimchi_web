@@ -115,7 +115,9 @@ const TransactionQuery = () => {
 
   return (
     <>
+     <div className={styles.header}>
       <Header />
+      </div>
       <div className={styles.container}>
         <h1 className={styles.title}>Klaytn Transaction Finder</h1>
         <input

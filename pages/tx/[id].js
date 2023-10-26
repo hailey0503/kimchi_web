@@ -137,10 +137,12 @@ const TX = ({ data: formattedTransaction }) => {
               <strong>Sender:</strong>{" "}
               {formattedTransaction.sender.slice(0, 2) !== "0x" ? (
                 <>
+                console.log({
+                      `${formattedTransaction.link.slice(0,25)} + "account/"+
+                      ${formattedTransaction.sender_full}`})
                   <Link
                     href={
-                      formattedTransaction.link +
-                      formattedTransaction.sender_full
+                      `${formattedTransaction.link.slice(0,25)}account/${formattedTransaction.sender_full}`
                     }
                     className={styles.txHash}
                   >
@@ -152,8 +154,7 @@ const TX = ({ data: formattedTransaction }) => {
               ) : (
                 <Link
                   href={
-                    formattedTransaction.link + formattedTransaction.sender_full
-                  }
+                    `${formattedTransaction.link.slice(0,25)}account/${formattedTransaction.sender_full}`}
                   className={styles.txHash}
                 >
                   {formattedTransaction.sender_full}
@@ -167,8 +168,7 @@ const TX = ({ data: formattedTransaction }) => {
                 <>
                   <Link
                     href={
-                      formattedTransaction.link +
-                      formattedTransaction.receiver_full
+                      `${formattedTransaction.link.slice(0,25)}account/${formattedTransaction.receiver_full}`
                     }
                     className={styles.txHash}
                   >
@@ -180,8 +180,7 @@ const TX = ({ data: formattedTransaction }) => {
               ) : (
                 <Link
                   href={
-                    formattedTransaction.link +
-                    formattedTransaction.receiver_full
+                    `${formattedTransaction.link.slice(0,25)}account/${formattedTransaction.receiver_full}`
                   }
                   className={styles.txHash}
                 >

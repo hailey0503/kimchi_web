@@ -1,5 +1,6 @@
 /* styles.module.css */
 
+
 .card-container {
 	display: flex;
 	flex-direction: column; /* Stack cards vertically */
@@ -86,7 +87,12 @@
   }
 }
 
-
+@media (max-width: 768px) {
+  .header {
+    font-size: 16px; /* Adjust the font size for smaller screens */
+    height: 60px; /* Adjust the height for smaller screens */
+  }
+}
 
 
 

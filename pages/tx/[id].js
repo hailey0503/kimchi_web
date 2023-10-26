@@ -74,6 +74,7 @@ export async function getStaticPaths() {
 const TX = ({ data: formattedTransaction }) => {
   return (
     <>
+    
       <Head>
       <meta name="keywords" content="klay, klaytn, whalealert, search, blockchain, crypto, currency, 클레이, 클레이튼, 블록체인, 카카오 클레이, 카카오 클레이튼, 김치코인"/>
         <meta property="og:title" content="kimchi-web"/>
@@ -103,9 +104,9 @@ const TX = ({ data: formattedTransaction }) => {
           content="KimchiAlert allows you to find transaction data on K-blockchain."
         />
       </Head>
-
+      <div className={styles.header}>
       <Header />
-
+    </div>
       <div className={styles["card-container"]}>
         <div className={`${styles.card} ${styles.transactionCard}`}>
           <h2>Transaction Details</h2>

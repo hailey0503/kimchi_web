@@ -70,8 +70,7 @@
   .transferCard {
     font-size: 12px; /* Adjust the font size as needed */
     padding: 20px; /* Increase the padding to give more space */
-    width: 100%; /* Set the width to 100% for smaller screens */
-    max-width: none; /* Remove the maximum width for smaller screens */
+   
   }
   .txHash {
     margin-right: 10px; /* Add some spacing between the link and the address */

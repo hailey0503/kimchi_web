@@ -15,7 +15,8 @@ a {
   }
   .dark{
 	background-color: #212422;
-	 color: #6096B4
+	 color: #6096B4;
+	 align-items: center; /* Add this to center horizontally */
   }
   .container {
 	max-width: 1366px;
@@ -25,4 +26,5 @@ a {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	align-items: center; /* Add this to center horizontally */
   }

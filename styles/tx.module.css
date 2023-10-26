@@ -1,8 +1,4 @@
 /* styles.module.css */
-
-.header {
-  justify-content: center; /* Center the cards vertically and horizontally */
-}
 .card-container {
 	display: flex;
 	flex-direction: column; /* Stack cards vertically */
@@ -15,6 +11,9 @@
 	gap: 150px; /* Space between cards */
   }
   
+.header {
+  justify-content: center; /* Center the cards vertically and horizontally */
+}
   /* Transaction card styles */
   .transactionCard,
   .transferCard {

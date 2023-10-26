@@ -9,7 +9,7 @@
 	text-align: center;
 	font-family: 'Nunito', sans-serif;
 	@media (max-width: 768px) {
-		padding-top: 80px; /* Adjust the value as needed */
+		padding-top: 110px; /* Adjust the value as needed */
 	  }
   }
   

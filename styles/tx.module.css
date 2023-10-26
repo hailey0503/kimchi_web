@@ -20,7 +20,7 @@
 	border-radius: 10px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 	padding: 50px; /* Reduce the padding inside the cards */
-  width: 85%; /* Full width of the container */
+  width: 80%; /* Full width of the container */
   max-width: 800px; /* Set a maximum width for the cards */
   text-align: left;
   font-family: Arial, sans-serif;
@@ -44,6 +44,7 @@
 .transferCard p {
   font-size: 20px;
   margin-bottom: 15px; /* Reduce the margin between paragraphs */
+  word-wrap: break-word;
 }
 
   .txHash {

@@ -20,12 +20,13 @@
 	border-radius: 10px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 	padding: 50px; /* Reduce the padding inside the cards */
-  width: 100%; /* Full width of the container */
+  width: 85%; /* Full width of the container */
   max-width: 800px; /* Set a maximum width for the cards */
   text-align: left;
   font-family: Arial, sans-serif;
   color: #966b6b; /* Text color for Transaction card */
   margin-bottom: 20px; /* Add margin between the cards for ads */
+  overflow: hidden; /* Add overflow hidden to prevent content from sticking out */
   }
   
 

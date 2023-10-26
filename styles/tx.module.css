@@ -59,6 +59,9 @@
 
 /* Styles for smaller screens (e.g., mobile devices) */
 @media (max-width: 768px) {
+  .card-container {
+    align-items: center;
+  }
   .transactionCard,
   .transferCard {
     padding: 20px; /* Reduce the padding inside the cards for smaller screens */

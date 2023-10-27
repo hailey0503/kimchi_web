@@ -7,7 +7,10 @@
 	padding-left: 35px;
 	padding-right: 35px;
   }
-  
+  .company {
+	font-family: 'Nunito', sans-serif;
+	color: #666;
+  }
   .social {
 	display: flex;
 	align-items: center;

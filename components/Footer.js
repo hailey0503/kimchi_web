@@ -5,7 +5,8 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <div className={styles.container}>
-      <div>©2023 kimchi alert. All rights reserved.</div>
+
+      <div className={styles.company}>©2023 kimchi alert. All rights reserved.</div>
 
       <div className={styles.social}>
         <a href="https://twitter.com/cryptoduckb" title="Go to FB">

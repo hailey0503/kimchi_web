@@ -18,4 +18,8 @@
 	opacity: 0.8;
 	cursor: pointer;
   }
-  
+  @media (max-width: 768px) {
+	.container{
+  	margin-top: 10vh;
+	}
+  }

@@ -59,11 +59,11 @@
 	}
   
 	.logo {
-	  font-size: 18px; /* Adjust font size for smaller screens */
+	  font-size: 12px; /* Adjust font size for smaller screens */
 	}
   
 	.links {
-	  font-size: 12px; /* Adjust font size for smaller screens */
+	  font-size: 10px; /* Adjust font size for smaller screens */
 	  gap: 10px; /* Adjust the gap between links */
 	}
   }

@@ -131,7 +131,7 @@ const TransactionQuery = () => {
             <input
               type="text"
               className={styles.inputWithIcon}
-              placeholder="    Enter Transaction Hash"
+              placeholder="    Enter Transaction Hash or Sender Address"
               value={query}
               onChange={handleQueryChange}
             />

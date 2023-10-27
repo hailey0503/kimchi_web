@@ -92,3 +92,12 @@
 	height: 100vh;
 	
   }
+  @media (max-width: 768px) {
+	.contact input,
+  .contact textarea {
+	width: 75vw;
+  }
+  .contact button {
+	margin-bottom: 60px;
+  }
+  }

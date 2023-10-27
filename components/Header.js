@@ -89,12 +89,13 @@ const Header = () => {
   return (
     <div className={styles.container}>
       <a href="/" title="Go to Home">
-        <Image
+        <img
           src="/kimchi_bg.png"
           width={130}
           height={80}
-          className={styles.icon}
+          className={styles.logoIcon}
           alt="uluwatu lab"
+          
         />
       </a>
       <div className={styles.links}>

@@ -64,11 +64,10 @@
 }
 
 .titleContainer {
-  padding: 30px 0;
   text-align: center;
   position: relative; /* Add this */
   padding-top: 180px;
-  width: 90%; /* Adjust the width as needed */
+  width: 100%; /* Adjust the width as needed */
   margin: 0 auto; /* Center the title container horizontally */
   max-width: 1200px; /* Adjust the maximum width for smaller screens */
 
@@ -107,19 +106,17 @@
   flex: 1; /* Equal width for all cards */
   max-width: calc(33.33% - 20px);
   margin-bottom: 20px; /* Add spacing between rows */
-  margin-left: 20px; /* Add spacing between cards horizontally */
 }
 
 
 .inputWithIcon {
   height: 34px; /* Adjust the height as needed */
-
-  padding-left: 30px; /* Adjust the padding as needed */
+ 
   background-image: url("../public/glass.png");
   background-repeat: no-repeat;
   background-position: 5px center; /* Adjust the position as needed */
   background-size: 20px; /* Adjust the size as needed */
-  width: 100%;
+  width: 90%;
   padding: 10px;
   border: none;
   border-radius: 20px;
@@ -138,10 +135,20 @@
    
     .cardContainer {
       flex-direction: column;
+      margin: 0;
+    }
+    .inputContainer {
+      width: 75vw;
+      margin: 0 auto;
+
     }
     .cardWrapper {
       max-width: 100%;
-      margin-bottom: 20px;
+      margin: 0,0,20,0;
+    }
+   
+    .titleContainer {
+      margin: 0;
     }
   }
   

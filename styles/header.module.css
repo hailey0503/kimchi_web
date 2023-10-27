@@ -4,7 +4,7 @@
 	justify-content: space-between;
 	align-items: center;
 	padding: 20px 35px;
-	margin: 0 20px;
+	margin: 0 8px;
 	font-weight: bold;
 	transition: color 0.3s ease;
 	font-family: 'Nunito', sans-serif;
@@ -65,5 +65,9 @@
 	.links {
 	  font-size: 10px; /* Adjust font size for smaller screens */
 	  gap: 10px; /* Adjust the gap between links */
+	}
+	.logoIcon {
+		height: 55px;
+		width: 70px;
 	}
   }

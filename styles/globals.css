@@ -18,6 +18,7 @@ a {
 	background-color: #212422;
 	 color: #6096B4;
 	 align-items: center; /* Add this to center horizontally */
+	 overflow: scroll
   }
   .container {
 	width: 100%;

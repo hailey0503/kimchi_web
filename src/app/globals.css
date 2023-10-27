@@ -28,7 +28,8 @@ a {
 }
 .dark{
   background-color: #111;
-   color: #DAF5FF
+   color: #DAF5FF;
+   overflow: scroll
 }
 .container {
   max-width: 100%; /* Set a maximum width for the container */

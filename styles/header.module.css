@@ -16,6 +16,7 @@
 	font-size: 25px;
 	color: #666;
 	text-decoration: none;
+	margin-bottom: 10px; /* Add some spacing below the logo */
   }
   
   .links {
@@ -52,4 +53,17 @@
   .transaction-tab.active .transaction-options {
 	display: block; /* Show options when active */
   }
+  @media (max-width: 768px) {
+	.container {
+	  padding: 15px; /* Adjust padding for smaller screens */
+	}
   
+	.logo {
+	  font-size: 18px; /* Adjust font size for smaller screens */
+	}
+  
+	.links {
+	  font-size: 12px; /* Adjust font size for smaller screens */
+	  gap: 10px; /* Adjust the gap between links */
+	}
+  }

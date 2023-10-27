@@ -80,14 +80,12 @@
 .cardBottom {
 	display: flex;
 	flex-direction: column;
-	align-items: center; /* Align the text to the left */
 	justify-content: center;
 	width: 100%; /* Use the whole width of the card */
 	height: 23%;
 	padding: 10px;
 	font-family: 'Nunito', sans-serif;
 	font-weight: bold;
-	font-size: 18px; /* Adjust font size as needed */
 	padding-bottom: 16px;
 	
 
@@ -100,6 +98,7 @@
 	max-width: 88%;
 	max-height: 80px;
 	font-size: 13px; 
+	padding-left: 18px;
   }
   
   
@@ -110,10 +109,12 @@
 	max-width: 88%;
 	max-height: 80px;
 	font-size: 13px; 
+	padding-left: 18px;
 	
   }
   .leftContent {
 	width: 30%; /* 1/3 of the container width for left content */
+	max-height: 45px;
 	
   }
   
@@ -125,6 +126,7 @@
   
   .leftHolder {
 	width: 30%; /* 1/3 of the container width for left content */
+	max-height: 45px;
   }
   
   .rightHolder {
@@ -135,8 +137,6 @@
   .bigTx {
 	font-size: 18px;
   }
-
-
   .whaleAddr {
 	font-size: 18px;
   }

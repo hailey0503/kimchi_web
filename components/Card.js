@@ -150,7 +150,7 @@ const Card = ({ logoSrc, companyName, children }) => {
 
         <div className={styles.holder}>
           <div className={styles.leftHolder}>
-            <p>Top Whale (24h): </p>
+            <p>Top Whale (24h):</p>
           </div>
           <div className={styles.rightHolder}>
             {biggestTransaction ? (

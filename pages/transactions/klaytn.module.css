@@ -198,9 +198,4 @@
   margin-left: 20px; /* Add some space between the input and the sorting dropdown */
 }
 
-@media (max-width: 768px) {
-  .header {
-    font-size: 16px; /* Adjust the font size for smaller screens */
-    height: 60px; /* Adjust the height for smaller screens */
-  }
-}
+

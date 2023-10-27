@@ -109,7 +109,7 @@ const TX = ({ data: formattedTransaction }) => {
     </div>
       <div className={styles["card-container"]}>
         <div className={`${styles.card} ${styles.transactionCard}`}>
-          <h2>Transaction Details</h2>
+          <h2>Transaction Details 🐋</h2>
           <p>
             <strong>Blockchain:</strong> {formattedTransaction.blockchainName}
           </p>
@@ -131,7 +131,7 @@ const TX = ({ data: formattedTransaction }) => {
           </p>
         </div>
         <div className={`${styles.card} ${styles.transferCard}`}>
-          <h2>Transfer</h2>
+          <h2>Transfer 🐋</h2>
           <div className={styles.fromTo}>
             <p>
               <strong>Sender:</strong>{" "}
@@ -190,7 +190,10 @@ const TX = ({ data: formattedTransaction }) => {
             </p>
             <p>
               <strong>Amount: </strong>
-              {formattedTransaction.amount}{" "}
+              {Number(formattedTransaction.amount).toLocaleString("en-US", {
+                        maximumFractionDigits: 0,
+                      })}
+              {" "}
               {formattedTransaction.blockchainName}
             </p>
           </div>

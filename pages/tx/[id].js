@@ -137,9 +137,7 @@ const TX = ({ data: formattedTransaction }) => {
               <strong>Sender:</strong>{" "}
               {formattedTransaction.sender.slice(0, 2) !== "0x" ? (
                 <>
-                console.log({
-                      `${formattedTransaction.link.slice(0,25)} + "account/"+
-                      ${formattedTransaction.sender_full}`})
+               
                   <Link
                     href={
                       `${formattedTransaction.link.slice(0,25)}account/${formattedTransaction.sender_full}`

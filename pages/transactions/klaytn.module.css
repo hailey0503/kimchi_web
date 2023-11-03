@@ -23,20 +23,41 @@
   margin-bottom: 50px;
   min-width: 600px;
 }
-
-.inputWithIcon {
+.inputContainer {
+  display: flex;
+  align-items: center;
+  width: 100%; /* Takes the full width */
   height: 34px;
   padding-left: 30px;
+  background-size: 20px;
+  width: 100%;
+  padding: 10px;
+  min-width: 500px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  flex: 1; /* Take up remaining space in the row */
+}
+
+.select {
+  width: 20%; /* 2/10 = 20% */
+}
+.select:focus {
+  outline: none;
+}
+.inputWithIcon {
+  width: 70%; /* 7/10 = 70% */
+  height: 30px;
+  padding-left: 20px;
   background-image: url("../../public/glass.png");
   background-repeat: no-repeat;
   background-position: 5px center;
   background-size: 20px;
   width: 100%;
-  padding: 10px;
+  min-width: 400px;
   border: none;
-  border-radius: 20px;
-  outline: none;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   flex: 1; /* Take up remaining space in the row */
 }
 
@@ -46,24 +67,9 @@
 .inputWithIcon:focus {
   background-image: none;
   border-color: #1e2124;
+  outline: none;
 }
 
-.button {
-  width: 100px;
-  height: 35px;
-  font-size: 20px;
-  background-color: #6096b4;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-left: 20px;
-}
-
-.button:hover {
-  background-color: #93bfcf; /* Change background color on hover */
-}
 
 .title {
   margin-bottom: 80px; /* Add a big space (adjust the value as needed) */
@@ -160,11 +166,7 @@
   margin-top: 20px; /* Add spacing between the pagination and other content */
   margin-bottom: 50px;
 }
-.selectContainer {
-  position: relative;
-  width: 200px; /* Adjust the width as needed */
-  margin-left: 20px; /* Adjust the spacing from the input box */
-}
+
 
 .select {
   width: 100%;
@@ -172,7 +174,7 @@
   font-size: 16px;
   background-color: #f2f2f2; /* Background color of the select */
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   appearance: none; /* Remove default arrow icon on some browsers */
   cursor: pointer;
   font-family: "Nunito", sans-serif; /* Use the same font-family as inputWithIcon */
@@ -196,6 +198,41 @@
 
 .sortSection {
   margin-left: 20px; /* Add some space between the input and the sorting dropdown */
+  width: 10%;
+}
+.sortSection:focus {
+  outline: none;
 }
 
+@media only screen and (max-width: 480px) {
+  .inputButtonRow {
+    flex-direction: column; /* Display in a column on small screens */
+    align-items: center; /* Center-align items */
+    max-width: 70vw;
+    min-width: 70vw;
+  }
+  .inputContainer {
+    flex-direction: column; /* Display in a column on small screens */
+    align-items: center; /* Center-align items */
+    max-width: 80vw;
+    min-width: 80vw;
+    height:10vh
+  }
+  .inputWithIcon {
+    padding: 10px;
+    max-width: 70vw;
+    min-width: 70vw;
+  }
+ 
+  .sortSection{
+    min-width: 33vw;
 
+  }
+
+}
+@media only screen and (max-width: 1000px) {
+  .sortSection{
+   width: 17vw;
+    
+  }
+}

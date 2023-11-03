@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Image from "next/image";
 
 const TransactionQuery = () => {
   const [query, setQuery] = useState("");
@@ -15,6 +16,8 @@ const TransactionQuery = () => {
   const transactionsPerPage = 10;
   const [filterSender, setFilterSender] = useState(""); // Filter by sender address
   const [sortOption, setSortOption] = useState(""); // Default to no selection
+
+  const [filterType, setFilterType] = useState("txHash"); // Dropdown option
 
   useEffect(() => {
     // Fetch transactions on initial load with default sorting (timestamp_desc)
@@ -45,20 +48,36 @@ const TransactionQuery = () => {
     setQuery(e.target.value);
   };
 
-  const handleSearch = async () => {
-    try {
-      setIsAnimating(true);
-      router.push(`/tx/${query}`);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-  const handleFilter = () => {
+ 
+  const  handleSearch = () => {
     console.log("Query for filtering:", query);
-  setFilterSender(query);
-  console.log("Filter set:", filterSender);
+    if (filterType === "txHash") {
+      // Perform filter by transaction hash
+      // Example: filter by transaction hash
+      try {
+        setIsAnimating(true);
+        router.push(`/tx/${query}`);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    } else if (filterType === "sender") {
+      // Perform filter by sender
+      setFilterSender(query);
+      //console.log(currentTransactions);
+      //console.log("Filtering by sender:", filterSender);
+      currentTransactions = currentTransactions.filter((transaction) =>
+        transaction.sender_full.includes(filterSender)
+      );
+      console.log("filteredTX", currentTransactions);
+    }
+    console.log("Filter set:", filterSender);
   };
 
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
 
   const indexOfLastTransaction = currentPage * transactionsPerPage;
   const indexOfFirstTransaction = indexOfLastTransaction - transactionsPerPage;
@@ -66,12 +85,12 @@ const TransactionQuery = () => {
 
   // Filter by sender address
   if (filterSender) {
-    console.log(currentTransactions)
+    console.log(currentTransactions);
     console.log("Filtering by sender:", filterSender);
-  currentTransactions = currentTransactions.filter(
-    (transaction) => transaction.sender_full.includes(filterSender)
-  );
-  console.log("filteredTX", currentTransactions);
+    currentTransactions = currentTransactions.filter((transaction) =>
+      transaction.sender_full.includes(filterSender)
+    );
+    console.log("filteredTX", currentTransactions);
   }
 
   // Sort transactions based on sortOption
@@ -125,44 +144,46 @@ const TransactionQuery = () => {
         <Header />
       </div>
       <div className={styles.container}>
-      
-          <h1 className={styles.title}>Klaytn Transaction Finder</h1>
-          <div className={styles.inputButtonRow}>
+        <h1 className={styles.title}>Klaytn Transaction Finder</h1>
+        <div className={styles.inputButtonRow}>
+        <div className={styles.inputContainer}>
+            <select
+              className={styles.select}
+              value={filterType}
+              onChange={(e) => setFilterType(e.target.value)}
+            >
+              <option value="txHash">Tx Hash</option>
+              <option value="sender">Sender</option>
+            </select>
             <input
               type="text"
               className={styles.inputWithIcon}
               placeholder="    Enter Transaction Hash or Sender Address"
               value={query}
               onChange={handleQueryChange}
+              onKeyPress={handleEnter} // Triggers search on "Enter" key press
             />
-            <button
-              onClick={handleSearch}
-              className={`${styles.button} ${isAnimating ? "animate" : ""}`}
-            >
-              Search
-            </button>
-            <button onClick={handleFilter} className={styles.button}>
-            Filter
-          </button>
-          </div>
-          <div className={styles.filterSortSection}>
-            <div className={styles.sortSection}>
-              <select
-                className={`${styles.select}`}
-                value={sortOption}
-                onChange={(e) => {
-                  setSortOption(e.target.value);
-                  fetchTransactions(e.target.value);
-                }}
-              >
-                <option value="">Select Sorting Option</option>
-                <option value="timestamp_desc">Most Recent</option>
-                <option value="amount_desc">Amount (High to Low)</option>
-                <option value="amount_asc">Amount (Low to High)</option>
-              </select>
-            </div>
-          </div>
   
+          </div>
+          
+       </div>
+        <div className={styles.filterSortSection}>
+          <div className={styles.sortSection}>
+            <select
+              className={`${styles.select}`}
+              value={sortOption}
+              onChange={(e) => {
+                setSortOption(e.target.value);
+                fetchTransactions(e.target.value);
+              }}
+            >
+              <option value="">Sorting Option</option>
+              <option value="timestamp_desc">Most Recent</option>
+              <option value="amount_desc">Amount (High to Low)</option>
+              <option value="amount_asc">Amount (Low to High)</option>
+            </select>
+          </div>
+        </div>
 
         {paginatedTransactions.length > 0 && (
           <>

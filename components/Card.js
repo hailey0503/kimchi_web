@@ -15,6 +15,7 @@ const Card = ({ logoSrc, companyName, children }) => {
       .get("api/coinmarketcap")
       .then((response) => {
         // Handle the response data here
+        console.log("coinmarketcappricedata",response.data)
         setCryptoData(response.data);
 		
       })

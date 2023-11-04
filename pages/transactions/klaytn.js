@@ -175,9 +175,10 @@ const TransactionQuery = () => {
               onChange={(e) => {
                 setSortOption(e.target.value);
                 fetchTransactions(e.target.value);
+              
               }}
             >
-              <option value="">Sorting Option</option>
+             
               <option value="timestamp_desc">Most Recent</option>
               <option value="amount_desc">Amount (High to Low)</option>
               <option value="amount_asc">Amount (Low to High)</option>

@@ -25,7 +25,7 @@ async function fetchCoinMarketCapData(symbol) {
 		// Extract relevant data
 		const currentPriceUSD = data.quote.USD.price;
 		const priceChange24h = data.quote.USD.percent_change_24h;
-		console.log('price', priceChange24h)
+		console.log('price', currentPriceUSD)
   /*
 		// Make a second request to fetch the 24-hour chart data
 		const chartResponse = await fetch(

@@ -41,12 +41,6 @@
   flex: 1; /* Take up remaining space in the row */
 }
 
-.select {
-  width: 20%; /* 2/10 = 20% */
-}
-.select:focus {
-  outline: none;
-}
 .inputWithIcon {
   width: 70%; /* 7/10 = 70% */
   height: 30px;
@@ -184,6 +178,13 @@
 .select:hover {
   background-color: #e0e0e0; /* Change background color on hover */
 }
+.select:focus {
+  outline: none;
+}
+.select option {
+  /* Apply the color style to the option text */
+  color: #2c7d47; 
+}
 
 .filterSortSection {
   display: flex;
@@ -200,9 +201,7 @@
   margin-left: 20px; /* Add some space between the input and the sorting dropdown */
   width: 10%;
 }
-.sortSection:focus {
-  outline: none;
-}
+
 
 @media only screen and (max-width: 480px) {
   .inputButtonRow {

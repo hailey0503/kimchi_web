@@ -54,37 +54,20 @@ async function fetchCoinMarketCapData(symbol) {
 	  throw  "Failed to fetch cryptocurrency data" ;
 	}
   }
-  /*
-  async function fetchInitialCoinMarketCapData() {
-	try {
-	  const res = await axios.get(
-		`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=BTC&convert=USD`,
-		{
-		  headers: {
-			"X-CMC_PRO_API_KEY": apiKey,
-		  },
-		}
-	  );
   
-	  if (res.status === 200) {
-		const data = res.data.data.BTC;
-		currentPriceUSD = data.quote.USD.price;
-		priceChange24h = data.quote.USD.percent_change_24h;
-	  } else {
-		console.error("Failed to fetch initial cryptocurrency data");
-	  }
-	} catch (error) {
-	  console.error("Error:", error.message);
-	}
-  }
-*/
 export default async (req, res) => {
 	try {
-	  const symbol = "KLAY";
-	  const coinmarketcapData = await fetchCoinMarketCapData(symbol);
-		res.status(200).json(coinmarketcapData)
-	} catch (error) {
-	  console.error("Error:", error.message); //msg that was threw
-	  res.status(500).json({ error: "Internal server error" });
-	}
+		const symbols = ["KLAY", "WEMIX", "MBX", "XPLA"];
+		const coinmarketcapData = {};
+	
+		for (const symbol of symbols) {
+		  const data = await fetchCoinMarketCapData(symbol);
+		  coinmarketcapData[symbol] = data;
+		}
+	
+		res.status(200).json(coinmarketcapData);
+	  } catch (error) {
+		console.error("Error:", error.message);
+		res.status(500).json({ error: "Internal server error" });
+	  }
   };

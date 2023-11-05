@@ -1,14 +1,30 @@
 import Link from "next/link";
 import styles from "../styles/heroSection.module.css";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BG from "public/bg_move1.mp4";
 import Header from "./Header.js";
 import Card from "./Card.js";
+import axios from "axios";
 
 const data = ["", ""];
 const HeroSection = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [cryptoData, setCryptoData] = useState({});
+
+  useEffect(() => {
+    // Fetch data for KLAY, WEMIX, and another cryptocurrency (e.g., XPLA)
+    axios
+      .get("/api/coinmarketcap")
+      .then((response) => {
+        // Set the cryptocurrency data to state
+        setCryptoData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching cryptocurrency data:", error);
+      });
+  }, []);
+
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -49,23 +65,17 @@ const HeroSection = () => {
         </div>
 
         <div className={styles.cardContainer}>
-          <div className={styles.cardWrapper}>
-
-            <Card logoSrc="/klaytn_logo.png" companyName="Klaytn">
-              {/* Add content for price action and chart */}
-             
-            </Card>
+        {/* Map through the data to display cards */}
+        {Object.keys(cryptoData).map((symbol) => (
+          <div key={symbol} className={styles.cardWrapper}>
+            <Card
+              logoSrc={`/logo_${symbol.toLowerCase()}.png`} // Assuming the logos follow a similar naming convention
+              companyName={symbol}
+              cryptoData={cryptoData[symbol]} // Pass cryptocurrency data to the Card component
+            />
           </div>
-          <div className={styles.cardWrapper}>
-            <Card logoSrc="/another_logo.png" companyName="Company Name">
-            </Card>
-          </div>
-          <div className={styles.cardWrapper}>
-            <Card logoSrc="/yet_another_logo.png" companyName="Another Company">
-              {/* Add content for price action and chart */} 
-            </Card>
-          </div>
-        </div>
+        ))}
+      </div>
       </div>
       </div>
   );

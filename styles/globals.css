@@ -12,7 +12,9 @@ a {
   }
   .lgiht{
 	 background-color:#EEE9DA;
-	 color: #212422
+	 color: #212422;
+	 align-items: center; /* Add this to center horizontally */
+	 overflow: scroll
   }
   .dark{
 	background-color: #212422;

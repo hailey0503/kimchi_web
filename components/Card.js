@@ -5,9 +5,9 @@ import axios from "axios";
 import { Line } from "react-chartjs-2";
 import Link from "next/link";
 
-const Card = ({ logoSrc, companyName, children }) => {
-  const [cryptoData, setCryptoData] = useState(null);
-  const [biggestTransaction, setBiggestTransaction] = useState(null);
+const Card = ({ logoSrc, companyName, cryptoData}) => {
+ // const [cryptoData, setCryptoData] = useState({});
+  const [biggestTransaction, setBiggestTransaction] = useState({});
 
   useEffect(() => {
     // Make a GET request to your server's API endpoint for cryptocurrency data
@@ -22,7 +22,7 @@ const Card = ({ logoSrc, companyName, children }) => {
       .catch((error) => {
         // Handle any errors here
         console.error("Error fetching cryptocurrency data:", error);
-      });
+      }, []);
 
     // Make a GET request to your server's API endpoint for transaction data
     axios
@@ -78,19 +78,15 @@ const Card = ({ logoSrc, companyName, children }) => {
     ? cryptoData.priceChange24h.toFixed(2)
     : null;
 
+
   return (
     <div className={styles.card}>
       <div className={styles.cardTop}>
         <div className={styles.logo}>
-          <Image
-            src="/klaytn_logo.png"
-            width={50}
-            height={50}
-            alt="klaytn logo"
-          />
+        <Image src={logoSrc} width={50} height={50} alt={`${companyName} logo`} />
         </div>
         <div className={styles.name}>
-          <h3>Klaytn</h3>
+          <h3>{companyName}</h3>
         </div>
       </div>
       <div className={styles.cardMiddle}>

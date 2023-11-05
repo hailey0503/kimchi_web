@@ -16,7 +16,6 @@ const TransactionQuery = () => {
   const transactionsPerPage = 10;
   const [filterSender, setFilterSender] = useState(""); // Filter by sender address
   const [sortOption, setSortOption] = useState(""); // Default to no selection
-
   const [filterType, setFilterType] = useState("txHash"); // Dropdown option
 
   useEffect(() => {
@@ -26,24 +25,26 @@ const TransactionQuery = () => {
 
   const fetchTransactions = (sortingOption) => {
     axios
-      .get(`../api/transactions?sort=${sortingOption}`)
-      //.get("../api/transactions")
+      .get(`../api/transactions`)
       .then((response) => {
         console.log("RESPONSE", response);
-        if (Array.isArray(response.data.data)) {
-          setTransactions(response.data.data);
+  
+        // Extract the "transaction" data from the response
+        const transactions = response.data["transactions"];
+  
+        if (Array.isArray(transactions)) {
+        
+          setTransactions(transactions);
         } else {
-          console.error(
-            "Response does not contain 'data' property:",
-            response.data
-          );
+          console.error("Response does not contain 'transactions' property:", response.data);
         }
       })
       .catch((error) => {
         console.error("Error fetching transactions:", error);
       });
   };
-
+  
+  
   const handleQueryChange = (e) => {
     setQuery(e.target.value);
   };

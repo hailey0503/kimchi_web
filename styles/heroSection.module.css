@@ -110,12 +110,14 @@
   position: absolute;
   top: 70%;
   transform: translateY(-50%);
-  width: 30px; /* Set width for arrow indicators */
-  height: 30px; /* Set height for arrow indicators */
-  background: rgba(255, 255, 255, 0.5); /* Transparent background color */
-  border-radius: 50%; /* Rounded shape for the arrows */
-  cursor: pointer; /* Show cursor as pointer */
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  display: block; /* Ensure the arrows are displayed */
 }
+
 
 .cardContainer::before {
   left: 0;

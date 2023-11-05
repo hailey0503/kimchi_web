@@ -14,32 +14,39 @@ export async function getStaticProps({ params }) {
     const txHash = params.id;
 
     // Fetch the complete transaction data for the given txHash
-    const transaction = await db
-      .collection("transactions")
-      .findOne({ txHash }, { projection: { _id: 0 } });
-    //console.log("txxxxxx", transaction);
-    if (!transaction) {
+    const [transaction, wemixTransaction] = await Promise.all([
+      db.collection("transactions").findOne({ txHash }, { projection: { _id: 0 } }),
+      db.collection("wemix").findOne({ txHash }, { projection: { _id: 0 } }),
+    ]);
+
+    // Convert the Date object to a string
+    let formattedTransaction;
+    if (transaction) {
+      formattedTransaction = {
+        ...transaction,
+        timestamp: transaction.timestamp.toString(),
+        type: "transactions", // Indicate the type of the transaction
+      };
+    } else if (wemixTransaction) {
+      formattedTransaction = {
+        ...wemixTransaction,
+        timestamp: wemixTransaction.timestamp.toString(),
+        type: "wemix", // Indicate the type of the transaction
+      };
+    } else {
       return {
         notFound: true,
       };
     }
-
-    // Convert the Date object to a string
-    const formattedTransaction = {
-      ...transaction,
-      timestamp: transaction.timestamp.toString(),
-    };
-    // console.log("FORMAT", formattedTransaction)
     return {
       props: {
         status: 200,
         data: formattedTransaction,
       },
-      revalidate: 500, // In seconds
+      revalidate: 500,
     };
   } catch (e) {
     console.error(e);
-    console.log("ERROR!!!", e);
   }
   return { props: {} };
 }
@@ -76,8 +83,8 @@ const TX = ({ data: formattedTransaction }) => {
     <>
     
       <Head>
-      <meta name="keywords" content="klay, klaytn, whalealert, search, blockchain, crypto, currency, 클레이, 클레이튼, 블록체인, 카카오 클레이, 카카오 클레이튼, 김치코인"/>
-        <meta property="og:title" content="kimchi-web"/>
+      <meta name="keywords" content="klay, klaytn, whalealert, wemix, search, blockchain, crypto, currency, 클레이, 클레이튼, 위믹스,블록체인, 카카오 클레이, 카카오 클레이튼, 김치코인"/>
+        <meta property="og:title" content="kimchiWhale"/>
         <meta property="og:url" content="https://kimchi-web.vercel.app/"/>
         <meta
           property="og:image"

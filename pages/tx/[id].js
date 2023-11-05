@@ -146,9 +146,13 @@ const TX = ({ data: formattedTransaction }) => {
                 <>
                
                   <Link
-                    href={
-                      `${formattedTransaction.link.slice(0,25)}account/${formattedTransaction.sender_full}`
-                    }
+                   href={
+                    formattedTransaction.blockchainName === 'Klaytn'
+                      ? `${formattedTransaction.link.slice(0, -3)}account/${formattedTransaction.sender_full}`
+                      : formattedTransaction.blockchainName === 'WeMix'
+                      ? `${formattedTransaction.link.slice(0, -3)}address/${formattedTransaction.sender_full}`
+                      : '' // Add a default link or handle other cases based on your requirements
+                }
                     className={styles.txHash}
                   >
                     {formattedTransaction.sender_full}
@@ -158,8 +162,13 @@ const TX = ({ data: formattedTransaction }) => {
                 </>
               ) : (
                 <Link
-                  href={
-                    `${formattedTransaction.link.slice(0,25)}account/${formattedTransaction.sender_full}`}
+                href={
+                  formattedTransaction.blockchainName === 'Klaytn'
+                    ? `${formattedTransaction.link.slice(0, -3)}account/${formattedTransaction.sender_full}`
+                    : formattedTransaction.blockchainName === 'WeMix'
+                    ? `${formattedTransaction.link.slice(0, -3)}address/${formattedTransaction.sender_full}`
+                    : '' // Add a default link or handle other cases based on your requirements
+              }
                   className={styles.txHash}
                 >
                   {formattedTransaction.sender_full}
@@ -172,9 +181,13 @@ const TX = ({ data: formattedTransaction }) => {
               {formattedTransaction.receiver.slice(0, 2) !== "0x" ? (
                 <>
                   <Link
-                    href={
-                      `${formattedTransaction.link.slice(0,25)}account/${formattedTransaction.receiver_full}`
-                    }
+                   href={
+                    formattedTransaction.blockchainName === 'Klaytn'
+                      ? `${formattedTransaction.link.slice(0, -3)}account/${formattedTransaction.receiver_full}`
+                      : formattedTransaction.blockchainName === 'WeMix'
+                      ? `${formattedTransaction.link.slice(0, -3)}address/${formattedTransaction.receiver_full}`
+                      : '' // Add a default link or handle other cases based on your requirements
+                }
                     className={styles.txHash}
                   >
                     {formattedTransaction.receiver_full}
@@ -185,7 +198,11 @@ const TX = ({ data: formattedTransaction }) => {
               ) : (
                 <Link
                   href={
-                    `${formattedTransaction.link.slice(0,25)}account/${formattedTransaction.receiver_full}`
+                    formattedTransaction.blockchainName === 'Klaytn'
+                      ? `${formattedTransaction.link.slice(0, -3)}account/${formattedTransaction.receiver_full}`
+                      : formattedTransaction.blockchainName === 'WeMix'
+                      ? `${formattedTransaction.link.slice(0, -3)}address/${formattedTransaction.receiver_full}`
+                      : '' // Add a default link or handle other cases based on your requirements
                   }
                   className={styles.txHash}
                 >

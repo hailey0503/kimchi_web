@@ -85,10 +85,10 @@ const TX = ({ data: formattedTransaction }) => {
       <Head>
       <meta name="keywords" content="klay, klaytn, whalealert, wemix, search, blockchain, crypto, currency, 클레이, 클레이튼, 위믹스,블록체인, 카카오 클레이, 카카오 클레이튼, 김치코인"/>
         <meta property="og:title" content="kimchiWhale"/>
-        <meta property="og:url" content="https://kimchi-web.vercel.app/"/>
+        <meta property="og:url" content="https://kimchiwhale.io/"/>
         <meta
           property="og:image"
-          content="https://kimchi-web.vercel.app/kimchi_rec.png"
+          content="https://kimchiwhale.io/kimchi_rec.png"
         />
         <meta
           property="og:description"

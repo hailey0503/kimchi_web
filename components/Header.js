@@ -23,7 +23,7 @@ const Header = () => {
           alt="kimchi Twitter"
         />
       ),
-      url: "https://twitter.com/cryptoduckb",
+      url: "https://twitter.com/KlaytnWhale",
     },
     {
       id: 2,
@@ -36,7 +36,7 @@ const Header = () => {
           alt="kimchi discord"
         />
       ),
-      url: "https://discord.gg/tNtCXHfE",
+      url: "https://discord.gg/HJFJWFd5",
     },
     {
       id: 3,

@@ -9,7 +9,7 @@ const Footer = () => {
       <div className={styles.company}>©2023 kimchi alert. All rights reserved.</div>
 
       <div className={styles.social}>
-        <a href="https://twitter.com/cryptoduckb" title="Go to FB">
+        <a href="https://twitter.com/klaytnwhale" title="Go to FB">
           <Image
             src="/1.png"
             width={15}
@@ -18,7 +18,7 @@ const Footer = () => {
             alt="uluwatu Facebook Account"
           />
         </a>
-        <a href="https://twitter.com/cryptoduckb" title="Go to Insta">
+        <a href="https://discord.gg/HJFJWFd5" title="Go to Insta">
           <Image
             src="/2.png"
             width={15}
@@ -27,7 +27,7 @@ const Footer = () => {
             alt="uluwatu Instagram"
           />
         </a>
-        <a href="https://twitter.com/cryptoduckb" title="Go to Twitter">
+        <a href="https://twitter.com/klaytnwhale" title="Go to Twitter">
           <Image
             src="/3.png"
             width={15}

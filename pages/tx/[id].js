@@ -100,11 +100,11 @@ const TX = ({ data: formattedTransaction }) => {
         <meta name="twitter:title" content="kimchi-web"/>
         <meta
           name="twitter:url"
-          content="https://kimchi-web.vercel.app/"
+          content="https://kimchiwhale.io/"
         />
         <meta
           name="twitter:image"
-          content="https://kimchi-web.vercel.app/kimchi_rec.png"
+          content="https://kimchiwhale.io/kimchi_rec.png"
         />
         <meta
           name="twitter:description"

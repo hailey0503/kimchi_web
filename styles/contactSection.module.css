@@ -57,8 +57,9 @@
   }
   .alert {
 	position: fixed;
-	top: 20px;
-	right: 20px;
+	top: 0;
+  left: 50%; /* Pushes the alert to the middle of the screen horizontally */
+  transform: translateX(-50%); /* Correctly centers the alert */
 	background-color: #e6a3d2;
 	color: #333;
 	padding: 10px 20px;
@@ -69,10 +70,10 @@
   
   @keyframes slideIn {
 	from {
-	  transform: translateX(100%);
+	  top: -50px; /* Starts off-screen from the top */
 	}
 	to {
-	  transform: translateX(0);
+	  top: 20px; /* Moves down to the final position */
 	}
   }
   

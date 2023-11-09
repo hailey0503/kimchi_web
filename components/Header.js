@@ -73,6 +73,9 @@ const Header = () => {
               <Link href={"/transactions/wemix"}>
                 <p>WeMix</p>
               </Link>
+              <Link href={"/transactions/mbx"}>
+                <p>Marblex</p>
+              </Link>
             </div>
           )}
         </div>

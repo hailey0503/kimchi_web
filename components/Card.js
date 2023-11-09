@@ -5,9 +5,14 @@ import axios from "axios";
 import { Line } from "react-chartjs-2";
 import Link from "next/link";
 
-const Card = ({ logoSrc, companyName, cryptoData}) => {
- // const [cryptoData, setCryptoData] = useState({});
+const Card = ({ logoSrc, companyName, cryptoData }) => {
+  // const [cryptoData, setCryptoData] = useState({});
   const [biggestTransaction, setBiggestTransaction] = useState({});
+  const linkMap = new Map();
+  linkMap.set("KLAY", "../transactions/klaytn");
+  linkMap.set("WEMIX", "../transactions/wemix");
+  linkMap.set("MBX", "../transactions/mbx");
+  linkMap.set("XPLA", "../transactions/mbx");
 
   useEffect(() => {
     // Make a GET request to your server's API endpoint for cryptocurrency data
@@ -15,9 +20,8 @@ const Card = ({ logoSrc, companyName, cryptoData}) => {
       .get("api/coinmarketcap")
       .then((response) => {
         // Handle the response data here
-        console.log("coinmarketcappricedata",response.data)
+        console.log("coinmarketcappricedata", response.data);
         setCryptoData(response.data);
-		
       })
       .catch((error) => {
         // Handle any errors here
@@ -78,23 +82,41 @@ const Card = ({ logoSrc, companyName, cryptoData}) => {
     ? cryptoData.priceChange24h.toFixed(2)
     : null;
 
-
   return (
     <div className={styles.card}>
       <div className={styles.cardTop}>
-        <div className={styles.logo}>
-        <Image src={logoSrc} width={50} height={50} alt={`${companyName} logo`} />
-        </div>
-        <div className={styles.name}>
-          <h3>{companyName}</h3>
-        </div>
+        {console.log(linkMap)}
+        {console.log(companyName)}
+        <Link href={linkMap.get(companyName)}>
+          {" "}
+          {/* Replace "/your-link-destination" with the link URL */}
+          <a className={styles.linkWrapper}>
+            {" "}
+            {/* Add an anchor tag inside the Link */}
+            <div className={styles.logo}>
+              <Image
+                src={logoSrc}
+                width={50}
+                height={50}
+                alt={`${companyName} logo`}
+              />
+            </div>
+            <div className={styles.name}>
+              <h3>{companyName}</h3>
+            </div>
+          </a>
+        </Link>
       </div>
       <div className={styles.cardMiddle}>
         <div className={styles.price}>
           {cryptoData ? (
             <div>
-              <p className={styles.price_p}  style={{ marginBottom: '10px' }}>$ {formattedCurrentPriceUSD}</p>
-              <p className={styles.percent} style={{ marginTop: '10px' }}>{formattedPriceChange}%</p>
+              <p className={styles.price_p} style={{ marginBottom: "10px" }}>
+                $ {formattedCurrentPriceUSD}
+              </p>
+              <p className={styles.percent} style={{ marginTop: "10px" }}>
+                {formattedPriceChange}%
+              </p>
             </div>
           ) : (
             <p>Loading cryptocurrency data...</p>
@@ -136,7 +158,7 @@ const Card = ({ logoSrc, companyName, cryptoData}) => {
             {biggestTransaction ? (
               <div>
                 <Link href="/transactions/klaytn" className={styles.bigTx}>
-                  {parseFloat(biggestTransaction.amount).toFixed(2)} Klaytn 
+                  {parseFloat(biggestTransaction.amount).toFixed(2)} Klaytn
                 </Link>
               </div>
             ) : (
@@ -153,7 +175,7 @@ const Card = ({ logoSrc, companyName, cryptoData}) => {
             {biggestTransaction ? (
               <div>
                 <Link href="/transactions/klaytn" className={styles.whaleAddr}>
-                  {biggestTransaction.sender} 
+                  {biggestTransaction.sender}
                 </Link>
               </div>
             ) : (

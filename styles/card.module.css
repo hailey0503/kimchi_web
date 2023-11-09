@@ -23,6 +23,12 @@
 	padding: 20px;
 	height: 12%;
   }
+  .linkWrapper {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	width: 100%; /* Ensure link fills the entire width */
+  }
   
   .logo img {
 	max-width: 80px;

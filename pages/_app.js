@@ -4,9 +4,9 @@ import {  ThemeProvider } from '../darkModeContext.js';
 import '../styles/globals.css';
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import Script from 'next/script'
 import { useEffect } from 'react'
 import * as gtag from '../lib/gtag'
+import Script from 'next/script';
 
 
 const MyApp = ({ Component, pageProps }) => {
@@ -24,8 +24,7 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8546248743565114"
-     crossorigin="anonymous"></script>
+      <Script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8546248743565114" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

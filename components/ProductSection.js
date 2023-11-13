@@ -13,7 +13,6 @@ const ProductSection = () => {
     <section className={styles.products}>
       
      <div>
-      <h1>Kimchi table</h1>
       <Table />
      </div>
      

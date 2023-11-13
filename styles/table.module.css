@@ -1,0 +1,35 @@
+/* Add this CSS to your stylesheet or style tag */
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+  }
+  
+  .th, .td {
+	padding: 12px;
+	text-align: center;
+	border-bottom: 1px solid #ddd;
+	line-height: 2; /* Adjust the line-height to increase thickness */
+  }
+  
+  .tr:nth-child(even) {
+	background-color: #f2f2f2; /* Use a light color for even rows */
+  }
+  
+  .tr:nth-child(odd) {
+	background-color:#f2f2f2; /* Use a white color for odd rows */
+  }
+  
+  .thead, .tbody {
+	line-height: 2; /* Adjust the line-height to increase thickness */
+	text-align: center;
+  }
+  
+
+  
+  .h1 {
+	font-size: 24px;
+	margin-bottom: 20px;
+	text-align: center; /* Center the text */
+  }
+  

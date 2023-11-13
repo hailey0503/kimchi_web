@@ -11,7 +11,6 @@ const Home = () => {
   return (
     <div>
       <HeroSection />
-      <ProductSection />
       <ContactSection />
       <Footer />
     </div>

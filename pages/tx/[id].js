@@ -14,14 +14,15 @@ export async function getStaticProps({ params }) {
     const txHash = params.id;
 
     // Fetch the complete transaction data for the given txHash
-    const [transaction, wemixTransaction] = await Promise.all([
+    const [transaction, wemixTransaction, mbxTransaction] = await Promise.all([
       db.collection("transactions").findOne({ txHash }, { projection: { _id: 0 } }),
       db.collection("wemix").findOne({ txHash }, { projection: { _id: 0 } }),
+      db.collection("mbx").findOne({ txHash }, { projection: { _id: 0 } })
     ]);
 
     // Convert the Date object to a string
     let formattedTransaction;
-    if (transaction) {
+    if (transaction ) {
       formattedTransaction = {
         ...transaction,
         timestamp: transaction.timestamp.toString(),
@@ -32,6 +33,12 @@ export async function getStaticProps({ params }) {
         ...wemixTransaction,
         timestamp: wemixTransaction.timestamp.toString(),
         type: "wemix", // Indicate the type of the transaction
+      };
+    } else if (mbxTransaction) {
+      formattedTransaction = {
+        ...mbxTransaction,
+        timestamp: mbxTransaction.timestamp.toString(),
+        type: "mbx", // Indicate the type of the transaction
       };
     } else {
       return {
@@ -55,18 +62,19 @@ export async function getStaticPaths() {
   try {
     const client = await clientPromise;
     const db = client.db("kimchi");
-    const allTransactions = await db
-      .collection("transactions")
-      .find({})
-      .sort({ timestamp: -1 }) // Sort by timestamp in descending order
-      .toArray();
-    //const all_json = JSON.stringify(all)
-    //const allTransactions = JSON.parse(all_json)
+    const [transactions, wemix, mbx] = await Promise.all([
+      db.collection("transactions").find({}).toArray(),
+      db.collection("wemix").find({}).toArray(),
+      db.collection("mbx").find({}).toArray()
+    ]);
+    
+    const allTransactions = [...transactions, ...wemix, ...mbx];
+    
 
     const paths = allTransactions.map((transaction) => ({
       params: { id: transaction.txHash }, // Use txHash as the parameter
     }));
-
+   
     return {
       paths,
       fallback: "blocking", // or 'blocking' if you want to generate pages on demand
@@ -118,6 +126,7 @@ const TX = ({ data: formattedTransaction }) => {
         <div className={`${styles.card} ${styles.transactionCard}`}>
           <h2>Transaction Details 🐋</h2>
           <p>
+            {console.log(formattedTransaction)}
             <strong>Blockchain:</strong> {formattedTransaction.blockchainName}
           </p>
           <p>
@@ -147,7 +156,7 @@ const TX = ({ data: formattedTransaction }) => {
                
                   <Link
                    href={
-                    formattedTransaction.blockchainName === 'Klaytn'
+                    formattedTransaction.blockchainName === 'Klaytn' || formattedTransaction.blockchainName === 'MBX'
                       ? `${formattedTransaction.link.slice(0, -3)}account/${formattedTransaction.sender_full}`
                       : formattedTransaction.blockchainName === 'WeMix'
                       ? `${formattedTransaction.link.slice(0, -3)}address/${formattedTransaction.sender_full}`
@@ -163,7 +172,7 @@ const TX = ({ data: formattedTransaction }) => {
               ) : (
                 <Link
                 href={
-                  formattedTransaction.blockchainName === 'Klaytn'
+                  formattedTransaction.blockchainName === 'Klaytn' || formattedTransaction.blockchainName === 'MBX'
                     ? `${formattedTransaction.link.slice(0, -3)}account/${formattedTransaction.sender_full}`
                     : formattedTransaction.blockchainName === 'WeMix'
                     ? `${formattedTransaction.link.slice(0, -3)}address/${formattedTransaction.sender_full}`
@@ -182,7 +191,7 @@ const TX = ({ data: formattedTransaction }) => {
                 <>
                   <Link
                    href={
-                    formattedTransaction.blockchainName === 'Klaytn'
+                    formattedTransaction.blockchainName === 'Klaytn' || formattedTransaction.blockchainName === 'MBX'
                       ? `${formattedTransaction.link.slice(0, -3)}account/${formattedTransaction.receiver_full}`
                       : formattedTransaction.blockchainName === 'WeMix'
                       ? `${formattedTransaction.link.slice(0, -3)}address/${formattedTransaction.receiver_full}`
@@ -198,7 +207,7 @@ const TX = ({ data: formattedTransaction }) => {
               ) : (
                 <Link
                   href={
-                    formattedTransaction.blockchainName === 'Klaytn'
+                    formattedTransaction.blockchainName === 'Klaytn' || formattedTransaction.blockchainName === 'MBX'
                       ? `${formattedTransaction.link.slice(0, -3)}account/${formattedTransaction.receiver_full}`
                       : formattedTransaction.blockchainName === 'WeMix'
                       ? `${formattedTransaction.link.slice(0, -3)}address/${formattedTransaction.receiver_full}`

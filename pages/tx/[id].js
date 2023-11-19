@@ -100,12 +100,12 @@ const TX = ({ data: formattedTransaction }) => {
         />
         <meta
           property="og:description"
-          content="KimchiAlert allows you to find transaction data on K-blockchain."
+          content="김치웨일에서 k블록체인 데이터를 찾아보세요."
         />
         <meta name="twitter:card" content="summary"/>
           
        
-        <meta name="twitter:title" content="kimchi-web"/>
+        <meta name="twitter:title" content="kimchiWhale"/>
         <meta
           name="twitter:url"
           content="https://kimchiwhale.io/"
@@ -116,7 +116,7 @@ const TX = ({ data: formattedTransaction }) => {
         />
         <meta
           name="twitter:description"
-          content="KimchiAlert allows you to find transaction data on K-blockchain."
+          content="김치웨일에서 k블록체인 데이터를 찾아보세요."
         />
       </Head>
       <div className={styles.header}>

@@ -60,7 +60,7 @@ const Header = () => {
             showOptions ? styles.active : ""
           }`}
         >
-          Transactions
+          트랜잭션찾기
           {showOptions && (
             <div
               className={`${styles["transaction-options"]} ${
@@ -84,7 +84,7 @@ const Header = () => {
     },
     {
       id: 5,
-      title: "Contact",
+      title: "고객센터",
       url: "/contact",
     },
   ];

@@ -192,11 +192,11 @@ const TransactionQuery = () => {
             <table className={styles.table}>
               <thead>
                 <tr>
-                  <th className={styles.tableHeader}>Amount</th>
-                  <th className={styles.tableHeader}>From</th>
-                  <th className={styles.tableHeader}>To</th>
-                  <th className={styles.tableHeader}>Timestamp</th>
-                  <th className={styles.tableHeader}>See Details</th>
+                  <th className={styles.tableHeader}>코인갯수</th>
+                  <th className={styles.tableHeader}>보낸지갑</th>
+                  <th className={styles.tableHeader}>받은지갑</th>
+                  <th className={styles.tableHeader}>보낸시간</th>
+                  <th className={styles.tableHeader}>자세히보기</th>
                 </tr>
               </thead>
               <tbody>

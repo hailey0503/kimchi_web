@@ -47,7 +47,7 @@ const ContactSection = () => {
   return (
     <section className={styles.contact}>
       <h2>Contact Us</h2>
-      <p>문의사항 남겨주세요!</p>
+      <p>궁금한점 & 건의사항 환영합니다!</p>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">이름</label>
@@ -79,7 +79,7 @@ const ContactSection = () => {
           value={message}
           onChange={(e) => setMessage(e.target.value)} // Update the state on input change
         />
-        <button type="submit">Send Message</button>
+        <button type="submit">메세지 보내기</button>
         {isSent && (
         <div className={styles.alert}>Email sent successfully!</div>
         )}

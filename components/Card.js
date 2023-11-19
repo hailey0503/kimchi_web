@@ -74,8 +74,11 @@ const Card = ({ logoSrc, companyName, cryptoData }) => {
   }, []); // Empty dependency array to run the effect once
 
   // Define formattedCurrentPriceUSD here after fetching data
-  const formattedCurrentPriceUSD = cryptoData
-    ? cryptoData.currentPriceUSD.toFixed(3)
+  const formattedCurrentPriceKRW = cryptoData
+    ? cryptoData.currentPriceKRW.toLocaleString(undefined, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      }) // Format with commas and one decimal place
     : null;
 
   const formattedPriceChange = cryptoData
@@ -94,12 +97,7 @@ const Card = ({ logoSrc, companyName, cryptoData }) => {
             {" "}
             {/* Add an anchor tag inside the Link */}
             <div className={styles.logo}>
-              <Image
-                src={logoSrc}
-                width={50}
-                height={50}
-                alt={`${companyName} logo`}
-              />
+              <Image src={logoSrc} width={50} height={50} />
             </div>
             <div className={styles.name}>
               <h3>{companyName}</h3>
@@ -112,9 +110,14 @@ const Card = ({ logoSrc, companyName, cryptoData }) => {
           {cryptoData ? (
             <div>
               <p className={styles.price_p} style={{ marginBottom: "10px" }}>
-                $ {formattedCurrentPriceUSD}
+                {formattedCurrentPriceKRW}
               </p>
-              <p className={styles.percent} style={{ marginTop: "10px" }}>
+              <p
+                className={`${styles.percent} ${
+                  formattedPriceChange >= 0 ? styles.green : styles.red
+                }`}
+                style={{ marginTop: "10px" }}
+              >
                 {formattedPriceChange}%
               </p>
             </div>
@@ -122,6 +125,7 @@ const Card = ({ logoSrc, companyName, cryptoData }) => {
             <p>Loading cryptocurrency data...</p>
           )}
         </div>
+
         <div className={styles.graph}>
           {cryptoData && cryptoData.chartData ? (
             <div>
@@ -133,7 +137,7 @@ const Card = ({ logoSrc, companyName, cryptoData }) => {
                   ),
                   datasets: [
                     {
-                      label: "Price (USD)",
+                      label: "Price (원)",
                       data: cryptoData.chartData.map(
                         (dataPoint) => dataPoint.price
                       ),

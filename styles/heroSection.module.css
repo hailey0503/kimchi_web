@@ -74,6 +74,8 @@
 }
 
 .inputContainer {
+  padding-top: 110px;
+  padding-bottom: 140px;;
   margin-top: 20px;
   max-width: 600px; /* Set a maximum width for the input container */
   width: 100%; /* Allow it to take full width */
@@ -104,36 +106,6 @@
 }
 
 
-.cardContainer::before,
-.cardContainer::after {
-  content: "";
-  position: absolute;
-  top: 70%;
-  transform: translateY(-50%);
-  width: 30px;
-  height: 30px;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  cursor: pointer;
-  display: block; /* Ensure the arrows are displayed */
-}
-
-
-.cardContainer::before {
-  left: 0;
-  background-image: url('/public/left-arrow.png'); /* Add a left arrow image or specify using CSS */
-  background-position: center;
-  background-size: contain;
-  margin-left: 10px; /* Adjust the position of the arrow */
-}
-
-.cardContainer::after {
-  right: 0;
-  background-image: url('/public/right-arrow.png'); /* Add a right arrow image or specify using CSS */
-  background-position: center;
-  background-size: contain;
-  margin-right: 10px; /* Adjust the position of the arrow */
-}
 
 .cardWrapper {
   flex: 1; /* Equal width for all cards */

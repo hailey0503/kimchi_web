@@ -47,10 +47,10 @@ const ContactSection = () => {
   return (
     <section className={styles.contact}>
       <h2>Contact Us</h2>
-      <p>Have questions or want to know more? Reach out to us!</p>
+      <p>문의사항 남겨주세요!</p>
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">이름</label>
         <input
           type="text"
           id="name"
@@ -60,7 +60,7 @@ const ContactSection = () => {
           onChange={(e) => setName(e.target.value)} // Update the state on input change
         />
 
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">이메일</label>
         <input
           type="email"
           id="email"
@@ -70,7 +70,7 @@ const ContactSection = () => {
           onChange={(e) => setEmail(e.target.value)} // Update the state on input change
         />
 
-        <label htmlFor="message">Message</label>
+        <label htmlFor="message">메세지</label>
         <textarea
           id="message"
           name="message"

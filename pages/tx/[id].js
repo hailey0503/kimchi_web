@@ -124,16 +124,16 @@ const TX = ({ data: formattedTransaction }) => {
     </div>
       <div className={styles["card-container"]}>
         <div className={`${styles.card} ${styles.transactionCard}`}>
-          <h2>Transaction Details 🐋</h2>
+          <h2>트랜스액션 정보 🐋</h2>
           <p>
             {console.log(formattedTransaction)}
-            <strong>Blockchain:</strong> {formattedTransaction.blockchainName}
+            <strong>블록체인:</strong> {formattedTransaction.blockchainName}
           </p>
           <p>
-            <strong>Timestamp:</strong> {formattedTransaction.timestamp}
+            <strong>보낸시간:</strong> {formattedTransaction.timestamp}
           </p>
           <p>
-            <strong>Hash:</strong>{" "}
+            <strong>해쉬:</strong>{" "}
             <Link
               href={formattedTransaction.link + formattedTransaction.txHash}
               className={styles.txHash}
@@ -142,15 +142,15 @@ const TX = ({ data: formattedTransaction }) => {
             </Link>
           </p>
           <p>
-            <strong>Fee:</strong> {formattedTransaction.fee}{" "}
+            <strong>수수료:</strong> {formattedTransaction.fee}{" "}
             {formattedTransaction.blockchainName}
           </p>
         </div>
         <div className={`${styles.card} ${styles.transferCard}`}>
-          <h2>Transfer 🐋</h2>
+          <h2>지갑 정보 🐋</h2>
           <div className={styles.fromTo}>
             <p>
-              <strong>Sender:</strong>{" "}
+              <strong>보낸지갑:</strong>{" "}
               {formattedTransaction.sender.slice(0, 2) !== "0x" ? (
                 <>
                
@@ -186,7 +186,7 @@ const TX = ({ data: formattedTransaction }) => {
             </p>
 
             <p>
-              <strong>Reciever:</strong>{" "}
+              <strong>받은지갑:</strong>{" "}
               {formattedTransaction.receiver.slice(0, 2) !== "0x" ? (
                 <>
                   <Link
@@ -220,7 +220,7 @@ const TX = ({ data: formattedTransaction }) => {
               )}
             </p>
             <p>
-              <strong>Amount: </strong>
+              <strong>갯수: </strong>
               {Number(formattedTransaction.amount).toLocaleString("en-US", {
                         maximumFractionDigits: 0,
                       })}

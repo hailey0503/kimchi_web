@@ -153,13 +153,13 @@ const TransactionQuery = () => {
               value={filterType}
               onChange={(e) => setFilterType(e.target.value)}
             >
-              <option value="txHash">Tx Hash</option>
-              <option value="sender">Sender</option>
+              <option value="txHash">Tx 해쉬</option>
+              <option value="sender">지갑주소</option>
             </select>
             <input
               type="text"
               className={styles.inputWithIcon}
-              placeholder="    Enter Transaction Hash or Sender Address"
+              placeholder="    트랜잭션 해쉬 또는 보낸 지갑주소로 찾아보기"
               value={query}
               onChange={handleQueryChange}
               onKeyPress={handleEnter} // Triggers search on "Enter" key press
@@ -180,9 +180,9 @@ const TransactionQuery = () => {
               }}
             >
              
-              <option value="timestamp_desc">Most Recent</option>
-              <option value="amount_desc">Amount (High to Low)</option>
-              <option value="amount_asc">Amount (Low to High)</option>
+              <option value="timestamp_desc">최신순</option>
+              <option value="amount_desc">크기순 (High to Low)</option>
+              <option value="amount_asc">크기순 (Low to High)</option>
             </select>
           </div>
         </div>
@@ -238,7 +238,7 @@ const TransactionQuery = () => {
                 className={styles.pageLink}
                 disabled={currentPage === 1}
               >
-                {"\u00AB"} First
+                {"\u00AB"} 처음
               </button>
               <button
                 onClick={() => {
@@ -249,7 +249,7 @@ const TransactionQuery = () => {
                 className={styles.pageLink}
                 disabled={currentPage === 1}
               >
-                Prev
+                이전
               </button>
               <span className={styles.pageNum}>
                 {currentPage} / {pageNumbers}
@@ -263,7 +263,7 @@ const TransactionQuery = () => {
                 className={styles.pageLink}
                 disabled={currentPage === pageNumbers}
               >
-                Next
+                다음
               </button>
               <button
                 onClick={() => {
@@ -274,7 +274,7 @@ const TransactionQuery = () => {
                 className={styles.pageLink}
                 disabled={currentPage === pageNumbers}
               >
-                Last {"\u00BB"}
+                맨뒤 {"\u00BB"}
               </button>
             </ul>
           </>

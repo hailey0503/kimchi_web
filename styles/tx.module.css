@@ -6,17 +6,19 @@
 	justify-content: center; /* Center the cards vertically and horizontally */
 	height: 100vh;
 	padding: 30px 0; /* Add padding to create space at the top and bottom */
-	margin-top: 70px;
-	margin-bottom: 70px;
-	gap: 150px; /* Space between cards */
+	margin-top: 160px;
+	margin-bottom: 160px;
+	gap: 200px; /* Space between cards */
   }
   
 .header {
   justify-content: center; 
+  margin-bottom: 80px;
 }
   /* Transaction card styles */
   .transactionCard,
   .transferCard {
+   
 	background-color: #f8f8f8; /* Light background color */
 	border: 1px solid #e0e0e0; /* Light border */
 	border-radius: 10px;
@@ -27,7 +29,6 @@
   text-align: left;
   font-family: Arial, sans-serif;
   color: #966b6b; /* Text color for Transaction card */
-  margin-bottom: 20px; /* Add margin between the cards for ads */
   
   }
   

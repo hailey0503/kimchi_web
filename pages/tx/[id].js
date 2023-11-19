@@ -124,7 +124,7 @@ const TX = ({ data: formattedTransaction }) => {
     </div>
       <div className={styles["card-container"]}>
         <div className={`${styles.card} ${styles.transactionCard}`}>
-          <h2>트랜스액션 정보 🐋</h2>
+          <h2>트랜잭션 정보 🐋</h2>
           <p>
             {console.log(formattedTransaction)}
             <strong>블록체인:</strong> {formattedTransaction.blockchainName}

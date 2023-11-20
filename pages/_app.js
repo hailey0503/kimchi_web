@@ -24,7 +24,8 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-      <Script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8546248743565114" />
+      <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2625840607267766"
+     crossorigin="anonymous" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

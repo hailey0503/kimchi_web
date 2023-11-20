@@ -24,7 +24,7 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-      <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2625840607267766"
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2625840607267766"
      crossorigin="anonymous" />
         <script
           dangerouslySetInnerHTML={{
@@ -41,7 +41,7 @@ const MyApp = ({ Component, pageProps }) => {
         />
       </Head>
       {/* Global Site Tag (gtag.js) - Google Analytics */}
-      <Script
+      <script
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
       />

@@ -58,7 +58,7 @@ const HeroSection = () => {
         <div className={styles.inputContainer}>
           <input
             type="text"
-            placeholder="   Search whale address"
+            placeholder="    코인찾기"
             className={styles.inputWithIcon}
             id="searchInput"
           />

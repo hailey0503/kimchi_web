@@ -55,7 +55,7 @@ async function fetchCoinMarketCapData(symbol) {
 
 export default async (req, res) => {
   try {
-    const symbols = ["KLAY", "WEMIX", "MBX", "XPLA"];
+    const symbols = ["KLAY", "WEMIX", "MBX", "XPLA", "BTC", "ETH", "SOL", "XRP", "DOGE"];
     const coinmarketcapData = {};
 
     for (const symbol of symbols) {

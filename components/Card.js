@@ -9,10 +9,15 @@ const Card = ({ logoSrc, companyName, cryptoData }) => {
   // const [cryptoData, setCryptoData] = useState({});
   const [biggestTransaction, setBiggestTransaction] = useState({});
   const linkMap = new Map();
+  linkMap.set("BTC", "/");
+  linkMap.set("ETH", "/");
   linkMap.set("KLAY", "../transactions/klaytn");
   linkMap.set("WEMIX", "../transactions/wemix");
   linkMap.set("MBX", "../transactions/mbx");
-  linkMap.set("XPLA", "../transactions/mbx");
+  linkMap.set("SOL", "/");
+  linkMap.set("DOGE", "/");
+  linkMap.set("XRP", "/");
+  linkMap.set("XPLA", "/");
 
   useEffect(() => {
     // Make a GET request to your server's API endpoint for cryptocurrency data

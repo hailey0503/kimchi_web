@@ -61,7 +61,9 @@ export default function Table() {
       //upbit: ["BTC/KRW", "ETH/KRW", "SOL/KRW", "XRP/KRW", "ADA/KRW", "EOS/KRW", "LUNA/KRW", "MCO/KRW", "ZEN/KRW", "CRV/KRW", "SAND/KRW", "BTT/KRW", "HBAR/KRW", "DOGE/KRW", "AVAX/KRW", "MATIC/KRW", "LINK/KRW", "DOT/KRW", , "SHIB/KRW", "BCH/KRW"],
       bybit: ["BTC/USDT", "ETH/USDT", "SOL/USDT", "BNB/USDT", "DOGE/USDT", "TRX/USDT", "TON/USDT", "AVAX/USDT", "MATIC/USDT", "LINK/USDT", "DOT/USDT", "LTC/USDT", "SHIB/USDT", "BCH/USDT", "UNI/USDT", "FIL/USDT", "RUNE/USDT"],
       //binance: ["BTC/USDT", "ETH/USDT", "SOL/USDT", "BNB/USDT", "DOGE/USDT", "TRX/USDT", "AVAX/USDT", "MATIC/USDT", "LINK/USDT", "DOT/USDT", "LTC/USDT", "SHIB/USDT", "BCH/USDT", "UNI/USDT", "FIL/USDT", "RUNE/USDT"],
-    };
+	  bitget: ["BTC/USDT", "ETH/USDT", "SOL/USDT", "BNB/USDT", "DOGE/USDT", "TRX/USDT", "TON/USDT", "AVAX/USDT", "MATIC/USDT", "LINK/USDT", "DOT/USDT", "LTC/USDT", "SHIB/USDT", "BCH/USDT", "UNI/USDT", "FIL/USDT", "RUNE/USDT"],
+	 
+	};
 
     await Promise.all(
       Object.entries(streams).map(async ([exchangeId, symbols]) => {
@@ -97,10 +99,9 @@ export default function Table() {
     <div>
       <h1 className={styles.h1}>김치 프리미엄</h1>
       {/* Dropdown for selecting the platform */}
-      <select value={selectedPlatform} onChange={(e) => setSelectedPlatform(e.target.value)}>
-        <option value="">All</option>
-        <option value="upbit">Upbit</option>
-        <option value="bithumb">Bithumb</option>
+      <select className={styles.option} value={selectedPlatform} onChange={(e) => setSelectedPlatform(e.target.value)}>
+        <option value="upbit">업비트</option>
+        <option value="bithumb">빗썸</option>
         {/* Add more options as needed */}
       </select>
       <table className={styles.table}>
@@ -112,6 +113,7 @@ export default function Table() {
             <th>바이비트</th>
             <th>바이낸스</th>
             <th>OKX</th>
+			<th>bitget</th>
             <th>김프</th>
           </tr>
         </thead>
@@ -123,7 +125,8 @@ export default function Table() {
 			  <td>{tableData[symbol]["coinbasepro"] ?? "N/A"}</td>
               <td>{tableData[symbol]["bybit"] ?? "N/A"}</td>
               <td>{tableData[symbol]["binance"] ?? "N/A"}</td>
-              <td>{tableData[symbol]["okex"] ?? "N/A"}</td>
+			  <td>{tableData[symbol]["okex"] ?? "N/A"}</td>
+              <td>{tableData[symbol]["bitget"] ?? "N/A"}</td>
               <td>
                 {tableData[symbol]["coinbasepro"] && tableData[symbol]["okex"]
                   ? (parseFloat(tableData[symbol]["coinbasepro"]) - parseFloat(tableData[symbol]["okex"])).toFixed(2)

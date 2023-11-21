@@ -4,7 +4,9 @@
 	border-collapse: collapse;
 	margin-top: 20px;
   }
-  
+  .option {
+	margin-left: 15px;
+  }
   .th, .td {
 	padding: 12px;
 	text-align: center;

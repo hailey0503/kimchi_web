@@ -46,7 +46,7 @@ const ProductSection = () => {
      
       </div>
       <div className={styles.space}></div>
-  
+
      </div>
      
     </section>

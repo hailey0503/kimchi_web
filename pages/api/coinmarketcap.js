@@ -2,15 +2,6 @@ require("dotenv").config();
 
 async function fetchCoinMarketCapData(symbol) {
   try {
-    // Make a request to the CoinMarketCap API for USD
-    const usdResponse = await fetch(
-      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${symbol}&convert=USD`,
-      {
-        headers: {
-          "X-CMC_PRO_API_KEY": process.env.COINMARKETCAP,
-        },
-      }
-    );
 
     // Make a request to the CoinMarketCap API for KRW
     const krwResponse = await fetch(
@@ -21,25 +12,27 @@ async function fetchCoinMarketCapData(symbol) {
         },
       }
     );
+    // Make a request to the CoinMarketCap API for USD
+   
 
     // Check if both requests were successful
-    if (usdResponse.status === 200 && krwResponse.status === 200) {
-      const usdData = await usdResponse.json();
+    if (krwResponse.status === 200) {
+     // const usdData = await usdResponse.json();
       const krwData = await krwResponse.json();
 
-      const usdQuote = usdData.data[symbol].quote.USD;
+    //  const usdQuote = usdData.data[symbol].quote.USD;
       const krwQuote = krwData.data[symbol].quote.KRW;
 	
       // Extract relevant data
-      const currentPriceUSD = usdQuote.price;
+     // const currentPriceUSD = usdQuote.price;
       const currentPriceKRW = krwQuote.price;
-      const priceChange24h = usdQuote.percent_change_24h;
+      const priceChange24h = krwQuote.percent_change_24h;
 	 
 
 
       // Send the cryptocurrency data and chart data as JSON response
       return {
-        currentPriceUSD,
+      //  currentPriceUSD,
         currentPriceKRW,
         priceChange24h,
 		
@@ -55,8 +48,9 @@ async function fetchCoinMarketCapData(symbol) {
 
 export default async (req, res) => {
     try {
-      const top20Symbols = ["BTC", "ETH", "BNB", "XRP", "SOL", "ADA", "DOGE", "TRX", "TON", "LINK", "AVAX", "MATIC", "DOT", "LTC", "SHIB", "BCH", "LEO", "OKB", "XLM", "ATOM" ];
       const kimchiSymbols = ["KLAY", "WEMIX", "MBX", "XPLA"];
+      const top20Symbols = ["BTC", "ETH", "BNB", "XRP", "SOL", "ADA", "DOGE", "TRX", "LINK", "AVAX", "MATIC", "DOT", "ATOM" ];
+      
       
       const top20Data = {};
       const kimchiData = {};

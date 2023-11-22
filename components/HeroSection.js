@@ -64,7 +64,7 @@ const HeroSection = () => {
           />
         </div>
         <div>
-          <h2>TOP 20 COINS</h2>
+          <h2>TOP COINS</h2>
           <div className={styles.cardContainer}>
             {/* Display cards for the top 20 cryptocurrencies */}
             {cryptoData.top20 &&

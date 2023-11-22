@@ -1,4 +1,5 @@
 const path = require('path');
+//import * as path from 'path';
 
 module.exports = {
   complier: { removeConsole: false },

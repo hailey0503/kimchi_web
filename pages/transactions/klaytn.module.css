@@ -122,11 +122,18 @@
 
 .table {
   width: 95%; /* Reduce table width to 90% of the container */
-  max-width: 95%;
+  overflow-x: auto; 
   margin: 0 auto; /* Center the table horizontally in the container */
   border-collapse: collapse; /* Remove spacing between table cells */
   margin-top: 40px;
   margin-bottom: 20px;
+  
+
+  @media only screen and (max-width: 768px) {
+    width: 100%; /* Full width on small screens */
+    max-width: 100%;
+    font-size: 12px;
+  }
 }
 
 .tableHeader {

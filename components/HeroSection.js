@@ -18,13 +18,13 @@ const HeroSection = () => {
       .get("/api/coinmarketcap")
       .then((response) => {
         // Set the cryptocurrency data to state
+        console.log(response.data);
         setCryptoData(response.data);
       })
       .catch((error) => {
         console.error("Error fetching cryptocurrency data:", error);
       });
   }, []);
-
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -63,21 +63,40 @@ const HeroSection = () => {
             id="searchInput"
           />
         </div>
-
-        <div className={styles.cardContainer}>
-        {/* Map through the data to display cards */}
-        {Object.keys(cryptoData).map((symbol) => (
-          <div key={symbol} className={styles.cardWrapper}>
-            <Card
-              logoSrc={`/logo_${symbol.toLowerCase()}.png`} // Assuming the logos follow a similar naming convention
-              companyName={symbol}
-              cryptoData={cryptoData[symbol]} // Pass cryptocurrency data to the Card component
-            />
+        <div>
+          <h2>TOP 20 COINS</h2>
+          <div className={styles.cardContainer}>
+            {/* Display cards for the top 20 cryptocurrencies */}
+            {cryptoData.top20 &&
+              Object.keys(cryptoData.top20).map((symbol) => (
+                <div key={symbol} className={styles.cardWrapper}>
+                  <Card
+                    logoSrc={`/logo_${symbol.toLowerCase()}.png`}
+                    companyName={symbol}
+                    cryptoData={cryptoData.top20[symbol]}
+                  />
+                </div>
+              ))}
           </div>
-        ))}
+        </div>
+        <div className={styles.spaceBetweenContainers}>
+          <h2>TOP KIMCHI COINS</h2>
+          <div className={styles.cardContainer}>
+            {/* Display cards for the top 20 cryptocurrencies */}
+            {cryptoData.top20 &&
+              Object.keys(cryptoData.kimchi).map((symbol) => (
+                <div key={symbol} className={styles.cardWrapper}>
+                  <Card
+                    logoSrc={`/logo_${symbol.toLowerCase()}.png`}
+                    companyName={symbol}
+                    cryptoData={cryptoData.kimchi[symbol]}
+                  />
+                </div>
+              ))}
+          </div>
+        </div>
       </div>
-      </div>
-      </div>
+    </div>
   );
 };
 

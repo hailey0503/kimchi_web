@@ -9,30 +9,22 @@ const Card = ({ logoSrc, companyName, cryptoData }) => {
   // const [cryptoData, setCryptoData] = useState({});
   const [biggestTransaction, setBiggestTransaction] = useState({});
   const linkMap = new Map();
-  linkMap.set("BTC", "/");
-  linkMap.set("ETH", "/");
+  const symbols =  ["BTC", "ETH", "BNB", "XRP", "SOL", "ADA", "DOGE", "TRX", "TON", "LINK", "AVAX", "MATIC", "DOT", "LTC", "SHIB", "BCH", "LEO", "OKB", "XLM", "ATOM" ]
+  for (const s of symbols) {
+    linkMap.set(s, '/');
+  }
+///linkMap.set("BTC", "/");
+ // linkMap.set("ETH", "/");
   linkMap.set("KLAY", "../transactions/klaytn");
   linkMap.set("WEMIX", "../transactions/wemix");
   linkMap.set("MBX", "../transactions/mbx");
-  linkMap.set("SOL", "/");
-  linkMap.set("DOGE", "/");
-  linkMap.set("XRP", "/");
+  //linkMap.set("SOL", "/");
+ // linkMap.set("DOGE", "/");
+//  linkMap.set("XRP", "/");
   linkMap.set("XPLA", "/");
 
   useEffect(() => {
-    // Make a GET request to your server's API endpoint for cryptocurrency data
-    axios
-      .get("api/coinmarketcap")
-      .then((response) => {
-        // Handle the response data here
-        console.log("coinmarketcappricedata", response.data);
-        setCryptoData(response.data);
-      })
-      .catch((error) => {
-        // Handle any errors here
-        console.error("Error fetching cryptocurrency data:", error);
-      }, []);
-
+    
     // Make a GET request to your server's API endpoint for transaction data
     axios
       .get("/api/transactions")
@@ -93,8 +85,6 @@ const Card = ({ logoSrc, companyName, cryptoData }) => {
   return (
     <div className={styles.card}>
       <div className={styles.cardTop}>
-        {console.log(linkMap)}
-        {console.log(companyName)}
         <Link href={linkMap.get(companyName)}>
           {" "}
           {/* Replace "/your-link-destination" with the link URL */}
@@ -176,22 +166,7 @@ const Card = ({ logoSrc, companyName, cryptoData }) => {
           </div>
         </div>
 
-        <div className={styles.holder}>
-          <div className={styles.leftHolder}>
-            <p>Top Whale (24h):</p>
-          </div>
-          <div className={styles.rightHolder}>
-            {biggestTransaction ? (
-              <div>
-                <Link href="/transactions/klaytn" className={styles.whaleAddr}>
-                  {biggestTransaction.sender}
-                </Link>
-              </div>
-            ) : (
-              <p>Give link for other holdings & recent tx...</p>
-            )}
-          </div>
-        </div>
+      
       </div>
     </div>
   );

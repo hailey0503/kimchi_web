@@ -54,18 +54,36 @@ async function fetchCoinMarketCapData(symbol) {
 }
 
 export default async (req, res) => {
-  try {
-    const symbols = ["KLAY", "WEMIX", "MBX", "XPLA", "BTC", "ETH", "SOL", "XRP", "DOGE"];
-    const coinmarketcapData = {};
-
-    for (const symbol of symbols) {
-      const data = await fetchCoinMarketCapData(symbol);
-      coinmarketcapData[symbol] = data;
+    try {
+      const top20Symbols = ["BTC", "ETH", "BNB", "XRP", "SOL", "ADA", "DOGE", "TRX", "TON", "LINK", "AVAX", "MATIC", "DOT", "LTC", "SHIB", "BCH", "LEO", "OKB", "XLM", "ATOM" ];
+      const kimchiSymbols = ["KLAY", "WEMIX", "MBX", "XPLA"];
+      
+      const top20Data = {};
+      const kimchiData = {};
+  
+      // Fetch data for top 20
+      for (const symbol of top20Symbols) {
+        try {
+          const data = await fetchCoinMarketCapData(symbol);
+          top20Data[symbol] = data;
+        } catch (error) {
+          console.error("Error fetching data for", symbol, ":", error);
+        }
+      }
+  
+      // Fetch data for kimchi
+      for (const symbol of kimchiSymbols) {
+        try {
+          const data = await fetchCoinMarketCapData(symbol);
+          kimchiData[symbol] = data;
+        } catch (error) {
+          console.error("Error fetching data for", symbol, ":", error);
+        }
+      }
+  
+      res.status(200).json({ top20: top20Data, kimchi: kimchiData });
+    } catch (error) {
+      console.error("Error coinmarketcap:", error.message);
+      res.status(500).json({ error: "Internal server error" });
     }
-
-    res.status(200).json(coinmarketcapData);
-  } catch (error) {
-    console.error("Error coinmarketcap 68:", error.message);
-    res.status(500).json({ error: "Internal server error" });
-  }
 };

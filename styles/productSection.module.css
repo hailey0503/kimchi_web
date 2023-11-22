@@ -20,7 +20,9 @@
 	padding-bottom: 50px;
 	max-width: 100%;
   }
-  
+  .space {
+	padding: 40px;
+  }
   .product h3 {
 	font-size: 24px;
 	margin-top: 20px;

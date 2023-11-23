@@ -18,7 +18,6 @@ const HeroSection = () => {
       .get("/api/coinmarketcap")
       .then((response) => {
         // Set the cryptocurrency data to state
-        console.log(response.data);
         setCryptoData(response.data);
       })
       .catch((error) => {
@@ -51,9 +50,9 @@ const HeroSection = () => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          {data.map((item) => (
-            <div key={item}>{item}</div>
-          ))}
+          {data.map((item, index) => (
+    <div key={index}>{item}</div>
+  ))}
         </div>
         <div className={styles.inputContainer}>
           <input
@@ -67,23 +66,26 @@ const HeroSection = () => {
           <h2>TOP COINS</h2>
           <div className={styles.cardContainer}>
             {/* Display cards for the top 20 cryptocurrencies */}
+
             {cryptoData.top20 &&
-              Object.keys(cryptoData.top20).map((symbol) => (
-                <div key={symbol} className={styles.cardWrapper}>
-                  <Card
-                    logoSrc={`/logo_${symbol.toLowerCase()}.png`}
-                    companyName={symbol}
-                    cryptoData={cryptoData.top20[symbol]}
-                  />
-                </div>
-              ))}
+  Object.keys(cryptoData.top20).map((symbol) => (
+    <div key={`${symbol}-${cryptoData.top20[symbol].companyName}`} className={styles.cardWrapper}>
+      {console.log(symbol)}
+      <Card
+        logoSrc={`/logo_${symbol.toLowerCase()}.png`}
+        companyName={symbol}
+        cryptoData={cryptoData.top20[symbol]}
+      />
+      {console.log(symbol)}
+    </div>
+  ))}
           </div>
         </div>
         <div className={styles.spaceBetweenContainers}>
           <h2>TOP KIMCHI COINS</h2>
           <div className={styles.cardContainer}>
             {/* Display cards for the top 20 cryptocurrencies */}
-            {cryptoData.top20 &&
+            {cryptoData.kimchi &&
               Object.keys(cryptoData.kimchi).map((symbol) => (
                 <div key={symbol} className={styles.cardWrapper}>
                   <Card

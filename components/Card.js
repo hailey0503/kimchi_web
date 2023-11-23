@@ -9,19 +9,24 @@ const Card = ({ logoSrc, companyName, cryptoData }) => {
   // const [cryptoData, setCryptoData] = useState({});
   const [biggestTransaction, setBiggestTransaction] = useState({});
   const linkMap = new Map();
-  const symbols =  ["BTC", "ETH", "BNB", "XRP", "SOL", "ADA", "DOGE", "TRX", "TON", "LINK", "AVAX", "MATIC", "DOT", "LTC", "SHIB", "BCH", "LEO", "OKB", "XLM", "ATOM" ]
-  for (const s of symbols) {
+const symbols = ["BTC", "ETH", "BNB", "XRP", "SOL", "ADA", "DOGE", "TRX", "LINK", "AVAX", "MATIC", "DOT", "LTC", "SHIB", "BCH", "LEO", "OKB", "XLM", "ATOM"];
+
+for (const s of symbols) {
+  linkMap.set(s, '/');
+}
+
+linkMap.set("KLAY", "../transactions/klaytn");
+linkMap.set("WEMIX", "../transactions/wemix");
+linkMap.set("MBX", "../transactions/mbx");
+linkMap.set("XPLA", "/");
+
+// Add default links for symbols not explicitly set
+for (const s of symbols) {
+  if (!linkMap.has(s)) {
     linkMap.set(s, '/');
   }
-///linkMap.set("BTC", "/");
- // linkMap.set("ETH", "/");
-  linkMap.set("KLAY", "../transactions/klaytn");
-  linkMap.set("WEMIX", "../transactions/wemix");
-  linkMap.set("MBX", "../transactions/mbx");
-  //linkMap.set("SOL", "/");
- // linkMap.set("DOGE", "/");
-//  linkMap.set("XRP", "/");
-  linkMap.set("XPLA", "/");
+}
+
 
   useEffect(() => {
     
@@ -85,7 +90,7 @@ const Card = ({ logoSrc, companyName, cryptoData }) => {
   return (
     <div className={styles.card}>
       <div className={styles.cardTop}>
-        <Link href={linkMap.get(companyName)}>
+        <Link href={linkMap.get(companyName) || '/'}>
           {" "}
           {/* Replace "/your-link-destination" with the link URL */}
           <a className={styles.linkWrapper}>

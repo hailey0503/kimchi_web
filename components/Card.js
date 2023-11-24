@@ -28,53 +28,6 @@ for (const s of symbols) {
 }
 
 
-  useEffect(() => {
-    
-    // Make a GET request to your server's API endpoint for transaction data
-    axios
-      .get("/api/transactions")
-      .then((response) => {
-        // Handle the response data here
-        console.log("Transaction data:", response.data.data);
-        const transactions = Array.isArray(response.data.data)
-          ? response.data.data
-          : [];
-
-        // Calculate the current timestamp and timestamp 6 hours ago
-        const currentTimestamp = Date.now();
-        const sixHoursAgo = currentTimestamp - 6 * 3600 * 1000;
-
-        // Filter transactions that occurred in the last 6 hours
-        const transactionsLast6Hours = transactions.filter(
-          (transaction) =>
-            new Date(transaction.timestamp).getTime() >= sixHoursAgo
-        );
-
-        // Find the biggest transaction (based on "amount")
-        let biggest;
-
-        if (transactionsLast6Hours.length > 0) {
-          biggest = transactionsLast6Hours.reduce((prev, current) =>
-            parseFloat(prev.amount) > parseFloat(current.amount)
-              ? prev
-              : current
-          );
-        } else if (transactions.length > 0) {
-          biggest = transactions.reduce((prev, current) =>
-            parseFloat(prev.amount) > parseFloat(current.amount)
-              ? prev
-              : current
-          );
-        }
-
-        setBiggestTransaction(biggest);
-      })
-      .catch((error) => {
-        // Handle any errors here
-        console.error("Error fetching transaction data:", error);
-      });
-  }, []); // Empty dependency array to run the effect once
-
   // Define formattedCurrentPriceUSD here after fetching data
   const formattedCurrentPriceKRW = cryptoData
     ? cryptoData.currentPriceKRW.toLocaleString(undefined, {
@@ -156,18 +109,10 @@ for (const s of symbols) {
       <div className={styles.cardBottom}>
         <div className={styles.trend}>
           <div className={styles.leftContent}>
-            <p>Biggest TX (6h):</p>
+          
           </div>
           <div className={styles.rightContent}>
-            {biggestTransaction ? (
-              <div>
-                <Link href="/transactions/klaytn" className={styles.bigTx}>
-                  {parseFloat(biggestTransaction.amount).toFixed(2)} Klaytn
-                </Link>
-              </div>
-            ) : (
-              <p>Loading biggest transaction data...</p>
-            )}
+            
           </div>
         </div>
 

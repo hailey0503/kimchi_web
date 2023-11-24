@@ -24,8 +24,7 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2625840607267766"
-     crossorigin="anonymous" />
+      <meta name="google-adsense-account" content="ca-pub-2625840607267766"></meta>
         <script
           dangerouslySetInnerHTML={{
             __html: `

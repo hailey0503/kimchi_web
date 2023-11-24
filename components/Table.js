@@ -39,7 +39,7 @@ export default function Table() {
       } catch (e) {
         console.log(exchangeId, e);
       }
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Delay for 1 second
+      await new Promise((resolve) => setTimeout(resolve, 5000)); // Delay for 1 second
     }
   }
 
@@ -60,14 +60,19 @@ export default function Table() {
       okex: ["BTC/USDT", "ETH/USDT", "SOL/USDT", "BNB/USDT", "DOGE/USDT", "TRX/USDT", "TON/USDT", "AVAX/USDT", "MATIC/USDT", "LINK/USDT", "DOT/USDT", "LTC/USDT", "SHIB/USDT", "BCH/USDT", "UNI/USDT", "FIL/USDT"],
       //upbit: ["BTC/KRW", "ETH/KRW", "SOL/KRW", "XRP/KRW", "ADA/KRW", "EOS/KRW", "LUNA/KRW", "MCO/KRW", "ZEN/KRW", "CRV/KRW", "SAND/KRW", "BTT/KRW", "HBAR/KRW", "DOGE/KRW", "AVAX/KRW", "MATIC/KRW", "LINK/KRW", "DOT/KRW", , "SHIB/KRW", "BCH/KRW"],
       bybit: ["BTC/USDT", "ETH/USDT", "SOL/USDT", "BNB/USDT", "DOGE/USDT", "TRX/USDT", "TON/USDT", "AVAX/USDT", "MATIC/USDT", "LINK/USDT", "DOT/USDT", "LTC/USDT", "SHIB/USDT", "BCH/USDT", "UNI/USDT", "FIL/USDT", "RUNE/USDT"],
-      //binance: ["BTC/USDT", "ETH/USDT", "SOL/USDT", "BNB/USDT", "DOGE/USDT", "TRX/USDT", "AVAX/USDT", "MATIC/USDT", "LINK/USDT", "DOT/USDT", "LTC/USDT", "SHIB/USDT", "BCH/USDT", "UNI/USDT", "FIL/USDT", "RUNE/USDT"],
-	  bitget: ["BTC/USDT", "ETH/USDT", "SOL/USDT", "BNB/USDT", "DOGE/USDT", "TRX/USDT", "TON/USDT", "AVAX/USDT", "MATIC/USDT", "LINK/USDT", "DOT/USDT", "LTC/USDT", "SHIB/USDT", "BCH/USDT", "UNI/USDT", "FIL/USDT", "RUNE/USDT"],
+      binance: ["BTC/USDT", "ETH/USDT", "SOL/USDT", "BNB/USDT", "DOGE/USDT", "TRX/USDT", "AVAX/USDT", "MATIC/USDT", "LINK/USDT", "DOT/USDT", "LTC/USDT", "SHIB/USDT", "BCH/USDT", "UNI/USDT", "FIL/USDT", "RUNE/USDT"],
+	  bitget: ["BTC/USDT", "ETH/USDT", "SOL/USDT", "BNB/USDT", "DOGE/USDT", "TRX/USDT", "AVAX/USDT", "MATIC/USDT", "LINK/USDT", "DOT/USDT", "LTC/USDT", "SHIB/USDT", "BCH/USDT", "UNI/USDT", "FIL/USDT", "RUNE/USDT"],
 	 
 	};
 
     await Promise.all(
       Object.entries(streams).map(async ([exchangeId, symbols]) => {
         const exchange = new ccxt.pro[exchangeId]({ enableRateLimit: true });
+		if (exchange.id == "binance") {
+			console.log('exchangeid', exchange.id)
+			exchange.streaming.keepAlive = 5000;
+			console.log(exchange.streaming.keepAlive)
+		}
 
         const method = "watchTicker";
 

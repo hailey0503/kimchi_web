@@ -9,32 +9,58 @@ const Card = ({ logoSrc, companyName, cryptoData }) => {
   // const [cryptoData, setCryptoData] = useState({});
   const [biggestTransaction, setBiggestTransaction] = useState({});
   const linkMap = new Map();
-const symbols = ["BTC", "ETH", "BNB", "XRP", "SOL", "ADA", "DOGE", "TRX", "LINK", "AVAX", "MATIC", "DOT", "LTC", "SHIB", "BCH", "LEO", "OKB", "XLM", "ATOM"];
+  const symbols = [
+    "BTC",
+    "ETH",
+    "BNB",
+    "XRP",
+    "SOL",
+    "ADA",
+    "DOGE",
+    "TRX",
+    "LINK",
+    "AVAX",
+    "MATIC",
+    "DOT",
+    "LTC",
+    "SHIB",
+    "BCH",
+    "LEO",
+    "OKB",
+    "XLM",
+    "ATOM",
+  ];
 
-for (const s of symbols) {
-  linkMap.set(s, '/');
-}
-
-linkMap.set("KLAY", "../transactions/klaytn");
-linkMap.set("WEMIX", "../transactions/wemix");
-linkMap.set("MBX", "../transactions/mbx");
-linkMap.set("XPLA", "/");
-
-// Add default links for symbols not explicitly set
-for (const s of symbols) {
-  if (!linkMap.has(s)) {
-    linkMap.set(s, '/');
+  for (const s of symbols) {
+    linkMap.set(s, "/");
   }
-}
 
+  linkMap.set("KLAY", "../transactions/klaytn");
+  linkMap.set("WEMIX", "../transactions/wemix");
+  linkMap.set("MBX", "../transactions/mbx");
+  linkMap.set("XPLA", "/");
 
-  // Define formattedCurrentPriceUSD here after fetching data
+  // Add default links for symbols not explicitly set
+  for (const s of symbols) {
+    if (!linkMap.has(s)) {
+      linkMap.set(s, "/");
+    }
+  }
+
   const formattedCurrentPriceKRW = cryptoData
-    ? cryptoData.currentPriceKRW.toLocaleString(undefined, {
+    ? formatNumber(cryptoData.currentPriceKRW)
+    : null;
+
+  function formatNumber(number) {
+    if (number > 999999) {
+      return number.toLocaleString("en-US", { maximumFractionDigits: 0 });
+    } else {
+      return number.toLocaleString("en-US", {
         minimumFractionDigits: 1,
         maximumFractionDigits: 1,
-      }) // Format with commas and one decimal place
-    : null;
+      });
+    }
+  }
 
   const formattedPriceChange = cryptoData
     ? cryptoData.priceChange24h.toFixed(2)
@@ -43,7 +69,7 @@ for (const s of symbols) {
   return (
     <div className={styles.card}>
       <div className={styles.cardTop}>
-        <Link href={linkMap.get(companyName) || '/'}>
+        <Link href={linkMap.get(companyName) || "/"}>
           {" "}
           {/* Replace "/your-link-destination" with the link URL */}
           <a className={styles.linkWrapper}>
@@ -108,15 +134,9 @@ for (const s of symbols) {
       </div>
       <div className={styles.cardBottom}>
         <div className={styles.trend}>
-          <div className={styles.leftContent}>
-          
-          </div>
-          <div className={styles.rightContent}>
-            
-          </div>
+          <div className={styles.leftContent}></div>
+          <div className={styles.rightContent}></div>
         </div>
-
-      
       </div>
     </div>
   );

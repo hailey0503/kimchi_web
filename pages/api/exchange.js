@@ -20,7 +20,7 @@ async function getExchangeRate() {
   try {
     const response = await fetch(url);
     const res_json = await response.json();
-    console.log(res_json)
+    //console.log(res_json)
 
     const krwExchangeRate = res_json.data.KRW;
 

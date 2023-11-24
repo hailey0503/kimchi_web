@@ -68,15 +68,14 @@ const HeroSection = () => {
             {/* Display cards for the top 20 cryptocurrencies */}
 
             {cryptoData.top20 &&
-  Object.keys(cryptoData.top20).map((symbol) => (
-    <div key={`${symbol}-${cryptoData.top20[symbol].companyName}`} className={styles.cardWrapper}>
-      {console.log(symbol)}
+  (cryptoData.top20).map((element) => (
+    <div key={`${element.symbol}-${element.companyName}`} className={styles.cardWrapper}>
+      {console.log(element)}
       <Card
-        logoSrc={`/logo_${symbol.toLowerCase()}.png`}
-        companyName={symbol}
-        cryptoData={cryptoData.top20[symbol]}
+        logoSrc={`/logo_${element.symbol.toLowerCase()}.png`}
+        companyName={element.symbol}
+        cryptoData={element}
       />
-      {console.log(symbol)}
     </div>
   ))}
           </div>

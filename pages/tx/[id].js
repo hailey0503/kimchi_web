@@ -11,7 +11,7 @@ import bitget from "public/logo_bitget.png"
 import okx from "public/logo_okx.png"
 import kucoin from "public/logo_kucoin.png"
 import mexc from "public/logo_mexc.png"
-import bingx from "public/logo_bingx.png"
+import binance from "public/logo_binance.png"
 import huobi from "public/logo_huobi.png"
 
 export async function getStaticProps({ params }) {
@@ -171,8 +171,11 @@ const TX = ({ data: formattedTransaction }) => {
       <Link href="https://www.bybit.com/invite?ref=O7PPYP">
       <Image src={okx} width={120} height={50} />
       </Link>
-      </div>
-      <div>
+      <Link href="https://www.bybit.com/invite?ref=O7PPYP">
+      <Image src={binance } width={120} height={50} />
+      </Link>
+      
+      
       <Link href="https://www.bybit.com/invite?ref=O7PPYP">
       <Image src={kucoin} width={130} height={50} />
       </Link>

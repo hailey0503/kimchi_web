@@ -5,6 +5,14 @@ import Footer from "../../components/Footer";
 import clientPromise from "../../lib/mongodb";
 import Link from "next/link";
 import Head from "next/head";
+import Image from "next/image";
+import bybit from "public/logo_bybit.png"
+import bitget from "public/logo_bitget.png"
+import okx from "public/logo_okx.png"
+import kucoin from "public/logo_kucoin.png"
+import mexc from "public/logo_mexc.png"
+import bingx from "public/logo_bingx.png"
+import huobi from "public/logo_huobi.png"
 
 export async function getStaticProps({ params }) {
   try {
@@ -146,6 +154,38 @@ const TX = ({ data: formattedTransaction }) => {
             {formattedTransaction.blockchainName}
           </p>
         </div>
+
+
+        <div className={styles.referral}>
+
+      <div>
+      <Link href="https://www.bybit.com/invite?ref=O7PPYP">
+      
+        <Image src={bybit} width={130} height={50} alt="Bybit Logo" />
+     
+      </Link>
+      <Link href="https://www.bitget.com/referral/register?from=referral&clacCode=5THXEEKCP">
+      <Image src={bitget} width={130} height={50} />
+      </Link>
+     
+      <Link href="https://www.bybit.com/invite?ref=O7PPYP">
+      <Image src={okx} width={120} height={50} />
+      </Link>
+      </div>
+      <div>
+      <Link href="https://www.bybit.com/invite?ref=O7PPYP">
+      <Image src={kucoin} width={130} height={50} />
+      </Link>
+      <Link href="https://www.mexc.com/register?inviteCode=1FP8b">
+      <Image src={mexc} width={130} height={50} />
+      </Link>
+      <Link href="https://www.htx.com/invite/en-us/1f?invite_code=63ne8223">
+      <Image src={huobi} width={130} height={50} />
+     
+      </Link>
+      </div>
+      </div>
+   
         <div className={`${styles.card} ${styles.transferCard}`}>
           <h2>지갑 정보 🐋</h2>
           <div className={styles.fromTo}>

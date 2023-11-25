@@ -40,8 +40,41 @@
 	color: #6b4f34;
 	text-align: left;
   }
-    
-
+.referral {
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 80%;
+  max-width: 800px;
+  text-align: left;
+  font-family: Arial, sans-serif;
+  color: #966b6b;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Change to space-between */
+  align-items: center;
+  }
+  
+.referral div {
+  flex: 1;
+  width: 30%; /* Adjust the width to your preference */
+  padding: 10px;
+  text-align: center;
+  }
+  
+.referral a {
+    margin: 10px; /* Adjust the margin to add space between links */
+  }
+  
+.referral img {
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+  }
+  
+  
 /* Additional styles for paragraphs inside the cards */
 .transactionCard p,
 .transferCard p {
@@ -95,6 +128,12 @@
     font-size: 16px; /* Adjust the font size for smaller screens */
     height: 60px; /* Adjust the height for smaller screens */
     margin-bottom: 40px;
+  }
+  .referral {
+    padding-left:30px;
+    padding-right: 30px;
+    
+
   }
 }
 

@@ -4,6 +4,7 @@ import Image from "next/image";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
 import Link from "next/link";
+//import ChartComp from "../components/Chart";
 
 const Card = ({ logoSrc, companyName, cryptoData }) => {
   // const [cryptoData, setCryptoData] = useState({});

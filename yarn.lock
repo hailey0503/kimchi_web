@@ -114,6 +114,11 @@
   dependencies:
     "sparse-bitfield" "^3.0.3"
 
+"@mongodb-js/zstd-darwin-arm64@1.2.0":
+  "integrity" "sha512-QWgW6IkWp3ErBXOvlOj9lw3lwMfey7eXh/p/Srb/7sEiu1e0yEO+LQ8IctmDWh8bfznKXmwUC0h7LKDbYR30yw=="
+  "resolved" "https://registry.npmjs.org/@mongodb-js/zstd-darwin-arm64/-/zstd-darwin-arm64-1.2.0.tgz"
+  "version" "1.2.0"
+
 "@mongodb-js/zstd-darwin-x64@1.2.0":
   "integrity" "sha512-VnxYO8P2SWubdnydGId5+6veO6Ki6nxCr/pTaDZd8s4Urn6bDdXSX6YsZ0r42dO3Fa0FVYzrlcVAuNB67e2b6w=="
   "resolved" "https://registry.npmjs.org/@mongodb-js/zstd-darwin-x64/-/zstd-darwin-x64-1.2.0.tgz"
@@ -143,6 +148,11 @@
   "version" "13.4.19"
   dependencies:
     "glob" "7.1.7"
+
+"@next/swc-darwin-arm64@13.4.19":
+  "integrity" "sha512-vv1qrjXeGbuF2mOkhkdxMDtv9np7W4mcBtaDnHU+yJG+bBwa6rYsYSCI/9Xm5+TuF5SbZbrWO6G1NfTh1TMjvQ=="
+  "resolved" "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-13.4.19.tgz"
+  "version" "13.4.19"
 
 "@next/swc-darwin-x64@13.4.19":
   "integrity" "sha512-jyzO6wwYhx6F+7gD8ddZfuqO4TtpJdw3wyOduR4fxTUCm3aLw7YmHGYNjS0xRSYGAkLpBkH1E0RcelyId6lNsw=="

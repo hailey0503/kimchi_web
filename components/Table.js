@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import ccxt from "ccxt";
 import styles from "../styles/table.module.css";
+//import { krwExchangeRate } from '../pages/api/exchange'; // adjust the path accordingly
 
 export default function Table() {
   const [tableData, setTableData] = useState({
-    BTC: { upbit: "", coinbasepro: "", bybit: "", binance: "", okex: "" },
-    ETH: { upbit: "", coinbasepro: "", bybit: "", binance: "", okex: "" },
-    SOL: { upbit: "", coinbasepro: "", bybit: "", binance: "", okex: "" },
+    BTC: {  coinbasepro: "", bybit: "", binance: "", okex: "" },
+    ETH: {  coinbasepro: "", bybit: "", binance: "", okex: "" },
+    SOL: {  coinbasepro: "", bybit: "", binance: "", okex: "" },
   });
+  const [ticker, setTicker] = useState(null);
 
   const [selectedPlatform, setSelectedPlatform] = useState(""); // New state for selected platform
 
@@ -42,7 +44,7 @@ export default function Table() {
       await new Promise((resolve) => setTimeout(resolve, 5000)); // Delay for 1 second
     }
   }
-
+/*
   async function fetchData() {
     const upbit = new ccxt.pro["upbit"]();
     const [upbitSymbols] = await Promise.all([
@@ -53,7 +55,8 @@ export default function Table() {
     ]);
     return upbitSymbols;
   }
-
+*/
+  
   async function main() {
     const streams = {
       coinbasepro: ["BTC/USD", "ETH/USD", "SOL/USD", "XRP/USD", "ADA/USD", "DOGE/USD", "AVAX/USD", "MATIC/USD", "LINK/USD", "DOT/USD", "LTC/USD", "SHIB/USD", "BCH/USD", "UNI/USD", "FIL/USD"],
@@ -99,6 +102,40 @@ export default function Table() {
       // Cleanup logic, if needed
     };
   }, []);
+  let upbitWS;
+  useEffect(() => {
+    upbitWS = new WebSocket(
+      'wss://api.upbit.com/websocket/v1',
+    );
+    console.log(upbitWS);
+    //["BTC/KRW", "ETH/KRW", "SOL/KRW", "XRP/KRW", "ADA/KRW", "EOS/KRW", "LUNA/KRW", "MCO/KRW", "ZEN/KRW", "CRV/KRW", "SAND/KRW", "BTT/KRW", "HBAR/KRW", "DOGE/KRW", "AVAX/KRW", "MATIC/KRW", "LINK/KRW", "DOT/KRW", , "SHIB/KRW", "BCH/KRW"]
+    upbitWS.onopen = (event) => {
+      const request = [{"ticket": "test example"},{"type": "ticker","codes": ["KRW-BTC","KRW-ETH", "KRW-SOL",  "KRW-XRP", "KRW-LUNA", "KRW-EOS", "KRW-ADA", "KRW-XRP", "KRW-SAND", "KRW-DOGE", "KRW-LINK", "KRW-AVAX", "KRW-SHIB", "KRW-UNI", "KRW-LTC", "KRW-DOT", "KRW-MATIC", "KRW-BNB", "KRW-TRX", "KRW-BCH", "KRW-FIL"]},{"format": "DEFAULT"}];
+      upbitWS.send(JSON.stringify(request));
+    };
+
+    upbitWS.onerror = (event) => console.error(event);
+
+    upbitWS.onmessage = async (event) => {
+      const message = await event.data.text();
+      const parsedData = JSON.parse(message);
+      const { code, trade_price } = parsedData;
+      const symbol = code.split('-')[1];
+
+      // Update state
+      setTicker((prevTicker) => {
+        return {
+          ...prevTicker,
+          [symbol]: { code, trade_price },
+        };
+      });
+      console.log(ticker)
+    };
+
+    upbitWS.onclose = () => console.log("closed!");
+
+  }, []);
+
 
   return (
     <div>
@@ -109,6 +146,7 @@ export default function Table() {
         <option value="bithumb">빗썸</option>
         {/* Add more options as needed */}
       </select>
+    
       <table className={styles.table}>
         <thead className={styles.thead}>
           <tr className={styles.tr}>
@@ -118,7 +156,7 @@ export default function Table() {
             <th>바이비트</th>
             <th>바이낸스</th>
             <th>OKX</th>
-			<th>bitget</th>
+			      <th>bitget</th>
             <th>김프</th>
           </tr>
         </thead>
@@ -126,8 +164,9 @@ export default function Table() {
           {Object.keys(tableData).map((symbol) => (
             <tr key={symbol}>
               <td>{symbol}</td>
-              <td>{tableData[symbol][selectedPlatform] ?? "N/A"}</td>
-			  <td>{tableData[symbol]["coinbasepro"] ?? "N/A"}</td>
+        
+              <td>{ticker && ticker[symbol] ? ticker[symbol].trade_price : "N/A"}</td>
+			  <td>{tableData[symbol]["coinbasepro"]  ?? "N/A"}</td>
               <td>{tableData[symbol]["bybit"] ?? "N/A"}</td>
               <td>{tableData[symbol]["binance"] ?? "N/A"}</td>
 			  <td>{tableData[symbol]["okex"] ?? "N/A"}</td>

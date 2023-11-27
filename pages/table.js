@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import Table from "../components/Table";
+import UpbitTicker from "../components/UpbitTicker"
 import LongShort from "../components/LongShort";
 import ChartComp from "../components/Chart";
 import Header from "../components/Header";
@@ -19,6 +20,7 @@ const tablepage= () => {
       </div>
 		<div >
 		<Table />
+		<UpbitTicker />
 	   </div>
 	   <Footer/>
 	   </>

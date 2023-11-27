@@ -25,6 +25,8 @@ const MyApp = ({ Component, pageProps }) => {
     <>
       <Head>
       <meta name="google-adsense-account" content="ca-pub-2625840607267766"></meta>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+
         <script
           dangerouslySetInnerHTML={{
             __html: `

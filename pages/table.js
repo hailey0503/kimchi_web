@@ -20,7 +20,6 @@ const tablepage= () => {
       </div>
 		<div >
 		<Table />
-		<UpbitTicker />
 	   </div>
 	   <Footer/>
 	   </>

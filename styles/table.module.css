@@ -47,3 +47,34 @@
 	  font-size: 12px; /* Adjust font size for smaller screens */
 	}
   }
+
+  /* Add these styles to your CSS */
+.priceIncrease {
+	color: green; /* Change to your desired color for price increase */
+  }
+  
+  .priceDecrease {
+	color: red; /* Change to your desired color for price decrease */
+  }
+  
+  .priceStable {
+	color: black; /* Change to your desired color for price stability */
+  }
+
+  /* Add this to your existing CSS */
+/* Update the CSS for the subColumns and spans */
+.subColumns {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+  }
+  
+  .leftColumn{
+	text-align: left;
+  }
+  .rightColumn {
+	text-align: center;
+	color: rgb(54, 151, 92);
+	
+  }
+  

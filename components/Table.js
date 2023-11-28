@@ -5,11 +5,12 @@ import styles from "../styles/table.module.css";
 
 export default function Table() {
   const [tableData, setTableData] = useState({
-    BTC: {  coinbasepro: "", bybit: "", binance: "", okex: "" },
-    ETH: {  coinbasepro: "", bybit: "", binance: "", okex: "" },
-    SOL: {  coinbasepro: "", bybit: "", binance: "", okex: "" },
+    BTC: { coinbasepro: "", bybit: "", binance: "", okex: "" },
+    ETH: { coinbasepro: "", bybit: "", binance: "", okex: "" },
+    SOL: { coinbasepro: "", bybit: "", binance: "", okex: "" },
   });
   const [ticker, setTicker] = useState(null);
+  const [prevTicker, setPrevTicker] = useState({});
 
   const [selectedPlatform, setSelectedPlatform] = useState(""); // New state for selected platform
 
@@ -18,7 +19,9 @@ export default function Table() {
       try {
         const tickers = await Promise.all(
           symbols.map(async (symbol) => {
-            const method = exchange.has.watchTicker ? "watchTicker" : "fetchTicker";
+            const method = exchange.has.watchTicker
+              ? "watchTicker"
+              : "fetchTicker";
             const ticker = await exchange[method](symbol);
             return {
               symbol,
@@ -33,7 +36,8 @@ export default function Table() {
             const key = symbol.split("/")[0]; // Use only part before "/"
             updatedData[key] = {
               ...updatedData[key],
-              [exchangeId]: tickers.find((ticker) => ticker.symbol === symbol)?.last,
+              [exchangeId]: tickers.find((ticker) => ticker.symbol === symbol)
+                ?.last,
             };
           });
           return updatedData;
@@ -44,7 +48,7 @@ export default function Table() {
       await new Promise((resolve) => setTimeout(resolve, 5000)); // Delay for 1 second
     }
   }
-/*
+  /*
   async function fetchData() {
     const upbit = new ccxt.pro["upbit"]();
     const [upbitSymbols] = await Promise.all([
@@ -56,26 +60,427 @@ export default function Table() {
     return upbitSymbols;
   }
 */
-  
+  function getPriceChangeClass(symbol) {
+    const currentPrice =
+      ticker && ticker[symbol] ? ticker[symbol].trade_price : 0;
+    const prevPrice =
+      prevTicker && prevTicker[symbol] ? prevTicker[symbol].trade_price : 0;
+
+    if (currentPrice > prevPrice) {
+      return styles.priceIncrease; // Add this class to your CSS with desired styles for price increase
+    } else if (currentPrice < prevPrice) {
+      return styles.priceDecrease; // Add this class to your CSS with desired styles for price decrease
+    } else {
+      return styles.priceStable; // Add this class to your CSS with desired styles for price stability
+    }
+  }
+
   async function main() {
     const streams = {
-      coinbasepro: ["BTC/USD", "ETH/USD", "SOL/USD", "XRP/USD", "ADA/USD", "DOGE/USD", "AVAX/USD", "MATIC/USD", "LINK/USD", "DOT/USD", "LTC/USD", "SHIB/USD", "BCH/USD", "UNI/USD", "FIL/USD"],
-      okex: ["BTC/USDT", "ETH/USDT", "SOL/USDT", "BNB/USDT", "DOGE/USDT", "TRX/USDT", "TON/USDT", "AVAX/USDT", "MATIC/USDT", "LINK/USDT", "DOT/USDT", "LTC/USDT", "SHIB/USDT", "BCH/USDT", "UNI/USDT", "FIL/USDT"],
+      /*
+      coinbasepro: [
+        "BTC/USD",
+        "ETH/USD",
+        "SOL/USD",
+        "XRP/USD",
+        "ADA/USD",
+        "DOGE/USD",
+        "AVAX/USD",
+        "MATIC/USD",
+        "LINK/USD",
+        "DOT/USD",
+        "LTC/USD",
+        "SHIB/USD",
+        "BCH/USD",
+        "UNI/USD",
+        "FIL/USD",
+      ],
+      */
+      okex: [
+        "BTC/USDT",
+        "ETH/USDT",
+        "SOL/USDT",
+        "BNB/USDT",
+        "DOGE/USDT",
+        "TRX/USDT",
+        "AVAX/USDT",
+        "MATIC/USDT",
+        "LINK/USDT",
+        "DOT/USDT",
+        "LTC/USDT",
+        "SHIB/USDT",
+        "BCH/USDT",
+        "UNI/USDT",
+        "FIL/USDT",
+        "RUNE/USDT",
+
+        "NEO/USDT",
+        "MTL/USDT",
+        "ETC/USDT",
+        "SNT/USDT",
+        "WAVES/USDT",
+        "XEM/USDT",
+        "QTUM/USDT",
+        "LSK/USDT",
+        "STEEM/USDT",
+        "XLM/USDT",
+        "ARDR/USDT",
+        "ARK/USDT",
+        "STORJ/USDT",
+        "GRS/USDT",
+        "SBD/USDT",
+        "POWR/USDT",
+        "BTG/USDT",
+        "ICX/USDT",
+        "SC/USDT",
+        "ONT/USDT",
+        "ZIL/USDT",
+        "POLYX/USDT",
+        "ZRX/USDT",
+        "LOOM/USDT",
+        "BAT/USDT",
+        "CVC/USDT",
+        "IQ/USDT",
+        "IOTA/USDT",
+        "HIFI/USDT",
+        "ONG/USDT",
+        "GAS/USDT",
+        "UPP/USDT",
+        "ELF/USDT",
+        "KNC/USDT",
+        "BSV/USDT",
+        "THETA/USDT",
+        "QKC/USDT",
+        "BTT/USDT",
+        "MOC/USDT",
+        "TFUEL/USDT",
+        "MANA/USDT",
+        "ANKR/USDT",
+        "AERGO/USDT",
+        "TT/USDT",
+        "CRE/USDT",
+        "MBL/USDT",
+        "WAXP/USDT",
+        "HBAR/USDT",
+        "MED/USDT",
+        "MLK/USDT",
+        "STPT/USDT",
+        "ORBS/USDT",
+        "VET/USDT",
+        "CHZ/USDT",
+        "STMX/USDT",
+        "DKA/USDT",
+        "HIVE/USDT",
+        "KAVA/USDT",
+        "AHT/USDT",
+        "XTZ/USDT",
+        "BORA/USDT",
+        "JST/USDT",
+        "CRO/USDT",
+        "SXP/USDT",
+        "HUNT/USDT",
+        "PLA/USDT",
+        "MVL/USDT",
+        "STRAX/USDT",
+        "AQT/USDT",
+        "GLM/USDT",
+        "SSX/USDT",
+        "META/USDT",
+        "FCT2/USDT",
+        "CBK/USDT",
+        "HPO/USDT",
+        "STRK/USDT",
+        "PUNDIX/USDT",
+        "FLOW/USDT",
+        "AXS/USDT",
+        "STX/USDT",
+        "XEC/USDT",
+        "AAVE/USDT",
+        "1INCH/USDT",
+        "ALGO/USDT",
+        "NEAR/USDT",
+        "T/USDT",
+        "CELO/USDT",
+        "GMT/USDT",
+        "APT/USDT",
+        "MASK/USDT",
+        "ARB/USDT",
+        "EGLD/USDT",
+        "SUI/USDT",
+        "GRT/USDT",
+        "BLUR/USDT",
+        "IMX/USDT",
+        "SEI/USDT",
+        "MINA/USDT",
+      ],
       //upbit: ["BTC/KRW", "ETH/KRW", "SOL/KRW", "XRP/KRW", "ADA/KRW", "EOS/KRW", "LUNA/KRW", "MCO/KRW", "ZEN/KRW", "CRV/KRW", "SAND/KRW", "BTT/KRW", "HBAR/KRW", "DOGE/KRW", "AVAX/KRW", "MATIC/KRW", "LINK/KRW", "DOT/KRW", , "SHIB/KRW", "BCH/KRW"],
-      bybit: ["BTC/USDT", "ETH/USDT", "SOL/USDT", "BNB/USDT", "DOGE/USDT", "TRX/USDT", "TON/USDT", "AVAX/USDT", "MATIC/USDT", "LINK/USDT", "DOT/USDT", "LTC/USDT", "SHIB/USDT", "BCH/USDT", "UNI/USDT", "FIL/USDT", "RUNE/USDT"],
-      binance: ["BTC/USDT", "ETH/USDT", "SOL/USDT", "BNB/USDT", "DOGE/USDT", "TRX/USDT", "AVAX/USDT", "MATIC/USDT", "LINK/USDT", "DOT/USDT", "LTC/USDT", "SHIB/USDT", "BCH/USDT", "UNI/USDT", "FIL/USDT", "RUNE/USDT"],
-	  bitget: ["BTC/USDT", "ETH/USDT", "SOL/USDT", "BNB/USDT", "DOGE/USDT", "TRX/USDT", "AVAX/USDT", "MATIC/USDT", "LINK/USDT", "DOT/USDT", "LTC/USDT", "SHIB/USDT", "BCH/USDT", "UNI/USDT", "FIL/USDT", "RUNE/USDT"],
-	 
-	};
+      bybit: [
+        "BTC/USDT",
+        "ETH/USDT",
+        "SOL/USDT",
+        "BNB/USDT",
+        "DOGE/USDT",
+        "TRX/USDT",
+        "TON/USDT",
+        "AVAX/USDT",
+        "MATIC/USDT",
+        "LINK/USDT",
+        "DOT/USDT",
+        "LTC/USDT",
+        "SHIB/USDT",
+        "BCH/USDT",
+        "UNI/USDT",
+        "FIL/USDT",
+        "RUNE/USDT",
+      ],
+      /*
+  binance: [
+        "BTC/USDT",
+        "ETH/USDT",
+        "SOL/USDT",
+        "BNB/USDT",
+        "DOGE/USDT",
+        "TRX/USDT",
+        "AVAX/USDT",
+        "MATIC/USDT",
+        "LINK/USDT",
+        "DOT/USDT",
+        "LTC/USDT",
+        "SHIB/USDT",
+        "BCH/USDT",
+        "UNI/USDT",
+        "FIL/USDT",
+        "RUNE/USDT",
+       
+            "NEO/USDT",
+            "MTL/USDT",
+            "ETC/USDT",
+            "SNT/USDT",
+            "WAVES/USDT",
+            "XEM/USDT",
+            "QTUM/USDT",
+            "LSK/USDT",
+            "STEEM/USDT",
+            "XLM/USDT",
+            "ARDR/USDT",
+            "ARK/USDT",
+            "STORJ/USDT",
+            "GRS/USDT",
+            "SBD/USDT",
+            "POWR/USDT",
+            "BTG/USDT",
+            "ICX/USDT",
+            "SC/USDT",
+            "ONT/USDT",
+            "ZIL/USDT",
+            "POLYX/USDT",
+            "ZRX/USDT",
+            "LOOM/USDT",
+            "BAT/USDT",
+            "CVC/USDT",
+            "IQ/USDT",
+            "IOTA/USDT",
+            "HIFI/USDT",
+            "ONG/USDT",
+            "GAS/USDT",
+            "UPP/USDT",
+            "ELF/USDT",
+            "KNC/USDT",
+            "BSV/USDT",
+            "THETA/USDT",
+            "QKC/USDT",
+            "BTT/USDT",
+            "MOC/USDT",
+            "TFUEL/USDT",
+            "MANA/USDT",
+            "ANKR/USDT",
+            "AERGO/USDT",
+            "TT/USDT",
+            "CRE/USDT",
+            "MBL/USDT",
+            "WAXP/USDT",
+            "HBAR/USDT",
+            "MED/USDT",
+            "MLK/USDT",
+            "STPT/USDT",
+            "ORBS/USDT",
+            "VET/USDT",
+            "CHZ/USDT",
+            "STMX/USDT",
+            "DKA/USDT",
+            "HIVE/USDT",
+            "KAVA/USDT",
+            "AHT/USDT",
+            "XTZ/USDT",
+            "BORA/USDT",
+            "JST/USDT",
+            "CRO/USDT",
+            "SXP/USDT",
+            "HUNT/USDT",
+            "PLA/USDT",
+            "MVL/USDT",
+            "STRAX/USDT",
+            "AQT/USDT",
+            "GLM/USDT",
+            "SSX/USDT",
+            "META/USDT",
+            "FCT2/USDT",
+            "CBK/USDT",
+            "HPO/USDT",
+            "STRK/USDT",
+            "PUNDIX/USDT",
+            "FLOW/USDT",
+            "AXS/USDT",
+            "STX/USDT",
+            "XEC/USDT",
+            "AAVE/USDT",
+            "1INCH/USDT",
+            "ALGO/USDT",
+            "NEAR/USDT",
+            "T/USDT",
+            "CELO/USDT",
+            "GMT/USDT",
+            "APT/USDT",
+            "MASK/USDT",
+            "ARB/USDT",
+            "EGLD/USDT",
+            "SUI/USDT",
+            "GRT/USDT",
+            "BLUR/USDT",
+            "IMX/USDT",
+            "SEI/USDT",
+            "MINA/USDT"
+      ],
+      */
+      bitget: [
+        "BTC/USDT",
+        "ETH/USDT",
+        "SOL/USDT",
+        "BNB/USDT",
+        "DOGE/USDT",
+        "TRX/USDT",
+        "AVAX/USDT",
+        "MATIC/USDT",
+        "LINK/USDT",
+        "DOT/USDT",
+
+        "SHIB/USDT",
+        "BCH/USDT",
+
+        "FIL/USDT",
+        "RUNE/USDT",
+
+        "NEO/USDT",
+        "MTL/USDT",
+        "ETC/USDT",
+        "SNT/USDT",
+        "WAVES/USDT",
+        "XEM/USDT",
+        "QTUM/USDT",
+        "LSK/USDT",
+        "STEEM/USDT",
+        "XLM/USDT",
+        "ARDR/USDT",
+        "ARK/USDT",
+        "STORJ/USDT",
+        "GRS/USDT",
+        "SBD/USDT",
+        "POWR/USDT",
+        "BTG/USDT",
+        "ICX/USDT",
+        "SC/USDT",
+        "ONT/USDT",
+        "ZIL/USDT",
+        "POLYX/USDT",
+        "ZRX/USDT",
+        "LOOM/USDT",
+        "BAT/USDT",
+        "CVC/USDT",
+        "IQ/USDT",
+        "IOTA/USDT",
+        "HIFI/USDT",
+        "ONG/USDT",
+        "GAS/USDT",
+        "UPP/USDT",
+        "ELF/USDT",
+        "KNC/USDT",
+        "BSV/USDT",
+        "THETA/USDT",
+        "QKC/USDT",
+        "BTT/USDT",
+        "MOC/USDT",
+        "TFUEL/USDT",
+        "MANA/USDT",
+        "ANKR/USDT",
+        "AERGO/USDT",
+        "TT/USDT",
+        "CRE/USDT",
+        "MBL/USDT",
+        "WAXP/USDT",
+        "HBAR/USDT",
+        "MED/USDT",
+        "MLK/USDT",
+        "STPT/USDT",
+        "ORBS/USDT",
+        "VET/USDT",
+        "CHZ/USDT",
+        "STMX/USDT",
+        "DKA/USDT",
+        "HIVE/USDT",
+        "KAVA/USDT",
+        "AHT/USDT",
+        "XTZ/USDT",
+        "BORA/USDT",
+        "JST/USDT",
+        "CRO/USDT",
+        "SXP/USDT",
+        "HUNT/USDT",
+        "PLA/USDT",
+        "MVL/USDT",
+        "STRAX/USDT",
+        "AQT/USDT",
+        "GLM/USDT",
+        "SSX/USDT",
+        "META/USDT",
+        "FCT2/USDT",
+        "CBK/USDT",
+        "HPO/USDT",
+        "STRK/USDT",
+        "PUNDIX/USDT",
+        "FLOW/USDT",
+        "AXS/USDT",
+        "STX/USDT",
+        "XEC/USDT",
+        "AAVE/USDT",
+        "1INCH/USDT",
+        "ALGO/USDT",
+        "NEAR/USDT",
+        "T/USDT",
+        "CELO/USDT",
+        "GMT/USDT",
+        "APT/USDT",
+        "MASK/USDT",
+        "ARB/USDT",
+        "EGLD/USDT",
+        "SUI/USDT",
+        "GRT/USDT",
+        "BLUR/USDT",
+        "IMX/USDT",
+        "SEI/USDT",
+        "MINA/USDT",
+        "LTC/USDT",
+        "UNI/USDT",
+      ],
+    };
 
     await Promise.all(
       Object.entries(streams).map(async ([exchangeId, symbols]) => {
         const exchange = new ccxt.pro[exchangeId]({ enableRateLimit: true });
-		if (exchange.id == "binance") {
-			console.log('exchangeid', exchange.id)
-			exchange.streaming.keepAlive = 5000;
-			console.log(exchange.streaming.keepAlive)
-		}
+        if (exchange.id == "binance") {
+          console.log("exchangeid", exchange.id);
+          exchange.streaming.keepAlive = 5000;
+          console.log(exchange.streaming.keepAlive);
+        }
 
         const method = "watchTicker";
 
@@ -104,13 +509,138 @@ export default function Table() {
   }, []);
   let upbitWS;
   useEffect(() => {
-    upbitWS = new WebSocket(
-      'wss://api.upbit.com/websocket/v1',
-    );
+    upbitWS = new WebSocket("wss://api.upbit.com/websocket/v1");
     console.log(upbitWS);
-    //["BTC/KRW", "ETH/KRW", "SOL/KRW", "XRP/KRW", "ADA/KRW", "EOS/KRW", "LUNA/KRW", "MCO/KRW", "ZEN/KRW", "CRV/KRW", "SAND/KRW", "BTT/KRW", "HBAR/KRW", "DOGE/KRW", "AVAX/KRW", "MATIC/KRW", "LINK/KRW", "DOT/KRW", , "SHIB/KRW", "BCH/KRW"]
     upbitWS.onopen = (event) => {
-      const request = [{"ticket": "test example"},{"type": "ticker","codes": ["KRW-BTC","KRW-ETH", "KRW-SOL",  "KRW-XRP", "KRW-LUNA", "KRW-EOS", "KRW-ADA", "KRW-XRP", "KRW-SAND", "KRW-DOGE", "KRW-LINK", "KRW-AVAX", "KRW-SHIB", "KRW-UNI", "KRW-LTC", "KRW-DOT", "KRW-MATIC", "KRW-BNB", "KRW-TRX", "KRW-BCH", "KRW-FIL"]},{"format": "DEFAULT"}];
+      const request = [
+        { ticket: "test example" },
+        {
+          type: "ticker",
+          codes: [
+            "KRW-BTC",
+            "KRW-ETH",
+            "KRW-SOL",
+            "KRW-XRP",
+            "KRW-LUNA",
+            "KRW-EOS",
+            "KRW-ADA",
+            "KRW-XRP",
+            "KRW-SAND",
+            "KRW-DOGE",
+            "KRW-LINK",
+            "KRW-AVAX",
+            "KRW-SHIB",
+
+            "KRW-DOT",
+            "KRW-MATIC",
+
+            "KRW-TRX",
+            "KRW-BCH",
+            "KRW-FIL",
+            "KRW-TON",
+
+            "KRW-NEO",
+            "KRW-MTL",
+            "KRW-ETC",
+            "KRW-SNT",
+            "KRW-WAVES",
+            "KRW-XEM",
+            "KRW-QTUM",
+            "KRW-LSK",
+            "KRW-STEEM",
+            "KRW-XLM",
+            "KRW-ARDR",
+            "KRW-ARK",
+            "KRW-STORJ",
+            "KRW-GRS",
+            "KRW-SBD",
+            "KRW-POWR",
+            "KRW-BTG",
+            "KRW-ICX",
+            "KRW-SC",
+            "KRW-ONT",
+            "KRW-ZIL",
+            "KRW-POLYX",
+            "KRW-ZRX",
+            "KRW-LOOM",
+            "KRW-BAT",
+            "KRW-CVC",
+            "KRW-IQ",
+            "KRW-IOTA",
+            "KRW-HIFI",
+            "KRW-ONG",
+            "KRW-GAS",
+            "KRW-UPP",
+            "KRW-ELF",
+            "KRW-KNC",
+            "KRW-BSV",
+            "KRW-THETA",
+            "KRW-QKC",
+            "KRW-BTT",
+            "KRW-MOC",
+            "KRW-TFUEL",
+            "KRW-MANA",
+            "KRW-ANKR",
+            "KRW-AERGO",
+            "KRW-TT",
+            "KRW-CRE",
+            "KRW-MBL",
+            "KRW-WAXP",
+            "KRW-HBAR",
+            "KRW-MED",
+            "KRW-MLK",
+            "KRW-STPT",
+            "KRW-ORBS",
+            "KRW-VET",
+            "KRW-CHZ",
+            "KRW-STMX",
+            "KRW-DKA",
+            "KRW-HIVE",
+            "KRW-KAVA",
+            "KRW-AHT",
+            "KRW-XTZ",
+            "KRW-BORA",
+            "KRW-JST",
+            "KRW-CRO",
+            "KRW-SXP",
+            "KRW-HUNT",
+            "KRW-PLA",
+            "KRW-MVL",
+            "KRW-STRAX",
+            "KRW-AQT",
+            "KRW-GLM",
+            "KRW-SSX",
+            "KRW-META",
+            "KRW-FCT2",
+            "KRW-CBK",
+            "KRW-HPO",
+            "KRW-STRK",
+            "KRW-PUNDIX",
+            "KRW-FLOW",
+            "KRW-AXS",
+            "KRW-STX",
+            "KRW-XEC",
+            "KRW-AAVE",
+            "KRW-1INCH",
+            "KRW-ALGO",
+            "KRW-NEAR",
+            "KRW-T",
+            "KRW-CELO",
+            "KRW-GMT",
+            "KRW-APT",
+            "KRW-MASK",
+            "KRW-ARB",
+            "KRW-EGLD",
+            "KRW-SUI",
+            "KRW-GRT",
+            "KRW-BLUR",
+            "KRW-IMX",
+            "KRW-SEI",
+            "KRW-MINA",
+          ],
+        },
+        { format: "DEFAULT" },
+      ];
       upbitWS.send(JSON.stringify(request));
     };
 
@@ -120,8 +650,8 @@ export default function Table() {
       const message = await event.data.text();
       const parsedData = JSON.parse(message);
       const { code, trade_price } = parsedData;
-      const symbol = code.split('-')[1];
-
+      const symbol = code.split("-")[1];
+      setPrevTicker((prevPrevTicker) => ({ ...prevTicker }));
       // Update state
       setTicker((prevTicker) => {
         return {
@@ -129,52 +659,128 @@ export default function Table() {
           [symbol]: { code, trade_price },
         };
       });
-      console.log(ticker)
+      console.log(ticker);
     };
 
     upbitWS.onclose = () => console.log("closed!");
-
   }, []);
+  const exchange = 1299;
 
-
+  
   return (
     <div>
       <h1 className={styles.h1}>김치 프리미엄</h1>
       {/* Dropdown for selecting the platform */}
-      <select className={styles.option} value={selectedPlatform} onChange={(e) => setSelectedPlatform(e.target.value)}>
+      <select
+        className={styles.option}
+        value={selectedPlatform}
+        onChange={(e) => setSelectedPlatform(e.target.value)}
+      >
         <option value="upbit">업비트</option>
         <option value="bithumb">빗썸</option>
         {/* Add more options as needed */}
       </select>
-    
+
       <table className={styles.table}>
         <thead className={styles.thead}>
           <tr className={styles.tr}>
-            <th>코인이름</th>
+            <th>코인</th>
             <th>{selectedPlatform === "bithumb" ? "빗썸" : "업비트"}</th>
-            <th>코인베이스</th>
             <th>바이비트</th>
             <th>바이낸스</th>
             <th>OKX</th>
-			      <th>bitget</th>
-            <th>김프</th>
+            <th>bitget</th>
           </tr>
         </thead>
         <tbody className={styles.tbody}>
           {Object.keys(tableData).map((symbol) => (
             <tr key={symbol}>
               <td>{symbol}</td>
-        
-              <td>{ticker && ticker[symbol] ? ticker[symbol].trade_price : "N/A"}</td>
-			  <td>{tableData[symbol]["coinbasepro"]  ?? "N/A"}</td>
-              <td>{tableData[symbol]["bybit"] ?? "N/A"}</td>
-              <td>{tableData[symbol]["binance"] ?? "N/A"}</td>
-			  <td>{tableData[symbol]["okex"] ?? "N/A"}</td>
-              <td>{tableData[symbol]["bitget"] ?? "N/A"}</td>
-              <td>
-                {tableData[symbol]["coinbasepro"] && tableData[symbol]["okex"]
-                  ? (parseFloat(tableData[symbol]["coinbasepro"]) - parseFloat(tableData[symbol]["okex"])).toFixed(2)
+
+              <td className={getPriceChangeClass(symbol)}>
+                {ticker && ticker[symbol]
+                  ? ticker[symbol].trade_price.toLocaleString()
                   : "N/A"}
+              </td>
+
+              <td className={styles.twoColumns}>
+                <span className={styles.leftColumn}>
+                  {tableData[symbol]["bybit"]
+                    ? "$" + tableData[symbol]["bybit"].toLocaleString()
+                    : "N/A"} {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
+                </span>
+                <span className={styles.rightColumn}>
+                  {ticker && ticker[symbol] && tableData[symbol]["bybit"]
+                    ? (
+                        ((ticker[symbol].trade_price -
+                          tableData[symbol]["bybit"] * exchange) /
+                          (tableData[symbol]["bybit"] * exchange)) *
+                        100
+                      ).toLocaleString(undefined, {
+                        maximumFractionDigits: 2,
+                      }) + "%"
+                    : "N/A"}
+                </span>
+              </td>
+
+              <td className={styles.twoColumns}>
+                <span className={styles.leftColumn}>
+                  {tableData[symbol]["binance"]
+                    ? "$" + tableData[symbol]["binance"].toLocaleString()
+                    : "N/A"} {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
+                </span>
+                <span className={styles.rightColumn}>
+                  {ticker && ticker[symbol] && tableData[symbol]["binance"]
+                    ? (
+                        ((ticker[symbol].trade_price -
+                          tableData[symbol]["binance"] * exchange) /
+                          (tableData[symbol]["bybit"] * exchange)) *
+                        100
+                      ).toLocaleString(undefined, {
+                        maximumFractionDigits: 2,
+                      }) + "%"
+                    : "N/A"}
+                </span>
+              </td>
+
+              <td className={styles.twoColumns}>
+                <span className={styles.leftColumn}>
+                  {tableData[symbol]["okex"]
+                    ? "$" + tableData[symbol]["okex"].toLocaleString()
+                    : "N/A"} {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
+                </span>
+                <span className={styles.rightColumn}>
+                  {ticker && ticker[symbol] && tableData[symbol]["okex"]
+                    ? (
+                        ((ticker[symbol].trade_price -
+                          tableData[symbol]["okex"] * exchange) /
+                          (tableData[symbol]["okex"] * exchange)) *
+                        100
+                      ).toLocaleString(undefined, {
+                        maximumFractionDigits: 2,
+                      }) + "%"
+                    : "N/A"}
+                </span>
+              </td>
+
+              <td className={styles.twoColumns}>
+                <span className={styles.leftColumn}>
+                  {tableData[symbol]["bitget"]
+                    ? "$" + tableData[symbol]["bitget"].toLocaleString()
+                    : "N/A"} {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
+                </span>
+                <span className={styles.rightColumn}>
+                  {ticker && ticker[symbol] && tableData[symbol]["bitget"]
+                    ? (
+                        ((ticker[symbol].trade_price -
+                          tableData[symbol]["bitget"] * exchange) /
+                          (tableData[symbol]["bitget"] * exchange)) *
+                        100
+                      ).toLocaleString(undefined, {
+                        maximumFractionDigits: 2,
+                      }) + "%"
+                    : "N/A"}
+                </span>
               </td>
             </tr>
           ))}

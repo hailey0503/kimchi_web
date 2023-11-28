@@ -108,7 +108,7 @@ export default function Table() {
         "LINK/USDT",
         "DOT/USDT",
         "LTC/USDT",
-        "SHIB/USDT",
+       
         "BCH/USDT",
         "UNI/USDT",
         "FIL/USDT",
@@ -227,7 +227,7 @@ export default function Table() {
         "LINK/USDT",
         "DOT/USDT",
         "LTC/USDT",
-        "SHIB/USDT",
+      
         "BCH/USDT",
         "UNI/USDT",
         "FIL/USDT",
@@ -364,7 +364,7 @@ export default function Table() {
         "LINK/USDT",
         "DOT/USDT",
 
-        "SHIB/USDT",
+       
         "BCH/USDT",
 
         "FIL/USDT",
@@ -529,7 +529,7 @@ export default function Table() {
             "KRW-DOGE",
             "KRW-LINK",
             "KRW-AVAX",
-            "KRW-SHIB",
+           
 
             "KRW-DOT",
             "KRW-MATIC",

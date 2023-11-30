@@ -664,7 +664,7 @@ export default function Table() {
 
     upbitWS.onclose = () => console.log("closed!");
   }, []);
-  const exchange = 1299;
+  const exchange = 1288;
 
   
   return (

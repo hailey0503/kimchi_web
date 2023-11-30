@@ -4,11 +4,11 @@
 	flex-direction: column; /* Stack cards vertically */
 	align-items: center;
 	justify-content: center; /* Center the cards vertically and horizontally */
-	height: 100vh;
+
 	padding: 30px 0; /* Add padding to create space at the top and bottom */
-	margin-top: 40vh;
-	margin-bottom: 40vh;
-	gap: 200px; /* Space between cards */
+	margin-top: 30vh;
+	margin-bottom: 30vh;
+	gap: 15vh; /* Space between cards */
   }
   
 .header {
@@ -104,7 +104,7 @@
 @media (max-width: 768px) {
   .card-container {
     align-items: center;
-    margin-top: 30vh;
+    margin-top: 20vh;
 	margin-bottom: 20vh;
   }
   .transactionCard,

@@ -233,7 +233,7 @@ export default function Table() {
         "FIL/USDT",
         "RUNE/USDT",
       ],
-      /*
+      
   binance: [
         "BTC/USDT",
         "ETH/USDT",
@@ -351,7 +351,7 @@ export default function Table() {
             "SEI/USDT",
             "MINA/USDT"
       ],
-      */
+      
       bitget: [
         "BTC/USDT",
         "ETH/USDT",

@@ -108,7 +108,7 @@ export default function Table() {
         "LINK/USDT",
         "DOT/USDT",
         "LTC/USDT",
-       
+
         "BCH/USDT",
         "UNI/USDT",
         "FIL/USDT",
@@ -227,7 +227,7 @@ export default function Table() {
         "LINK/USDT",
         "DOT/USDT",
         "LTC/USDT",
-      
+
         "BCH/USDT",
         "UNI/USDT",
         "FIL/USDT",
@@ -364,7 +364,6 @@ export default function Table() {
         "LINK/USDT",
         "DOT/USDT",
 
-       
         "BCH/USDT",
 
         "FIL/USDT",
@@ -529,7 +528,6 @@ export default function Table() {
             "KRW-DOGE",
             "KRW-LINK",
             "KRW-AVAX",
-           
 
             "KRW-DOT",
             "KRW-MATIC",
@@ -664,9 +662,29 @@ export default function Table() {
 
     upbitWS.onclose = () => console.log("closed!");
   }, []);
-  const exchange = 1288;
 
-  
+  const [krwExchangeRate, setKrwExchangeRate] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/coinmarketcap"); // Adjust the URL based on your project structure
+        const data = await response.json();
+        // console.log('data',data.krwExchangeRate)
+        // Assuming data is structured as mentioned in your code
+        const krwExchangeRateFromApi = data.krwExchangeRate;
+        setKrwExchangeRate(krwExchangeRateFromApi);
+        console.log("exchange", krwExchangeRate);
+
+        // ... (your existing code)
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []); // The empty dependency array ensures that this effect runs once on component mount
+
   return (
     <div>
       <h1 className={styles.h1}>김치 프리미엄</h1>
@@ -707,14 +725,15 @@ export default function Table() {
                 <span className={styles.leftColumn}>
                   {tableData[symbol]["bybit"]
                     ? "$" + tableData[symbol]["bybit"].toLocaleString()
-                    : "N/A"} {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
+                    : "N/A"}{" "}
+                  {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
                 </span>
                 <span className={styles.rightColumn}>
                   {ticker && ticker[symbol] && tableData[symbol]["bybit"]
                     ? (
                         ((ticker[symbol].trade_price -
-                          tableData[symbol]["bybit"] * exchange) /
-                          (tableData[symbol]["bybit"] * exchange)) *
+                          tableData[symbol]["bybit"] * krwExchangeRate) /
+                          (tableData[symbol]["bybit"] * krwExchangeRate)) *
                         100
                       ).toLocaleString(undefined, {
                         maximumFractionDigits: 2,
@@ -727,14 +746,15 @@ export default function Table() {
                 <span className={styles.leftColumn}>
                   {tableData[symbol]["binance"]
                     ? "$" + tableData[symbol]["binance"].toLocaleString()
-                    : "N/A"} {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
+                    : "N/A"}{" "}
+                  {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
                 </span>
                 <span className={styles.rightColumn}>
                   {ticker && ticker[symbol] && tableData[symbol]["binance"]
                     ? (
                         ((ticker[symbol].trade_price -
-                          tableData[symbol]["binance"] * exchange) /
-                          (tableData[symbol]["bybit"] * exchange)) *
+                          tableData[symbol]["binance"] * krwExchangeRate) /
+                          (tableData[symbol]["bybit"] * krwExchangeRate)) *
                         100
                       ).toLocaleString(undefined, {
                         maximumFractionDigits: 2,
@@ -747,14 +767,15 @@ export default function Table() {
                 <span className={styles.leftColumn}>
                   {tableData[symbol]["okex"]
                     ? "$" + tableData[symbol]["okex"].toLocaleString()
-                    : "N/A"} {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
+                    : "N/A"}{" "}
+                  {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
                 </span>
                 <span className={styles.rightColumn}>
                   {ticker && ticker[symbol] && tableData[symbol]["okex"]
                     ? (
                         ((ticker[symbol].trade_price -
-                          tableData[symbol]["okex"] * exchange) /
-                          (tableData[symbol]["okex"] * exchange)) *
+                          tableData[symbol]["okex"] * krwExchangeRate) /
+                          (tableData[symbol]["okex"] * krwExchangeRate)) *
                         100
                       ).toLocaleString(undefined, {
                         maximumFractionDigits: 2,
@@ -767,14 +788,15 @@ export default function Table() {
                 <span className={styles.leftColumn}>
                   {tableData[symbol]["bitget"]
                     ? "$" + tableData[symbol]["bitget"].toLocaleString()
-                    : "N/A"} {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
+                    : "N/A"}{" "}
+                  {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
                 </span>
                 <span className={styles.rightColumn}>
                   {ticker && ticker[symbol] && tableData[symbol]["bitget"]
                     ? (
                         ((ticker[symbol].trade_price -
-                          tableData[symbol]["bitget"] * exchange) /
-                          (tableData[symbol]["bitget"] * exchange)) *
+                          tableData[symbol]["bitget"] * krwExchangeRate) /
+                          (tableData[symbol]["bitget"] * krwExchangeRate)) *
                         100
                       ).toLocaleString(undefined, {
                         maximumFractionDigits: 2,

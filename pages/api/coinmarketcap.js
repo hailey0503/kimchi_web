@@ -117,7 +117,7 @@ export default async (req, res) => {
     }
     const t3 = performance.now();
     console.log(`Call to doSomething took ${t3 - t2} milliseconds.`);
-    res.status(200).json({ top20: top20Data, kimchi: kimchiData });
+    res.status(200).json({ top20: top20Data, kimchi: kimchiData, "krwExchangeRate":krwExchangeRate });
   } catch (error) {
     console.error("Error coinmarketcap:", error.message);
     res.status(500).json({ error: "Internal server error" });

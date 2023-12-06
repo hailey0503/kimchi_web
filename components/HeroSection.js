@@ -11,6 +11,7 @@ const data = ["", ""];
 const HeroSection = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [cryptoData, setCryptoData] = useState({});
+  
 
   useEffect(() => {
     // Fetch data for KLAY, WEMIX, and another cryptocurrency (e.g., XPLA)

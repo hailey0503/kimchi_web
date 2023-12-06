@@ -11,8 +11,8 @@ export default function Table() {
   });
   const [ticker, setTicker] = useState(null);
   const [prevTicker, setPrevTicker] = useState({});
-
   const [selectedPlatform, setSelectedPlatform] = useState(""); // New state for selected platform
+  const [filterValue, setFilterValue] = useState(""); // State for filter value
 
   async function watchTickerLoop(exchange, symbols, exchangeId) {
     while (true) {
@@ -233,8 +233,8 @@ export default function Table() {
         "FIL/USDT",
         "RUNE/USDT",
       ],
-      
-  binance: [
+
+      binance: [
         "BTC/USDT",
         "ETH/USDT",
         "SOL/USDT",
@@ -251,107 +251,107 @@ export default function Table() {
         "UNI/USDT",
         "FIL/USDT",
         "RUNE/USDT",
-       
-            "NEO/USDT",
-            "MTL/USDT",
-            "ETC/USDT",
-            "SNT/USDT",
-            "WAVES/USDT",
-            "XEM/USDT",
-            "QTUM/USDT",
-            "LSK/USDT",
-            "STEEM/USDT",
-            "XLM/USDT",
-            "ARDR/USDT",
-            "ARK/USDT",
-            "STORJ/USDT",
-            "GRS/USDT",
-            "SBD/USDT",
-            "POWR/USDT",
-            "BTG/USDT",
-            "ICX/USDT",
-            "SC/USDT",
-            "ONT/USDT",
-            "ZIL/USDT",
-            "POLYX/USDT",
-            "ZRX/USDT",
-            "LOOM/USDT",
-            "BAT/USDT",
-            "CVC/USDT",
-            "IQ/USDT",
-            "IOTA/USDT",
-            "HIFI/USDT",
-            "ONG/USDT",
-            "GAS/USDT",
-            "UPP/USDT",
-            "ELF/USDT",
-            "KNC/USDT",
-            "BSV/USDT",
-            "THETA/USDT",
-            "QKC/USDT",
-            "BTT/USDT",
-            "MOC/USDT",
-            "TFUEL/USDT",
-            "MANA/USDT",
-            "ANKR/USDT",
-            "AERGO/USDT",
-            "TT/USDT",
-            "CRE/USDT",
-            "MBL/USDT",
-            "WAXP/USDT",
-            "HBAR/USDT",
-            "MED/USDT",
-            "MLK/USDT",
-            "STPT/USDT",
-            "ORBS/USDT",
-            "VET/USDT",
-            "CHZ/USDT",
-            "STMX/USDT",
-            "DKA/USDT",
-            "HIVE/USDT",
-            "KAVA/USDT",
-            "AHT/USDT",
-            "XTZ/USDT",
-            "BORA/USDT",
-            "JST/USDT",
-            "CRO/USDT",
-            "SXP/USDT",
-            "HUNT/USDT",
-            "PLA/USDT",
-            "MVL/USDT",
-            "STRAX/USDT",
-            "AQT/USDT",
-            "GLM/USDT",
-            "SSX/USDT",
-            "META/USDT",
-            "FCT2/USDT",
-            "CBK/USDT",
-            "HPO/USDT",
-            "STRK/USDT",
-            "PUNDIX/USDT",
-            "FLOW/USDT",
-            "AXS/USDT",
-            "STX/USDT",
-            "XEC/USDT",
-            "AAVE/USDT",
-            "1INCH/USDT",
-            "ALGO/USDT",
-            "NEAR/USDT",
-            "T/USDT",
-            "CELO/USDT",
-            "GMT/USDT",
-            "APT/USDT",
-            "MASK/USDT",
-            "ARB/USDT",
-            "EGLD/USDT",
-            "SUI/USDT",
-            "GRT/USDT",
-            "BLUR/USDT",
-            "IMX/USDT",
-            "SEI/USDT",
-            "MINA/USDT"
+
+        "NEO/USDT",
+        "MTL/USDT",
+        "ETC/USDT",
+        "SNT/USDT",
+        "WAVES/USDT",
+        "XEM/USDT",
+        "QTUM/USDT",
+        "LSK/USDT",
+        "STEEM/USDT",
+        "XLM/USDT",
+        "ARDR/USDT",
+        "ARK/USDT",
+        "STORJ/USDT",
+        "GRS/USDT",
+        "SBD/USDT",
+        "POWR/USDT",
+        "BTG/USDT",
+        "ICX/USDT",
+        "SC/USDT",
+        "ONT/USDT",
+        "ZIL/USDT",
+        "POLYX/USDT",
+        "ZRX/USDT",
+        "LOOM/USDT",
+        "BAT/USDT",
+        "CVC/USDT",
+        "IQ/USDT",
+        "IOTA/USDT",
+        "HIFI/USDT",
+        "ONG/USDT",
+        "GAS/USDT",
+        "UPP/USDT",
+        "ELF/USDT",
+        "KNC/USDT",
+        "BSV/USDT",
+        "THETA/USDT",
+        "QKC/USDT",
+        "BTT/USDT",
+        "MOC/USDT",
+        "TFUEL/USDT",
+        "MANA/USDT",
+        "ANKR/USDT",
+        "AERGO/USDT",
+        "TT/USDT",
+        "CRE/USDT",
+        "MBL/USDT",
+        "WAXP/USDT",
+        "HBAR/USDT",
+        "MED/USDT",
+        "MLK/USDT",
+        "STPT/USDT",
+        "ORBS/USDT",
+        "VET/USDT",
+        "CHZ/USDT",
+        "STMX/USDT",
+        "DKA/USDT",
+        "HIVE/USDT",
+        "KAVA/USDT",
+        "AHT/USDT",
+        "XTZ/USDT",
+        "BORA/USDT",
+        "JST/USDT",
+        "CRO/USDT",
+        "SXP/USDT",
+        "HUNT/USDT",
+        "PLA/USDT",
+        "MVL/USDT",
+        "STRAX/USDT",
+        "AQT/USDT",
+        "GLM/USDT",
+        "SSX/USDT",
+        "META/USDT",
+        "FCT2/USDT",
+        "CBK/USDT",
+        "HPO/USDT",
+        "STRK/USDT",
+        "PUNDIX/USDT",
+        "FLOW/USDT",
+        "AXS/USDT",
+        "STX/USDT",
+        "XEC/USDT",
+        "AAVE/USDT",
+        "1INCH/USDT",
+        "ALGO/USDT",
+        "NEAR/USDT",
+        "T/USDT",
+        "CELO/USDT",
+        "GMT/USDT",
+        "APT/USDT",
+        "MASK/USDT",
+        "ARB/USDT",
+        "EGLD/USDT",
+        "SUI/USDT",
+        "GRT/USDT",
+        "BLUR/USDT",
+        "IMX/USDT",
+        "SEI/USDT",
+        "MINA/USDT",
       ],
-      
+
       bitget: [
         "BTC/USDT",
         "ETH/USDT",
@@ -684,21 +684,44 @@ export default function Table() {
 
     fetchData();
   }, []); // The empty dependency array ensures that this effect runs once on component mount
+  // Filtered data based on the filter value
+  // Function to handle input change
+  const handleInputChange = (e) => {
+    setFilterValue(e.target.value);
+  };
+
+  const filteredData = Object.keys(tableData).filter((symbol) =>
+    symbol.toLowerCase().includes(filterValue.toLowerCase())
+  );
+
+  const shouldHighlightRow = (symbol) => {
+    return (
+      filterValue && symbol.toLowerCase().includes(filterValue.toLowerCase())
+    );
+  };
 
   return (
     <div>
       <h1 className={styles.h1}>김치 프리미엄</h1>
       {/* Dropdown for selecting the platform */}
-      <select
-        className={styles.option}
-        value={selectedPlatform}
-        onChange={(e) => setSelectedPlatform(e.target.value)}
-      >
-        <option value="upbit">업비트</option>
-        <option value="bithumb">빗썸</option>
-        {/* Add more options as needed */}
-      </select>
-
+      <div className={styles.filterContainer}>
+        <select
+          className={styles.option}
+          value={selectedPlatform}
+          onChange={(e) => setSelectedPlatform(e.target.value)}
+        >
+          <option value="upbit">업비트</option>
+          <option value="bithumb">빗썸</option>
+          {/* Add more options as needed */}
+        </select>
+        <input
+          type="text"
+          placeholder="Filter by coin name"
+          value={filterValue}
+          onChange={handleInputChange}
+          className={styles.filterInput}
+        />
+      </div>
       <table className={styles.table}>
         <thead className={styles.thead}>
           <tr className={styles.tr}>
@@ -712,7 +735,10 @@ export default function Table() {
         </thead>
         <tbody className={styles.tbody}>
           {Object.keys(tableData).map((symbol) => (
-            <tr key={symbol}>
+            <tr
+              key={symbol}
+              className={shouldHighlightRow(symbol) ? styles.filteredRow : ""}
+            >
               <td>{symbol}</td>
 
               <td className={getPriceChangeClass(symbol)}>

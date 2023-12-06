@@ -78,3 +78,19 @@
 	
   }
   
+  /* Add this CSS to your stylesheet or style tag */
+
+.filteredRow {
+	background-color: rgb(224, 245, 200); /* Change to your desired highlight color */
+	font-weight: bold; /* Adjust font weight or other styles as needed */
+	color: black; /* Change text color if necessary */
+  }
+  .filterContainer {
+	display: flex;
+	gap: 10px; /* Adjust the gap as needed */
+	display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5vh; /* Adjust as needed */
+  }
+  

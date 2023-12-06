@@ -77,7 +77,7 @@ const Card = ({ logoSrc, companyName, cryptoData }) => {
             {" "}
             {/* Add an anchor tag inside the Link */}
             <div className={styles.logo}>
-              <Image src={logoSrc} width={50} height={50} />
+              <Image src={logoSrc} width={50} height={50} loading="lazy" />
             </div>
             <div className={styles.name}>
               <h3>{companyName}</h3>

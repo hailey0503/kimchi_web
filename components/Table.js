@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import ccxt from "ccxt";
 import styles from "../styles/table.module.css";
 //import { krwExchangeRate } from '../pages/api/exchange'; // adjust the path accordingly
@@ -13,6 +13,8 @@ export default function Table() {
   const [prevTicker, setPrevTicker] = useState({});
   const [selectedPlatform, setSelectedPlatform] = useState(""); // New state for selected platform
   const [filterValue, setFilterValue] = useState(""); // State for filter value
+  const [highlightedRow, setHighlightedRow] = useState(null); // New state for highlighted row
+  const inputRef = useRef();
 
   async function watchTickerLoop(exchange, symbols, exchangeId) {
     while (true) {
@@ -690,16 +692,32 @@ export default function Table() {
     setFilterValue(e.target.value);
   };
 
+  const handleOutsideClick = (e) => {
+    if (inputRef.current && !inputRef.current.contains(e.target)) {
+      // Clicked outside the input box
+      setHighlightedRow(null);
+      setFilterValue('');
+    }
+  };
+  useEffect(() => {
+    document.addEventListener('click', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
+
+
   const filteredData = Object.keys(tableData).filter((symbol) =>
     symbol.toLowerCase().includes(filterValue.toLowerCase())
   );
 
   const shouldHighlightRow = (symbol) => {
     return (
-      filterValue && symbol.toLowerCase().includes(filterValue.toLowerCase())
+      highlightedRow === symbol ||
+      (filterValue && symbol.toLowerCase().includes(filterValue.toLowerCase()))
     );
   };
-
   return (
     <div>
       <h1 className={styles.h1}>김치 프리미엄</h1>
@@ -715,11 +733,13 @@ export default function Table() {
           {/* Add more options as needed */}
         </select>
         <input
+          ref={inputRef}
           type="text"
           placeholder="Filter by coin name"
           value={filterValue}
           onChange={handleInputChange}
           className={styles.filterInput}
+          onFocus={() => setHighlightedRow(null)} // Remove highlight when input is focused
         />
       </div>
       <table className={styles.table}>

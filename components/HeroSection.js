@@ -11,7 +11,6 @@ const data = ["", ""];
 const HeroSection = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [cryptoData, setCryptoData] = useState({});
-  
 
   useEffect(() => {
     // Fetch data for KLAY, WEMIX, and another cryptocurrency (e.g., XPLA)
@@ -36,12 +35,6 @@ const HeroSection = () => {
 
   return (
     <div className={styles.section}>
-      <div className={styles.videoContainer}>
-        <video autoPlay loop muted className={styles.video}>
-          <source src={BG} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
       <div className={styles.header}>
         <Header />
       </div>
@@ -52,8 +45,8 @@ const HeroSection = () => {
           onMouseLeave={handleMouseLeave}
         >
           {data.map((item, index) => (
-    <div key={index}>{item}</div>
-  ))}
+            <div key={index}>{item}</div>
+          ))}
         </div>
         <div className={styles.inputContainer}>
           <input
@@ -64,25 +57,28 @@ const HeroSection = () => {
           />
         </div>
         <div>
-          <h2>TOP COINS</h2>
+          <h2 className={styles.cardsName}> TOP COINS</h2>
           <div className={styles.cardContainer}>
             {/* Display cards for the top 20 cryptocurrencies */}
 
             {cryptoData.top20 &&
-  (cryptoData.top20).map((element) => (
-    <div key={`${element.symbol}-${element.companyName}`} className={styles.cardWrapper}>
-      {console.log(element)}
-      <Card
-        logoSrc={`/logo_${element.symbol.toLowerCase()}.png`}
-        companyName={element.symbol}
-        cryptoData={element}
-      />
-    </div>
-  ))}
+              cryptoData.top20.map((element) => (
+                <div
+                  key={`${element.symbol}-${element.companyName}`}
+                  className={styles.cardWrapper}
+                >
+                  {console.log(element)}
+                  <Card
+                    logoSrc={`/logo_${element.symbol.toLowerCase()}.png`}
+                    companyName={element.symbol}
+                    cryptoData={element}
+                  />
+                </div>
+              ))}
           </div>
         </div>
         <div className={styles.spaceBetweenContainers}>
-          <h2>TOP KIMCHI COINS</h2>
+          <h2 className={styles.cardsName}>TOP KIMCHI COINS</h2>
           <div className={styles.cardContainer}>
             {/* Display cards for the top 20 cryptocurrencies */}
             {cryptoData.kimchi &&

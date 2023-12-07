@@ -22,10 +22,14 @@ export async function getStaticProps({ params }) {
     const txHash = params.id;
 
     // Fetch the complete transaction data for the given txHash
-    const [transaction, wemixTransaction, mbxTransaction] = await Promise.all([
+    const [transaction, wemixTransaction, mbxTransaction, boraTransaction, plaTransaction] = await Promise.all([
       db.collection("transactions").findOne({ txHash }, { projection: { _id: 0 } }),
       db.collection("wemix").findOne({ txHash }, { projection: { _id: 0 } }),
-      db.collection("mbx").findOne({ txHash }, { projection: { _id: 0 } })
+      db.collection("mbx").findOne({ txHash }, { projection: { _id: 0 } }),
+      db.collection("bora").findOne({ txHash }, { projection: { _id: 0 } }),
+      db.collection("pla").findOne({ txHash }, { projection: { _id: 0 } })
+      
+
     ]);
 
     // Convert the Date object to a string
@@ -47,6 +51,18 @@ export async function getStaticProps({ params }) {
         ...mbxTransaction,
         timestamp: mbxTransaction.timestamp.toString(),
         type: "mbx", // Indicate the type of the transaction
+      };
+    } else if (boraTransaction) {
+      formattedTransaction = {
+        ...boraTransaction,
+        timestamp: boraTransaction.timestamp.toString(),
+        type: "bora", // Indicate the type of the transaction
+      };
+    } else if (plaTransaction) {
+      formattedTransaction = {
+        ...plaTransaction,
+        timestamp: plaTransaction.timestamp.toString(),
+        type: "pla", // Indicate the type of the transaction
       };
     } else {
       return {

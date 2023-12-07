@@ -55,7 +55,7 @@ export default async (req, res) => {
   try {
     //console.log("Using exchange rate in coinmarketcap:", krwExchangeRate);
 
-    const kimchiSymbols = ["KLAY", "WEMIX", "MBX", "XPLA"];
+    const kimchiSymbols = ["KLAY", "WEMIX", "MBX", "XPLA", "BORA", "PLA"];
     const top20Symbols = [
       "BTC/USDT",
       "ETH/USDT",

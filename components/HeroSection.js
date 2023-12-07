@@ -93,6 +93,7 @@ const HeroSection = () => {
               ))}
           </div>
         </div>
+        <div className={styles.spaceBetweenContainers}></div>
       </div>
     </div>
   );

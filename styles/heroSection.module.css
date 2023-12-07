@@ -57,6 +57,7 @@
 }
 .cardsName {
   font-family: sans-serif; /* Replace 'Your Modern Font' with the desired font name */
+  padding-bottom: 5vh;
  
 }
 .inputContainer {
@@ -89,6 +90,7 @@
   max-width: 100%; /* Adjust the maximum width as needed */
   padding: 20px;
   margin: 20 auto; /* Center the card container horizontally */
+  padding-bottom: 10vh;
   
 }
 

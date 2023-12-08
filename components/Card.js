@@ -40,6 +40,9 @@ const Card = ({ logoSrc, companyName, cryptoData }) => {
   linkMap.set("WEMIX", "../transactions/wemix");
   linkMap.set("MBX", "../transactions/mbx");
   linkMap.set("XPLA", "/");
+  linkMap.set("BORA", "/");
+  linkMap.set("PLA", "/");
+  linkMap.set("GHUB", "/");
 
   // Add default links for symbols not explicitly set
   for (const s of symbols) {

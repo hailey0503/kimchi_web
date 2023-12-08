@@ -22,12 +22,14 @@ export async function getStaticProps({ params }) {
     const txHash = params.id;
 
     // Fetch the complete transaction data for the given txHash
-    const [transaction, wemixTransaction, mbxTransaction, boraTransaction, plaTransaction] = await Promise.all([
+    const [transaction, wemixTransaction, mbxTransaction, boraTransaction, plaTransaction, nptTransaction, ghubTransaction] = await Promise.all([
       db.collection("transactions").findOne({ txHash }, { projection: { _id: 0 } }),
       db.collection("wemix").findOne({ txHash }, { projection: { _id: 0 } }),
       db.collection("mbx").findOne({ txHash }, { projection: { _id: 0 } }),
       db.collection("bora").findOne({ txHash }, { projection: { _id: 0 } }),
-      db.collection("pla").findOne({ txHash }, { projection: { _id: 0 } })
+      db.collection("pla").findOne({ txHash }, { projection: { _id: 0 } }),
+      db.collection("npt").findOne({ txHash }, { projection: { _id: 0 } }),
+      db.collection("ghub").findOne({ txHash }, { projection: { _id: 0 } }),
       
 
     ]);
@@ -64,6 +66,18 @@ export async function getStaticProps({ params }) {
         timestamp: plaTransaction.timestamp.toString(),
         type: "pla", // Indicate the type of the transaction
       };
+    } else if (ghubTransaction) {
+      formattedTransaction = {
+        ...ghubTransaction,
+        timestamp: ghubTransaction.timestamp.toString(),
+        type: "ghub", // Indicate the type of the transaction
+      };
+    } else if (nptTransaction) {
+      formattedTransaction = {
+        ...nptTransaction,
+        timestamp: nptTransaction.timestamp.toString(),
+        type: "npt", // Indicate the type of the transaction
+      };
     } else {
       return {
         notFound: true,
@@ -89,7 +103,11 @@ export async function getStaticPaths() {
     const [transactions, wemix, mbx] = await Promise.all([
       db.collection("transactions").find({}).toArray(),
       db.collection("wemix").find({}).toArray(),
-      db.collection("mbx").find({}).toArray()
+      db.collection("mbx").find({}).toArray(),
+      db.collection("pla").find({}).toArray(),
+      db.collection("bora").find({}).toArray(),
+      db.collection("npt").find({}).toArray(),
+      db.collection("ghub").find({}).toArray()
     ]);
     
     const allTransactions = [...transactions, ...wemix, ...mbx];

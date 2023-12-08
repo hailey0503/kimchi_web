@@ -9,7 +9,9 @@ export default async function handler(req, res) {
       db.collection("wemix").find({}).sort({ timestamp: -1 }).toArray(),
       db.collection("mbx").find({}).sort({ timestamp: -1 }).toArray(),
       db.collection("bora").find({}).sort({ timestamp: -1 }).toArray(),
-      db.collection("pla").find({}).sort({ timestamp: -1 }).toArray()
+      db.collection("pla").find({}).sort({ timestamp: -1 }).toArray(),
+      db.collection("ghub").find({}).sort({ timestamp: -1 }).toArray(),
+      db.collection("npt").find({}).sort({ timestamp: -1 }).toArray()
 
     ]);
 

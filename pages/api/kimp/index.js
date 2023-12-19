@@ -124,6 +124,9 @@ async function tweet(arg) {
 	}
   }
 export default async (req, res) => {
+	if (req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+		return res.status(401).end('Unauthorized');
+	  }
 	console.log('16')
 	await getExchangeRate();
 	console.log('18')

@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Head from "next/head";
 import styles from "../styles/productSection.module.css";
 import bybit from "public/logo_bybit.png";
 import bitget from "public/logo_bitget.png";
@@ -13,7 +14,38 @@ import Table from "./Table.js";
 
 const ProductSection = () => {
   return (
-    <section className={styles.products}>
+    <>
+    <Head>
+      <meta name="keywords" content="klay, klaytn, whalealert, wemix, search, blockchain, crypto, currency, 클레이, 클레이튼, 위믹스,블록체인, 카카오 클레이, 카카오 클레이튼, 김치코인"/>
+        <meta property="og:title" content="kimchiWhale"/>
+        <meta property="og:url" content="https://kimchiwhale.io/"/>
+        <meta
+          property="og:image"
+          content="https://kimchiwhale.io/kimchi_rec.png"
+        />
+        <meta
+          property="og:description"
+          content="김치웨일에서 k블록체인 데이터를 찾아보세요."
+        />
+        <meta name="twitter:card" content="summary"/>
+          
+       
+        <meta name="twitter:title" content="kimchiWhale"/>
+        <meta
+          name="twitter:url"
+          content="https://kimchiwhale.io/"
+        />
+        <meta
+          name="twitter:image"
+          content="https://kimchiwhale.io/kimchi_rec.png"
+        />
+        <meta
+          name="twitter:description"
+          content="김치웨일에서 k블록체인 데이터를 찾아보세요."
+        />
+      </Head>
+    
+    <section id="product-section" className={styles.products}>
       <div>
         <div className={styles.referral}>
           <Link href="https://www.bybit.com/invite?ref=O7PPYP">
@@ -42,6 +74,7 @@ const ProductSection = () => {
         <Table />
       </div>
     </section>
+    </>
   );
 };
 

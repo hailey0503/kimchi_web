@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import ccxt from "ccxt";
 import styles from "../styles/table.module.css";
+import Head from "next/head";
 //import { krwExchangeRate } from '../pages/api/exchange'; // adjust the path accordingly
 
 export default function Table() {

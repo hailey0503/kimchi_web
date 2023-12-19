@@ -6,7 +6,7 @@ import BG from "public/bg_move1.mp4";
 import Header from "./Header.js";
 import Card from "./Card.js";
 import axios from "axios";
-import Head from "next/head";
+
 
 const data = ["", ""];
 const HeroSection = () => {
@@ -35,6 +35,7 @@ const HeroSection = () => {
   };
 
   return (
+    <>  
     <div className={styles.section}>
       <div className={styles.header}>
         <Header />
@@ -97,6 +98,7 @@ const HeroSection = () => {
         <div className={styles.spaceBetweenContainers}></div>
       </div>
     </div>
+    </>
   );
 };
 

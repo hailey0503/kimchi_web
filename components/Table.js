@@ -719,6 +719,36 @@ export default function Table() {
     );
   };
   return (
+    <>
+    <Head>
+      <meta name="keywords" content="klay, klaytn, whalealert, wemix, search, blockchain, crypto, currency, 클레이, 클레이튼, 위믹스,블록체인, 카카오 클레이, 카카오 클레이튼, 김치코인"/>
+        <meta property="og:title" content="kimchiWhale"/>
+        <meta property="og:url" content="https://kimchiwhale.io/"/>
+        <meta
+          property="og:image"
+          content="https://kimchiwhale.io/kimchi_rec.png"
+        />
+        <meta
+          property="og:description"
+          content="김치웨일에서 k블록체인 데이터를 찾아보세요."
+        />
+        <meta name="twitter:card" content="summary"/>
+          
+       
+        <meta name="twitter:title" content="kimchiWhale"/>
+        <meta
+          name="twitter:url"
+          content="https://kimchiwhale.io/"
+        />
+        <meta
+          name="twitter:image"
+          content="https://kimchiwhale.io/kimchi_rec.png"
+        />
+        <meta
+          name="twitter:description"
+          content="김치웨일에서 k블록체인 데이터를 찾아보세요."
+        />
+      </Head>
     <div>
       <h1 className={styles.h1}>김치 프리미엄</h1>
       {/* Dropdown for selecting the platform */}
@@ -855,5 +885,6 @@ export default function Table() {
         </tbody>
       </table>
     </div>
+    </>
   );
 }

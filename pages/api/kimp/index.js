@@ -88,9 +88,12 @@ async function comparePrices() {
       `;
 
       console.log('89 msg', message);
-	  tweet(message);
-	  telegram(message)
-	  discord(message)
+
+	  
+	  const tweetPromise = tweet(message);
+	  const telegramPromise =  telegram(message)
+	  const discordPromise = discord(message)
+	  await Promise.all([tweetPromise, telegramPromise, discordPromise]);
     }
 	
   } catch (error) {
@@ -133,5 +136,5 @@ export default async (req, res) => {
 	await getExchangeRate();
 	console.log('18')
 	await comparePrices();
-	res.status(200)
+	res.status(200).send("OK");
 }

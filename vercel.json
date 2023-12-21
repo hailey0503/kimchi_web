@@ -1,3 +1,10 @@
 {
+	"crons": [
+	  {
+		"path": "/api/kimp",
+		"schedule": "0 * * * *"
+		
+	  }
+	],
 	"regions": ["icn1"]
   }

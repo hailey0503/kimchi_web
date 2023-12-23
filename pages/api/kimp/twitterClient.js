@@ -3,8 +3,8 @@ const { TwitterApi } = require('twitter-api-v2');
 
 
 const userClient = new TwitterApi({
-	appKey: process.env.APP_KEY,
-	appSecret: process.env.APP_SECRET,
+	apiKey: process.env.API_KEY,
+	apiSecret: process.env.API_SECRET,
 	// Following access tokens are not required if you are
 	// at part 1 of user-auth process (ask for a request token)
 	// or if you want a app-only client (see below)

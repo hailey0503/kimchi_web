@@ -82,8 +82,8 @@ async function comparePrices() {
 		업비트 환산 USDT = ${addCommas(upbitUSDT.toFixed(1))}원 (${upbitTetherText}%) 
 		빗썸 USDT = ${addCommas(bithumbUsdtPrice.toFixed(1))}원 (${bithumbUsdtDiffText}%)
 		업비트 BTC = ${addCommas(upbitBTCPrice.toFixed(1))}원 (${upbitToBinanceDiffText}%) 
-		바이낸스 BTC(원화환산) = ${addCommas(binanceBTCinKrw.toFixed(1))}원 
-		바이낸스 BTC(USDT) = ${addCommas(binanceBTCPrice.toFixed(1))} USDT
+		바이낸스 BTC (원화환산) = ${addCommas(binanceBTCinKrw.toFixed(1))}원 
+		바이낸스 BTC (USDT) = ${addCommas(binanceBTCPrice.toFixed(1))} USDT
 		${link}
       `;
 
@@ -128,7 +128,7 @@ async function tweet(arg) {
   }
 export default async (req, res) => {
 	
-	if (req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+	if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`) {
 		return res.status(401).end('Unauthorized');
 	  }
 	

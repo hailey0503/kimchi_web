@@ -105,6 +105,7 @@ async function tweet(arg) {
 	console.log("74 tweet in");
 	try {
 	  await userClient.v2.tweet(arg);
+	  console.log("tweet sent");
 	} catch (e) {
 	  console.error(e);
 	}
@@ -119,9 +120,10 @@ async function tweet(arg) {
 	}
   }
   async function discord(arg) {
-	console.log("130 discord");
+	console.log("130 discord in");
 	try {
 	  await sendDiscordMessage(arg);
+	  console.log("discord sent");
 	} catch (e) {
 	  console.error(e);
 	}

@@ -18,16 +18,16 @@ async function getExchangeRate() {
   }
 
   // If not in cache, fetch the exchange rate
-  const url = 'https://api.freecurrencyapi.com/v1/latest?apikey=' + process.env.EXCHANGE;
+  const url = 'https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD';
   try {
     const response = await fetch(url);
     const res_json = await response.json();
-    //console.log(res_json)
+    console.log("json",res_json)
 
-    const krwExchangeRate = res_json.data.KRW;
+    const krwExchangeRate = res_json[0].basePrice;
 
-    // Cache the result for 4 hours (in seconds)
-    cache.set(cacheKey, krwExchangeRate, 4 * 60 * 60);
+    // Cache the result for 1 hours (in seconds)
+    cache.set(cacheKey, krwExchangeRate, 1 * 60 * 30);
     console.log('Fetched and cached new exchange rate', krwExchangeRate);
     return krwExchangeRate;
 

@@ -36,7 +36,7 @@ const Header = () => {
           alt="kimchi discord"
         />
       ),
-      url: "https://discord.gg/HJFJWFd5",
+      url: "https://discord.gg/FXqUFEVn",
     },
     {
       id: 3,

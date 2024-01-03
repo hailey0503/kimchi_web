@@ -102,20 +102,13 @@ export default function Table() {
         "BTC/USDT",
         "ETH/USDT",
         "SOL/USDT",
-        "BNB/USDT",
         "DOGE/USDT",
         "TRX/USDT",
         "AVAX/USDT",
         "MATIC/USDT",
         "LINK/USDT",
         "DOT/USDT",
-        "LTC/USDT",
-
         "BCH/USDT",
-        "UNI/USDT",
-        "FIL/USDT",
-        "RUNE/USDT",
-
         "NEO/USDT",
         "MTL/USDT",
         "ETC/USDT",
@@ -214,45 +207,149 @@ export default function Table() {
         "IMX/USDT",
         "SEI/USDT",
         "MINA/USDT",
+        "BNB/USDT",
+        "LTC/USDT",
+        "UNI/USDT",
+        "FIL/USDT",
+        "RUNE/USDT",
+        "SHIB/USDT",
+     
+
       ],
       //upbit: ["BTC/KRW", "ETH/KRW", "SOL/KRW", "XRP/KRW", "ADA/KRW", "EOS/KRW", "LUNA/KRW", "MCO/KRW", "ZEN/KRW", "CRV/KRW", "SAND/KRW", "BTT/KRW", "HBAR/KRW", "DOGE/KRW", "AVAX/KRW", "MATIC/KRW", "LINK/KRW", "DOT/KRW", , "SHIB/KRW", "BCH/KRW"],
       bybit: [
         "BTC/USDT",
         "ETH/USDT",
         "SOL/USDT",
-        "BNB/USDT",
         "DOGE/USDT",
         "TRX/USDT",
-        "TON/USDT",
         "AVAX/USDT",
         "MATIC/USDT",
         "LINK/USDT",
         "DOT/USDT",
-        "LTC/USDT",
-
         "BCH/USDT",
+      
+        "NEO/USDT",
+        "MTL/USDT",
+        "ETC/USDT",
+        "SNT/USDT",
+        "WAVES/USDT",
+        "XEM/USDT",
+        "QTUM/USDT",
+        "LSK/USDT",
+        "STEEM/USDT",
+        "XLM/USDT",
+        "ARDR/USDT",
+        "ARK/USDT",
+        "STORJ/USDT",
+        "GRS/USDT",
+        "SBD/USDT",
+        "POWR/USDT",
+        "BTG/USDT",
+        "ICX/USDT",
+        "SC/USDT",
+        "ONT/USDT",
+        "ZIL/USDT",
+        "POLYX/USDT",
+        "ZRX/USDT",
+        "LOOM/USDT",
+        "BAT/USDT",
+        "CVC/USDT",
+        "IQ/USDT",
+        "IOTA/USDT",
+        "HIFI/USDT",
+        "ONG/USDT",
+        "GAS/USDT",
+        "UPP/USDT",
+        "ELF/USDT",
+        "KNC/USDT",
+        "BSV/USDT",
+        "THETA/USDT",
+        "QKC/USDT",
+        "BTT/USDT",
+        "MOC/USDT",
+        "TFUEL/USDT",
+        "MANA/USDT",
+        "ANKR/USDT",
+        "AERGO/USDT",
+        "TT/USDT",
+        "CRE/USDT",
+        "MBL/USDT",
+        "WAXP/USDT",
+        "HBAR/USDT",
+        "MED/USDT",
+        "MLK/USDT",
+        "STPT/USDT",
+        "ORBS/USDT",
+        "VET/USDT",
+        "CHZ/USDT",
+        "STMX/USDT",
+        "DKA/USDT",
+        "HIVE/USDT",
+        "KAVA/USDT",
+        "AHT/USDT",
+        "XTZ/USDT",
+        "BORA/USDT",
+        "JST/USDT",
+        "CRO/USDT",
+        "SXP/USDT",
+        "HUNT/USDT",
+        "PLA/USDT",
+        "MVL/USDT",
+        "STRAX/USDT",
+        "AQT/USDT",
+        "GLM/USDT",
+        "SSX/USDT",
+        "META/USDT",
+        "FCT2/USDT",
+        "CBK/USDT",
+        "HPO/USDT",
+        "STRK/USDT",
+        "PUNDIX/USDT",
+        "FLOW/USDT",
+        "AXS/USDT",
+        "STX/USDT",
+        "XEC/USDT",
+        "AAVE/USDT",
+        "1INCH/USDT",
+        "ALGO/USDT",
+        "NEAR/USDT",
+        "T/USDT",
+        "CELO/USDT",
+        "GMT/USDT",
+        "APT/USDT",
+        "MASK/USDT",
+        "ARB/USDT",
+        "EGLD/USDT",
+        "SUI/USDT",
+        "GRT/USDT",
+        "BLUR/USDT",
+        "IMX/USDT",
+        "SEI/USDT",
+        "MINA/USDT",
+        "BNB/USDT",
+        "LTC/USDT",
         "UNI/USDT",
         "FIL/USDT",
         "RUNE/USDT",
+        "SHIB/USDT",
+       
       ],
 
       binance: [
         "BTC/USDT",
         "ETH/USDT",
         "SOL/USDT",
-        "BNB/USDT",
+       
         "DOGE/USDT",
         "TRX/USDT",
         "AVAX/USDT",
         "MATIC/USDT",
         "LINK/USDT",
         "DOT/USDT",
-        "LTC/USDT",
-        "SHIB/USDT",
+       
+    
         "BCH/USDT",
-        "UNI/USDT",
-        "FIL/USDT",
-        "RUNE/USDT",
 
         "NEO/USDT",
         "MTL/USDT",
@@ -352,13 +449,19 @@ export default function Table() {
         "IMX/USDT",
         "SEI/USDT",
         "MINA/USDT",
+        "BNB/USDT",
+        "LTC/USDT",
+        "UNI/USDT",
+        "FIL/USDT",
+        "SHIB/USDT",
+        "RUNE/USDT",
       ],
 
       bitget: [
         "BTC/USDT",
         "ETH/USDT",
         "SOL/USDT",
-        "BNB/USDT",
+      
         "DOGE/USDT",
         "TRX/USDT",
         "AVAX/USDT",
@@ -368,8 +471,6 @@ export default function Table() {
 
         "BCH/USDT",
 
-        "FIL/USDT",
-        "RUNE/USDT",
 
         "NEO/USDT",
         "MTL/USDT",
@@ -471,6 +572,10 @@ export default function Table() {
         "MINA/USDT",
         "LTC/USDT",
         "UNI/USDT",
+        "BNB/USDT",
+        "RUNE/USDT",
+        "SHIB/USDT",
+        
       ],
     };
 
@@ -722,7 +827,7 @@ export default function Table() {
     <>
     
     <div>
-      <h1 className={styles.h1}>김치 프리미엄</h1>
+      <h1 className={styles.h1}>김치 프리미엄 (Real-Time Kimchi Premium)</h1>
       {/* Dropdown for selecting the platform */}
       <div className={styles.filterContainer}>
         <select
@@ -730,8 +835,8 @@ export default function Table() {
           value={selectedPlatform}
           onChange={(e) => setSelectedPlatform(e.target.value)}
         >
-          <option value="upbit">업비트</option>
-          <option value="bithumb">빗썸</option>
+          <option value="upbit">업비트 (₩)</option>
+          <option value="bithumb">빗썸 (₩)</option>
           {/* Add more options as needed */}
         </select>
         <input
@@ -765,14 +870,14 @@ export default function Table() {
 
               <td className={getPriceChangeClass(symbol)}>
                 {ticker && ticker[symbol]
-                  ? ticker[symbol].trade_price.toLocaleString()
+                  ?  + ticker[symbol].trade_price.toLocaleString()
                   : "N/A"}
               </td>
 
               <td className={styles.twoColumns}>
                 <span className={styles.leftColumn}>
                   {tableData[symbol]["bybit"]
-                    ? "$" + tableData[symbol]["bybit"].toLocaleString()
+                    ? "$ " + tableData[symbol]["bybit"].toLocaleString()
                     : "N/A"}{" "}
                   {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
                 </span>
@@ -793,7 +898,7 @@ export default function Table() {
               <td className={styles.twoColumns}>
                 <span className={styles.leftColumn}>
                   {tableData[symbol]["binance"]
-                    ? "$" + tableData[symbol]["binance"].toLocaleString()
+                    ? "$ " + tableData[symbol]["binance"].toLocaleString()
                     : "N/A"}{" "}
                   {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
                 </span>
@@ -802,7 +907,7 @@ export default function Table() {
                     ? (
                         ((ticker[symbol].trade_price -
                           tableData[symbol]["binance"] * krwExchangeRate) /
-                          (tableData[symbol]["bybit"] * krwExchangeRate)) *
+                          (tableData[symbol]["binance"] * krwExchangeRate)) *
                         100
                       ).toLocaleString(undefined, {
                         maximumFractionDigits: 2,
@@ -814,7 +919,7 @@ export default function Table() {
               <td className={styles.twoColumns}>
                 <span className={styles.leftColumn}>
                   {tableData[symbol]["okex"]
-                    ? "$" + tableData[symbol]["okex"].toLocaleString()
+                    ? "$ " + tableData[symbol]["okex"].toLocaleString()
                     : "N/A"}{" "}
                   {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
                 </span>
@@ -835,7 +940,7 @@ export default function Table() {
               <td className={styles.twoColumns}>
                 <span className={styles.leftColumn}>
                   {tableData[symbol]["bitget"]
-                    ? "$" + tableData[symbol]["bitget"].toLocaleString()
+                    ? "$ " + tableData[symbol]["bitget"].toLocaleString()
                     : "N/A"}{" "}
                   {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
                 </span>

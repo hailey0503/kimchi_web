@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/card.module.css";
 import Image from "next/image";
-import axios from "axios";
 import { Line } from "react-chartjs-2";
 import Link from "next/link";
 //import ChartComp from "../components/Chart";

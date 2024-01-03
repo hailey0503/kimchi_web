@@ -1,6 +1,6 @@
 require("dotenv").config();
 const ccxt = require('ccxt');
-const { userClient } = require("./twitterClient.js");
+const { userClient, bearer } = require("./twitterClient.js");
 const { sendMessage } = require("./telegram.js");
 const { discordClient, sendDiscordMessage } = require("./discord.js");
 
@@ -13,14 +13,14 @@ let krwExchangeRate;
 
 
 async function getExchangeRate() {
-  const url = 'https://api.freecurrencyapi.com/v1/latest?apikey=' + process.env.EXCHANGEKIMP;
+  const url = 'https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD';
   try {
     const response = await fetch(url);
     const res_json = await response.json();
 	//console.log("27",res_json)
-    krwExchangeRate = res_json.data.KRW;
+    krwExchangeRate = res_json[0].basePrice;
 
-    console.log('Fetched exchange rate:', krwExchangeRate);
+    console.log('Fetched exchange rate: (in index)', krwExchangeRate);
 	return krwExchangeRate
   } catch (error) {
     console.error('Error fetching exchange rate:', error.message);
@@ -76,24 +76,47 @@ async function comparePrices() {
 	  const link = "https://kimchiwhale.io/#product-section";
 
 	  console.log('80', upbitToBinanceDiff, bithumbUsdtDiff)
-      const message = `
+      const message_ko = `
 	  	🔥🔥 김프 업데이트 🔥🔥
-		USD = ${addCommas(usdToKrwRate.toFixed(1))}원
-		업비트 환산 USDT = ${addCommas(upbitUSDT.toFixed(1))}원 (${upbitTetherText}%) 
-		빗썸 USDT = ${addCommas(bithumbUsdtPrice.toFixed(1))}원 (${bithumbUsdtDiffText}%)
-		업비트 BTC = ${addCommas(upbitBTCPrice.toFixed(1))}원 (${upbitToBinanceDiffText}%) 
-		바이낸스 BTC (원화환산) = ${addCommas(binanceBTCinKrw.toFixed(1))}원 
-		바이낸스 BTC (USDT) = ${addCommas(binanceBTCPrice.toFixed(1))} USDT
+
+		USD : ${addCommas(usdToKrwRate.toFixed(1))}원
+		업비트 환산 USDT : ${addCommas(upbitUSDT.toFixed(1))}원 (${upbitTetherText}%) 
+		빗썸 USDT : ${addCommas(bithumbUsdtPrice.toFixed(1))}원 (${bithumbUsdtDiffText}%)
+		업비트 BTC : ${addCommas(upbitBTCPrice.toFixed(1))}원 (${upbitToBinanceDiffText}%) 
+		바이낸스 BTC (원화환산) : ${addCommas(binanceBTCinKrw.toFixed(1))}원 
+		바이낸스 BTC (USDT) : ${addCommas(binanceBTCPrice.toFixed(1))} USDT
+
+		⬇️ 김프 더보기 ⬇️
 		${link}
       `;
 
-      console.log('89 msg', message);
+	  const message_en = `
+	  	🔥🔥 Kimp Update 🔥🔥
+
+		USD : ${addCommas(usdToKrwRate.toFixed(1))} KRW (₩)
+		Upbit USDT : ₩${addCommas(upbitUSDT.toFixed(1))} (${upbitTetherText}%) 
+		Bithumb USDT : ₩${addCommas(bithumbUsdtPrice.toFixed(1))} (${bithumbUsdtDiffText}%)
+		Upbit BTC : ₩${addCommas(upbitBTCPrice.toFixed(1))} (${upbitToBinanceDiffText}%) 
+		Binance BTC : ₩${addCommas(binanceBTCinKrw.toFixed(1))} 
+		Binance BTC : ${addCommas(binanceBTCPrice.toFixed(1))} USDT
+
+		⬇️ More Kimp ⬇️
+		${link}
+      `;
+
+      console.log('107 msg', message_ko);
+	  console.log('108 msg', message_en);
 
 	  
-	  const tweetPromise = tweet(message);
-	  const telegramPromise =  telegram(message)
-	  const discordPromise = discord(message)
-	  await Promise.all([tweetPromise, telegramPromise, discordPromise]);
+	  const tweetPromise_ko = tweet(message_ko);
+	  const telegramPromise_ko =  telegram(message_ko)
+	  const discordPromise_ko = discord(message_ko)
+	  await Promise.all([tweetPromise_ko, telegramPromise_ko, discordPromise_ko]);
+
+	  const tweetPromise_en = tweet(message_en);
+	  const telegramPromise_en =  telegram(message_en)
+	  const discordPromise_en = discord(message_en)
+	  await Promise.all([tweetPromise_en, telegramPromise_en, discordPromise_en]);
     }
 	
   } catch (error) {
@@ -104,6 +127,7 @@ async function comparePrices() {
 async function tweet(arg) {
 	console.log("74 tweet in");
 	try {
+	  //console.log( process.env.APP_KEY, process.env.APP_SECRET, process.env.ACCESS_TOKEN, process.env.ACCESS_SECRET)
 	  await userClient.v2.tweet(arg);
 	  console.log("tweet sent");
 	} catch (e) {

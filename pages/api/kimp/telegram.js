@@ -1,7 +1,4 @@
 require("dotenv").config();
-const { json } = require("body-parser");
-const express = require('express')
-
 
 const { TELEGRAM_TOKEN, NGROK_SEVER_URL } = process.env
 const TELEGRAM_API=`https://api.telegram.org/bot${TELEGRAM_TOKEN}`

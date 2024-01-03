@@ -1,5 +1,5 @@
 require("dotenv").config();
-const {Client, GatewayIntentBits, EmbedBuilder, PermissionBitField, Permissions} = require('discord.js');
+const {Client, GatewayIntentBits, EmbedBuilder, AttachmentBuilder, PermissionBitField, Permissions} = require('discord.js');
 const discordClient = new Client({intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]});
 let channel;
 
@@ -9,17 +9,14 @@ discordClient.on("ready", (x) => {
 	discordClient.user.setActivity('Subscribe to kimchiAlert');
 })
 
+const file = new AttachmentBuilder('https://www.kimchiwhale.io/api/og');
 const sendDiscordMessage = async (text) => {
 	
 	const embed = new EmbedBuilder()
 		.setTitle("Kimchi Alert!")
 		.setDescription(text)
 		.setColor('Random')
-		.addFields({ 
-			name: 'Field title', 
-			value: 'Some random value',
-			inline: true,
-		})
+		//.setImage('attachment://file');
 	channel.send({ embeds: [embed] }); 
 	
 }

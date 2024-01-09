@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import ccxt from "ccxt";
 import styles from "../styles/table.module.css";
-//import { krwExchangeRate } from '../pages/api/exchange'; // adjust the path accordingly
+import Image from "next/image";
 
 export default function Table() {
   const [tableData, setTableData] = useState({
@@ -1219,9 +1219,7 @@ export default function Table() {
                     <td className={styles.tableHeader_symbol}>{symbol}</td>
 
                     <td
-                      className={
-                        styles.selectedPlatform
-                      }
+                      className={styles.selectedPlatform}
                       style={{
                         color:
                           isSmaller(
@@ -1234,8 +1232,7 @@ export default function Table() {
                           bithumbTicker &&
                           bithumbTicker[symbol] &&
                           ticker[symbol].trade_price !== "N/A" &&
-                          bithumbTicker[symbol].trade_price !== "N/A" 
-                          
+                          bithumbTicker[symbol].trade_price !== "N/A"
                             ? "rgba(105, 209, 137, 1)"
                             : "rgba(87, 85, 85, 1)",
                       }}
@@ -1254,9 +1251,7 @@ export default function Table() {
                     </td>
 
                     <td
-                      className={
-                        styles.selectedPlatform1 
-                      }
+                      className={styles.selectedPlatform1}
                       style={{
                         color:
                           isSmaller(
@@ -1269,7 +1264,7 @@ export default function Table() {
                           bithumbTicker &&
                           bithumbTicker[symbol] &&
                           ticker[symbol].trade_price !== "N/A" &&
-                          bithumbTicker[symbol].trade_price !== "N/A" 
+                          bithumbTicker[symbol].trade_price !== "N/A"
                             ? "rgba(105, 209, 137, 1)"
                             : "rgba(87, 85, 85, 1)",
                       }}
@@ -1287,7 +1282,29 @@ export default function Table() {
                         : "N/A"}
                     </td>
 
-                    <td className={styles.kimpColumn}>바로가기</td>
+                    <td className={styles.ko_exColumn}>
+                    <div className={styles.iconContainer}>
+                    <a href="https://upbit.com/home">
+                      <Image
+                        src="/logo_upbit.svg"
+                        width={25}
+                        height={30}
+                        className={`${styles.icon} ${styles.firstIcon}`}
+                        alt="upbit"
+                        
+                      />
+                      </a>
+                      <a href="https://www.bithumb.com/react/">
+                      <Image
+                        src="/logo_bithumb.svg"
+                        width={25}
+                        height={30}
+                        className={styles.icon}
+                        alt="bithumb"
+                      />
+                      </a>
+                      </div>
+                    </td>
                   </tr>
                 ))}
               </tbody>

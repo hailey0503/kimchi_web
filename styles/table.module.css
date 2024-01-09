@@ -144,4 +144,10 @@
 	max-height: 1000px; /* Adjust the max height to a suitable value */
 	transition: max-height 1s ease-in-out; /* Adjust the duration as needed */
   }
-  
+  .iconContainer {
+	display: flex;
+  justify-content: center;
+  }
+  .firstIcon {
+	margin-right: 15px; /* Adjust the margin as needed for your desired gap size */
+  }

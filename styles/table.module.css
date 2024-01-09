@@ -125,16 +125,6 @@
   color: rgb(234, 42, 67);
 }
 
-.upbitColumn, .bithumbColumn {
-	background-color: transparent; /* Set the default background color for both columns */
-	color: rgb(87, 85, 85);/* Set the default text color for both columns */
-  }
-  
-  /* Change text color of the smaller price column */
-  .redRow td.smaller {
-	color:  rgb(105, 209, 137); /* Set the text color for the smaller price column in red for the redRow */
-  }
-  
   
 .filteredRow {
   background-color: rgb(245, 245, 216); /* Change to your desired highlight color */

@@ -14,6 +14,7 @@ export default function Table() {
   const [bithumbTicker, setBithumbTicker] = useState(null);
   const [prevBithumbTicker, setBithumbPrevTicker] = useState({});
   const [selectedPlatform, setSelectedPlatform] = useState("upbit");
+  const [selectedPlatform1, setSelectedPlatform1] = useState("bithumb");
   const [selectedExchange, setSelectedExchange] = useState("binance");
   const [filterValue, setFilterValue] = useState(""); // State for filter value
   const [highlightedRow, setHighlightedRow] = useState(null); // New state for highlighted row
@@ -54,21 +55,6 @@ export default function Table() {
         console.log(exchangeId, e);
       }
       await new Promise((resolve) => setTimeout(resolve, 5000)); // Delay for 1 second
-    }
-  }
-
-  function getPriceChangeClass(symbol) {
-    const currentPrice =
-      ticker && ticker[symbol] ? ticker[symbol].trade_price : 0;
-    const prevPrice =
-      prevTicker && prevTicker[symbol] ? prevTicker[symbol].trade_price : 0;
-
-    if (currentPrice > prevPrice) {
-      return styles.priceIncrease; // Add this class to your CSS with desired styles for price increase
-    } else if (currentPrice < prevPrice) {
-      return styles.priceDecrease; // Add this class to your CSS with desired styles for price decrease
-    } else {
-      return styles.priceStable; // Add this class to your CSS with desired styles for price stability
     }
   }
 
@@ -356,7 +342,7 @@ export default function Table() {
         "ARK/USDT",
         "STORJ/USDT",
         "GRS/USDT",
-        "SBD/USDT",
+
         "POWR/USDT",
         "BTG/USDT",
         "ICX/USDT",
@@ -373,34 +359,33 @@ export default function Table() {
         "HIFI/USDT",
         "ONG/USDT",
         "GAS/USDT",
-        "UPP/USDT",
+
         "ELF/USDT",
         "KNC/USDT",
         "BSV/USDT",
         "THETA/USDT",
         "QKC/USDT",
         "BTT/USDT",
-        "MOC/USDT",
+
         "TFUEL/USDT",
         "MANA/USDT",
         "ANKR/USDT",
         "AERGO/USDT",
-        "TT/USDT",
-        "CRE/USDT",
+
         "MBL/USDT",
         "WAXP/USDT",
         "HBAR/USDT",
-        "MED/USDT",
+
         "MLK/USDT",
         "STPT/USDT",
         "ORBS/USDT",
         "VET/USDT",
         "CHZ/USDT",
         "STMX/USDT",
-        "DKA/USDT",
+
         "HIVE/USDT",
         "KAVA/USDT",
-        "AHT/USDT",
+
         "XTZ/USDT",
         "BORA/USDT",
         "JST/USDT",
@@ -532,20 +517,17 @@ export default function Table() {
         "STRAX/USDT",
         "AQT/USDT",
         "GLM/USDT",
-        "SSX/USDT",
-        "META/USDT",
-        "FCT2/USDT",
+
         "CBK/USDT",
-        "HPO/USDT",
-        "STRK/USDT",
+
         "PUNDIX/USDT",
         "FLOW/USDT",
         "AXS/USDT",
         "STX/USDT",
-        "XEC/USDT",
+
         "AAVE/USDT",
         "1INCH/USDT",
-        "ALGO/USDT",
+
         "NEAR/USDT",
         "T/USDT",
         "CELO/USDT",
@@ -1009,10 +991,30 @@ export default function Table() {
   };
 
   const shouldHighlightRow = (symbol) => {
-      return (
+    return (
       highlightedRow === symbol ||
       (filterValue && symbol.toLowerCase().includes(filterValue.toLowerCase()))
     );
+  };
+
+  const isSmaller = (symbol, selectedPlatform, selectedPlatform1) => {
+    let leftPrice;
+    let rightPrice;
+    if (selectedPlatform === "upbit") {
+      leftPrice = ticker[symbol]?.trade_price;
+    } else {
+      leftPrice = bithumbTicker[symbol]?.trade_price;
+    }
+    if (selectedPlatform1 === "bithumb") {
+      rightPrice = bithumbTicker[symbol]?.trade_price;
+    } else {
+      rightPrice = ticker[symbol]?.trade_price;
+    }
+    if (leftPrice !== null && rightPrice !== null && leftPrice !== rightPrice) {
+      return leftPrice < rightPrice ? "left" : "right";
+    }
+
+    return "";
   };
 
   return (
@@ -1091,22 +1093,28 @@ export default function Table() {
                 {filteredData.map((symbol) => (
                   <tr
                     key={symbol}
-                    className={shouldHighlightRow(symbol) ? styles.filteredRow : ""}
+                    className={
+                      shouldHighlightRow(symbol) ? styles.filteredRow : ""
+                    }
                   >
                     <td className={styles.tableHeader_symbol}>{symbol}</td>
 
-                    <td className={getPriceChangeClass(symbol)}>
+                    <td className={styles.platfomrColumn}>
                       {selectedPlatform === "upbit"
                         ? ticker && ticker[symbol]
                           ? ticker[symbol].trade_price.toLocaleString()
                           : "N/A"
                         : bithumbTicker && bithumbTicker[symbol]
-                        ? bithumbTicker[symbol].trade_price.toLocaleString()
+                        ? !isNaN(parseFloat(bithumbTicker[symbol].trade_price))
+                          ? parseFloat(
+                              bithumbTicker[symbol].trade_price
+                            ).toLocaleString()
+                          : "Invalid Price"
                         : "N/A"}
                     </td>
 
                     <td className={styles.tableHeader}>
-                      $ {getExchangeData(symbol)}
+                      $ {getExchangeData(symbol).toLocaleString()}
                     </td>
 
                     <td className={styles.kimpColumn}>
@@ -1171,11 +1179,11 @@ export default function Table() {
 
                 <select
                   className={styles.option}
-                  value={selectedExchange}
-                  onChange={(e) => setSelectedExchange(e.target.value)}
+                  value={selectedPlatform1}
+                  onChange={(e) => setSelectedPlatform1(e.target.value)}
                 >
-                  <option value="upbit">업비트</option>
                   <option value="bithumb">빗썸</option>
+                  <option value="upbit">업비트</option>
                   {/* Add more options as needed */}
                 </select>
               </div>
@@ -1197,51 +1205,91 @@ export default function Table() {
                     {selectedPlatform === "bithumb" ? "빗썸 (₩)" : "업비트 (₩)"}
                   </th>
                   <th className={styles.tableHeader}>
-                    {selectedExchange === "bithumb" ? "빗썸 (₩)" : "업비트 (₩)"}
+                    {selectedPlatform1 === "bithumb"
+                      ? "빗썸 (₩)"
+                      : "업비트 (₩)"}
                   </th>
                   <th className={styles.tableHeader}>거래소</th>
                 </tr>
               </thead>
+
               <tbody className={styles.tbody}>
-              {filteredData.map((symbol) => (
-  <tr
-    key={symbol}
-    className={shouldHighlightRow(symbol) ? styles.redRow : ""}
-  >
-    <td className={styles.tableHeader_symbol}>{symbol}</td>
+                {filteredData.map((symbol) => (
+                  <tr key={symbol} className={styles.redRow}>
+                    <td className={styles.tableHeader_symbol}>{symbol}</td>
 
-    <td
-      className={`${selectedPlatform === "upbit" ? styles.upbitColumn : styles.bithumbColumn} ${
-        shouldHighlightRow(symbol) ? "smaller" : ""
-      }`}
-    >
-      {selectedPlatform === "upbit"
-        ? ticker && ticker[symbol]
-          ? ticker[symbol].trade_price.toLocaleString()
-          : "N/A"
-        : bithumbTicker && bithumbTicker[symbol]
-        ? bithumbTicker[symbol].trade_price.toLocaleString()
-        : "N/A"}
-    </td>
+                    <td
+                      className={
+                        styles.selectedPlatform
+                      }
+                      style={{
+                        color:
+                          isSmaller(
+                            symbol,
+                            selectedPlatform,
+                            selectedPlatform1
+                          ) === "left" &&
+                          ticker &&
+                          ticker[symbol] &&
+                          bithumbTicker &&
+                          bithumbTicker[symbol] &&
+                          ticker[symbol].trade_price !== "N/A" &&
+                          bithumbTicker[symbol].trade_price !== "N/A" 
+                          
+                            ? "rgba(105, 209, 137, 1)"
+                            : "rgba(87, 85, 85, 1)",
+                      }}
+                    >
+                      {selectedPlatform === "upbit"
+                        ? ticker && ticker[symbol]
+                          ? ticker[symbol].trade_price.toLocaleString()
+                          : "N/A"
+                        : bithumbTicker && bithumbTicker[symbol]
+                        ? !isNaN(parseFloat(bithumbTicker[symbol].trade_price))
+                          ? parseFloat(
+                              bithumbTicker[symbol].trade_price
+                            ).toLocaleString()
+                          : "Invalid Price"
+                        : "N/A"}
+                    </td>
 
-    <td
-      className={`${selectedExchange === "upbit" ? styles.upbitColumn : styles.bithumbColumn} ${
-        shouldHighlightRow(symbol) ? "smaller" : ""
-      }`}
-    >
-      {selectedExchange === "upbit"
-        ? ticker && ticker[symbol]
-          ? ticker[symbol].trade_price.toLocaleString()
-          : "N/A"
-        : bithumbTicker && bithumbTicker[symbol]
-        ? bithumbTicker[symbol].trade_price.toLocaleString()
-        : "N/A"}
-    </td>
+                    <td
+                      className={
+                        styles.selectedPlatform1 
+                      }
+                      style={{
+                        color:
+                          isSmaller(
+                            symbol,
+                            selectedPlatform,
+                            selectedPlatform1
+                          ) === "right" &&
+                          ticker &&
+                          ticker[symbol] &&
+                          bithumbTicker &&
+                          bithumbTicker[symbol] &&
+                          ticker[symbol].trade_price !== "N/A" &&
+                          bithumbTicker[symbol].trade_price !== "N/A" 
+                            ? "rgba(105, 209, 137, 1)"
+                            : "rgba(87, 85, 85, 1)",
+                      }}
+                    >
+                      {selectedPlatform1 === "upbit"
+                        ? ticker && ticker[symbol]
+                          ? ticker[symbol].trade_price.toLocaleString()
+                          : "N/A"
+                        : bithumbTicker && bithumbTicker[symbol]
+                        ? !isNaN(parseFloat(bithumbTicker[symbol].trade_price))
+                          ? parseFloat(
+                              bithumbTicker[symbol].trade_price
+                            ).toLocaleString()
+                          : "Invalid Price"
+                        : "N/A"}
+                    </td>
 
-    <td className={styles.kimpColumn}>바로가기</td>
-  </tr>
-))}
-
+                    <td className={styles.kimpColumn}>바로가기</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

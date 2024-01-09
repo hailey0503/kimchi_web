@@ -1011,7 +1011,7 @@ export default function Table() {
       rightPrice = ticker[symbol]?.trade_price;
     }
     if (leftPrice !== null && rightPrice !== null && leftPrice !== rightPrice) {
-      return leftPrice < rightPrice ? "left" : "right";
+      return leftPrice < (rightPrice - 2) ? "left" : "right";
     }
 
     return "";

@@ -68,24 +68,9 @@
 	color: black; /* Change to your desired color for price stability */
   }
 
-  /* Add this to your existing CSS */
-/* Update the CSS for the subColumns and spans */
-.subColumns {
-	display: flex;
-	align-items: center;
-	justify-content: space-evenly;
+  .kimpColumn {
+	color: rgb(234, 42, 67)
   }
-  
-  .leftColumn{
-	text-align: left;
-  }
-  .rightColumn {
-	text-align: center;
-	color: rgb(54, 151, 92);
-	
-  }
-  
-  /* Add this CSS to your stylesheet or style tag */
 
 .filteredRow {
 	background-color: rgb(224, 245, 200); /* Change to your desired highlight color */

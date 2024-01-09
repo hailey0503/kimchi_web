@@ -11,7 +11,10 @@ export default function Table() {
   });
   const [ticker, setTicker] = useState(null);
   const [prevTicker, setPrevTicker] = useState({});
-  const [selectedPlatform, setSelectedPlatform] = useState(""); // New state for selected platform
+  const [bithumbTicker, setBithumbTicker] = useState(null);
+  const [prevBithumbTicker, setBithumbPrevTicker] = useState({});
+  const [selectedPlatform, setSelectedPlatform] = useState("upbit");
+  const [selectedExchange, setSelectedExchange] = useState("binance");
   const [filterValue, setFilterValue] = useState(""); // State for filter value
   const [highlightedRow, setHighlightedRow] = useState(null); // New state for highlighted row
   const inputRef = useRef();
@@ -213,8 +216,6 @@ export default function Table() {
         "FIL/USDT",
         "RUNE/USDT",
         "SHIB/USDT",
-     
-
       ],
       //upbit: ["BTC/KRW", "ETH/KRW", "SOL/KRW", "XRP/KRW", "ADA/KRW", "EOS/KRW", "LUNA/KRW", "MCO/KRW", "ZEN/KRW", "CRV/KRW", "SAND/KRW", "BTT/KRW", "HBAR/KRW", "DOGE/KRW", "AVAX/KRW", "MATIC/KRW", "LINK/KRW", "DOT/KRW", , "SHIB/KRW", "BCH/KRW"],
       bybit: [
@@ -228,7 +229,7 @@ export default function Table() {
         "LINK/USDT",
         "DOT/USDT",
         "BCH/USDT",
-      
+
         "NEO/USDT",
         "MTL/USDT",
         "ETC/USDT",
@@ -333,22 +334,20 @@ export default function Table() {
         "FIL/USDT",
         "RUNE/USDT",
         "SHIB/USDT",
-       
       ],
 
       binance: [
         "BTC/USDT",
         "ETH/USDT",
         "SOL/USDT",
-       
+
         "DOGE/USDT",
         "TRX/USDT",
         "AVAX/USDT",
         "MATIC/USDT",
         "LINK/USDT",
         "DOT/USDT",
-       
-    
+
         "BCH/USDT",
 
         "NEO/USDT",
@@ -461,7 +460,7 @@ export default function Table() {
         "BTC/USDT",
         "ETH/USDT",
         "SOL/USDT",
-      
+
         "DOGE/USDT",
         "TRX/USDT",
         "AVAX/USDT",
@@ -470,7 +469,6 @@ export default function Table() {
         "DOT/USDT",
 
         "BCH/USDT",
-
 
         "NEO/USDT",
         "MTL/USDT",
@@ -575,7 +573,6 @@ export default function Table() {
         "BNB/USDT",
         "RUNE/USDT",
         "SHIB/USDT",
-        
       ],
     };
 
@@ -613,6 +610,7 @@ export default function Table() {
       // Cleanup logic, if needed
     };
   }, []);
+
   let upbitWS;
   useEffect(() => {
     upbitWS = new WebSocket("wss://api.upbit.com/websocket/v1");
@@ -630,19 +628,21 @@ export default function Table() {
             "KRW-LUNA",
             "KRW-EOS",
             "KRW-ADA",
-            "KRW-XRP",
+            "KRW-IOST",
             "KRW-SAND",
             "KRW-DOGE",
             "KRW-LINK",
             "KRW-AVAX",
-
+            "KRW-HPO",
+            "KRW-HIVE",
             "KRW-DOT",
             "KRW-MATIC",
-
+            "KRW-MASK",
             "KRW-TRX",
             "KRW-BCH",
             "KRW-FIL",
             "KRW-TON",
+            "KRW-CTC",
 
             "KRW-NEO",
             "KRW-MTL",
@@ -764,11 +764,193 @@ export default function Table() {
           [symbol]: { code, trade_price },
         };
       });
-      console.log(ticker);
+      console.log("upbit ticker 768", ticker);
+      //console.log("upbit ticker 769", ticker["BTC"]);
+      //console.log("upbit ticker 770", ticker["XLM"]);
     };
 
     upbitWS.onclose = () => console.log("closed!");
   }, []);
+
+  useEffect(() => {
+    let bithumbWS;
+
+    const connectBithumbWebSocket = () => {
+      bithumbWS = new WebSocket("wss://pubwss.bithumb.com/pub/ws");
+
+      bithumbWS.onopen = (event) => {
+        console.log("Bithumb WebSocket opened");
+        const request = {
+          type: "ticker",
+          symbols: ["BTC_KRW", "ETH_KRW", "SOL_KRW", "DOGE_KRW", "XRP_KRW", "LUNA_KRW",
+          "EOS_KRW",
+          "ADA_KRW",
+          "IOST_KRW",
+          "SAND_KRW",
+          "LINK_KRW",
+          "AVAX_KRW",
+          "HPO_KRW",
+          "HIVE_KRW",
+          "DOT_KRW",
+          "MATIC_KRW",
+          "MASK_KRW",
+          "TRX_KRW",
+          "BCH_KRW",
+          "FIL_KRW",
+          "TON_KRW",
+          "CTC_KRW",
+
+          "NEO_KRW",
+          "MTL_KRW",
+          "ETC_KRW",
+          "SNT_KRW",
+          "WAVES_KRW",
+          "XEM_KRW",
+          "QTUM_KRW",
+          "LSK_KRW",
+          "STEEM_KRW",
+          "XLM_KRW",
+          "ARDR_KRW",
+          "ARK_KRW",
+          "STORJ_KRW",
+          "GRS_KRW",
+          "SBD_KRW",
+          "POWR_KRW",
+          "BTG_KRW",
+          "ICX_KRW",
+          "SC_KRW",
+          "ONT_KRW",
+          "ZIL_KRW",
+          "POLYX_KRW",
+          "ZRX_KRW",
+          "LOOM_KRW",
+          "BAT_KRW",
+          "CVC_KRW",
+          "IQ_KRW",
+          "IOTA_KRW",
+          "HIFI_KRW",
+          "ONG_KRW",
+          "GAS_KRW",
+          "UPP_KRW",
+          "ELF_KRW",
+          "KNC_KRW",
+          "BSV_KRW",
+          "THETA_KRW",
+          "QKC_KRW",
+          "BTT_KRW",
+          "MOC_KRW",
+          "TFUEL_KRW",
+          "MANA_KRW",
+          "ANKR_KRW",
+          "AERGO_KRW",
+          "TT_KRW",
+          "CRE_KRW",
+          "MBL_KRW",
+          "WAXP_KRW",
+          "HBAR_KRW",
+          "MED_KRW",
+          "MLK_KRW",
+          "STPT_KRW",
+          "ORBS_KRW",
+          "VET_KRW",
+          "CHZ_KRW",
+          "STMX_KRW",
+          "DKA_KRW",
+          "HIVE_KRW",
+          "KAVA_KRW",
+          "AHT_KRW",
+          "XTZ_KRW",
+          "BORA_KRW",
+          "JST_KRW",
+          "CRO_KRW",
+          "SXP_KRW",
+          "HUNT_KRW",
+          "PLA_KRW",
+          "MVL_KRW",
+          "STRAX_KRW",
+          "AQT_KRW",
+          "GLM_KRW",
+          "SSX_KRW",
+          "META_KRW",
+          "FCT2_KRW",
+          "CBK_KRW",
+          "HPO_KRW",
+          "STRK_KRW",
+          "PUNDIX_KRW",
+          "FLOW_KRW",
+          "WAXS_KRW",
+          "STX_KRW",
+          "XEC_KRW",
+          "AAVE_KRW",
+          "1INCH_KRW",
+          "ALGO_KRW",
+          "NEAR_KRW",
+          "T_KRW",
+          "CELO_KRW",
+          "GMT_KRW",
+          "APT_KRW",
+          "MASK_KRW",
+          "ARB_KRW",
+          "EGLD_KRW",
+          "SUI_KRW",
+          "GRT_KRW",
+          "BLUR_KRW",
+          "IMX_KRW",
+          "SEI_KRW",
+          "MINA_KRW",],
+          tickTypes: ["24H", "MID"],
+        };
+        bithumbWS.send(JSON.stringify(request));
+      };
+
+      bithumbWS.onerror = (event) => console.error(event);
+
+      bithumbWS.onmessage = async (event) => {
+        const message = JSON.parse(event.data);
+        if (message.content) {
+          const { symbol, closePrice } = message.content;
+          if (symbol !== undefined && symbol.includes("_")) {
+            const refined_symbol = symbol.split("_")[0];
+            console.log("Refined", refined_symbol);
+
+            // Update Bithumb ticker and previous ticker
+            setBithumbPrevTicker((prevBitumbPrevTicker) => ({
+              ...prevBitumbPrevTicker,
+            }));
+
+            setBithumbTicker((prevBithumbTicker) => ({
+              ...prevBithumbTicker,
+              [refined_symbol]: { symbol, trade_price: closePrice },
+            }));
+
+            console.log("Updated Bithumb Ticker 810:", bithumbTicker);
+          } else {
+            console.error("Invalid 'symbol' format:", symbol);
+            // Handle the case where 'symbol' is undefined or does not contain an underscore
+          }
+        } else {
+          console.error("'content' is undefined in the message:", message);
+          // Handle the case where 'content' is undefined in the message
+        }
+      };
+
+      bithumbWS.onclose = () => {
+        console.log("Bithumb WebSocket closed!");
+
+        // Reconnect after a delay (optional)
+        // setTimeout(connectBithumbWebSocket, 5000);
+      };
+    };
+
+    connectBithumbWebSocket(); // Start WebSocket connection
+
+    // Cleanup WebSocket on component unmount
+    return () => {
+      if (bithumbWS) {
+        bithumbWS.close();
+      }
+    };
+  }, []); // Empty dependency array to run this effect only once
 
   const [krwExchangeRate, setKrwExchangeRate] = useState(null);
 
@@ -801,22 +983,32 @@ export default function Table() {
     if (inputRef.current && !inputRef.current.contains(e.target)) {
       // Clicked outside the input box
       setHighlightedRow(null);
-      setFilterValue('');
+      setFilterValue("");
     }
   };
   useEffect(() => {
-    document.addEventListener('click', handleOutsideClick);
+    document.addEventListener("click", handleOutsideClick);
 
     return () => {
-      document.removeEventListener('click', handleOutsideClick);
+      document.removeEventListener("click", handleOutsideClick);
     };
   }, []);
-
 
   const filteredData = Object.keys(tableData).filter((symbol) =>
     symbol.toLowerCase().includes(filterValue.toLowerCase())
   );
+  const getExchangeData = (symbol) => {
+    // Get the selected exchange name
+    const exchangeData = tableData[symbol][selectedExchange];
+    const value = exchangeData ? exchangeData : "";
+    return isNaN(value) ? "" : value; // Check if value is NaN and return an empty string if true
+  };
 
+  const handlePlatformChange = (event) => {
+    setSelectedPlatform(event.target.value);
+  };
+
+ 
   const shouldHighlightRow = (symbol) => {
     return (
       highlightedRow === symbol ||
@@ -825,143 +1017,122 @@ export default function Table() {
   };
   return (
     <>
-    
-    <div>
-      <h1 className={styles.h1}>김치 프리미엄 (Real-Time Kimchi Premium)</h1>
-      {/* Dropdown for selecting the platform */}
-      <div className={styles.filterContainer}>
-        <select
-          className={styles.option}
-          value={selectedPlatform}
-          onChange={(e) => setSelectedPlatform(e.target.value)}
-        >
-          <option value="upbit">업비트 (₩)</option>
-          <option value="bithumb">빗썸 (₩)</option>
-          {/* Add more options as needed */}
-        </select>
-        <input
-          ref={inputRef}
-          type="text"
-          placeholder="Filter by coin name"
-          value={filterValue}
-          onChange={handleInputChange}
-          className={styles.filterInput}
-          onFocus={() => setHighlightedRow(null)} // Remove highlight when input is focused
-        />
-      </div>
-      <table className={styles.table}>
-        <thead className={styles.thead}>
-          <tr className={styles.tr}>
-            <th>코인</th>
-            <th>{selectedPlatform === "bithumb" ? "빗썸" : "업비트"}</th>
-            <th>바이비트</th>
-            <th>바이낸스</th>
-            <th>OKX</th>
-            <th>bitget</th>
-          </tr>
-        </thead>
-        <tbody className={styles.tbody}>
-          {Object.keys(tableData).map((symbol) => (
-            <tr
-              key={symbol}
-              className={shouldHighlightRow(symbol) ? styles.filteredRow : ""}
-            >
-              <td>{symbol}</td>
+      <div>
+        <h1 className={styles.h1}>김치 프리미엄 (Real-Time Kimchi Premium)</h1>
+        {/* Dropdown for selecting the platform */}
+        <div className={styles.filterContainer}>
+          <select
+            className={styles.option}
+            value={selectedPlatform}
+            onChange={(e) => setSelectedPlatform(e.target.value)}
+          >
+            <option value="upbit">업비트</option>
+            <option value="bithumb">빗썸</option>
+            {/* Add more options as needed */}
+          </select>
 
-              <td className={getPriceChangeClass(symbol)}>
-                {ticker && ticker[symbol]
-                  ?  + ticker[symbol].trade_price.toLocaleString()
-                  : "N/A"}
-              </td>
-
-              <td className={styles.twoColumns}>
-                <span className={styles.leftColumn}>
-                  {tableData[symbol]["bybit"]
-                    ? "$ " + tableData[symbol]["bybit"].toLocaleString()
-                    : "N/A"}{" "}
-                  {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
-                </span>
-                <span className={styles.rightColumn}>
-                  {ticker && ticker[symbol] && tableData[symbol]["bybit"]
-                    ? (
-                        ((ticker[symbol].trade_price -
-                          tableData[symbol]["bybit"] * krwExchangeRate) /
-                          (tableData[symbol]["bybit"] * krwExchangeRate)) *
-                        100
-                      ).toLocaleString(undefined, {
-                        maximumFractionDigits: 2,
-                      }) + "%"
-                    : "N/A"}
-                </span>
-              </td>
-
-              <td className={styles.twoColumns}>
-                <span className={styles.leftColumn}>
-                  {tableData[symbol]["binance"]
-                    ? "$ " + tableData[symbol]["binance"].toLocaleString()
-                    : "N/A"}{" "}
-                  {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
-                </span>
-                <span className={styles.rightColumn}>
-                  {ticker && ticker[symbol] && tableData[symbol]["binance"]
-                    ? (
-                        ((ticker[symbol].trade_price -
-                          tableData[symbol]["binance"] * krwExchangeRate) /
-                          (tableData[symbol]["binance"] * krwExchangeRate)) *
-                        100
-                      ).toLocaleString(undefined, {
-                        maximumFractionDigits: 2,
-                      }) + "%"
-                    : "N/A"}
-                </span>
-              </td>
-
-              <td className={styles.twoColumns}>
-                <span className={styles.leftColumn}>
-                  {tableData[symbol]["okex"]
-                    ? "$ " + tableData[symbol]["okex"].toLocaleString()
-                    : "N/A"}{" "}
-                  {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
-                </span>
-                <span className={styles.rightColumn}>
-                  {ticker && ticker[symbol] && tableData[symbol]["okex"]
-                    ? (
-                        ((ticker[symbol].trade_price -
-                          tableData[symbol]["okex"] * krwExchangeRate) /
-                          (tableData[symbol]["okex"] * krwExchangeRate)) *
-                        100
-                      ).toLocaleString(undefined, {
-                        maximumFractionDigits: 2,
-                      }) + "%"
-                    : "N/A"}
-                </span>
-              </td>
-
-              <td className={styles.twoColumns}>
-                <span className={styles.leftColumn}>
-                  {tableData[symbol]["bitget"]
-                    ? "$ " + tableData[symbol]["bitget"].toLocaleString()
-                    : "N/A"}{" "}
-                  {"\u00a0\u00a0\u00a0\u00a0\u00a0"}
-                </span>
-                <span className={styles.rightColumn}>
-                  {ticker && ticker[symbol] && tableData[symbol]["bitget"]
-                    ? (
-                        ((ticker[symbol].trade_price -
-                          tableData[symbol]["bitget"] * krwExchangeRate) /
-                          (tableData[symbol]["bitget"] * krwExchangeRate)) *
-                        100
-                      ).toLocaleString(undefined, {
-                        maximumFractionDigits: 2,
-                      }) + "%"
-                    : "N/A"}
-                </span>
-              </td>
+          <select
+            className={styles.option}
+            value={selectedExchange}
+            onChange={(e) => setSelectedExchange(e.target.value)}
+          >
+            <option value="binance">바이낸스</option>
+            <option value="bybit">바이빗</option>
+            <option value="okex">okx</option>
+            <option value="bitget">비트젯</option>
+            {/* Add more options as needed */}
+          </select>
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder="Filter by coin name"
+            value={filterValue}
+            onChange={handleInputChange}
+            className={styles.filterInput}
+            onFocus={() => setHighlightedRow(null)} // Remove highlight when input is focused
+          />
+        </div>
+        <table className={styles.table}>
+          <thead className={styles.thead}>
+            <tr className={styles.tr}>
+              <th>코인</th>
+              <th>
+                {selectedPlatform === "bithumb" ? "빗썸 (₩)" : "업비트 (₩)"}
+              </th>
+              <th>
+                {selectedExchange === "binance"
+                  ? "바이낸스"
+                  : selectedExchange === "bybit"
+                  ? "Bybit"
+                  : selectedExchange == "okex"
+                  ? "OKX"
+                  : "bitget"}{" "}
+                (USDT)
+              </th>
+              <th>김프</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          {console.log("selected", selectedPlatform)}
+          <tbody className={styles.tbody}>
+            {filteredData.map((symbol) => (
+              <tr
+                key={symbol}
+                className={shouldHighlightRow(symbol) ? styles.filteredRow : ""}
+              >
+                <td>{symbol}</td>
+
+                <td className={getPriceChangeClass(symbol)}>
+                  {selectedPlatform === "upbit"
+                    ? ticker && ticker[symbol]
+                      ? ticker[symbol].trade_price.toLocaleString()
+                      : "N/A"
+                    : bithumbTicker && bithumbTicker[symbol]
+                    ? bithumbTicker[symbol].trade_price.toLocaleString()
+                    : "N/A"}
+                </td>
+
+                <td className={styles.twoColumns}>
+                  $ {getExchangeData(symbol)}
+                </td>
+
+                <td className={styles.kimpColumn}>
+                 
+               
+                    {selectedPlatform == "upbit"? ticker &&
+                    ticker[symbol] &&
+                    tableData[symbol][selectedExchange]
+                      ? (
+                          ((ticker[symbol].trade_price -
+                            tableData[symbol][selectedExchange] *
+                              krwExchangeRate) /
+                            (tableData[symbol][selectedExchange] *
+                              krwExchangeRate)) *
+                          100
+                        ).toLocaleString(undefined, {
+                          maximumFractionDigits: 2,
+                        }) + "%"
+                      : "N/A"
+                    :bithumbTicker &&
+                    bithumbTicker[symbol] &&
+                    tableData[symbol][selectedExchange]
+                      ? (
+                          ((bithumbTicker[symbol].trade_price -
+                            tableData[symbol][selectedExchange] *
+                              krwExchangeRate) /
+                            (tableData[symbol][selectedExchange] *
+                              krwExchangeRate)) *
+                          100
+                        ).toLocaleString(undefined, {
+                          maximumFractionDigits: 2,
+                        }) + "%"
+                      : "N/A"}
+                
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }

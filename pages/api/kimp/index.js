@@ -79,28 +79,28 @@ async function comparePrices() {
       const message_ko = `
 	  	🔥🔥 김프 업데이트 🔥🔥
 
-		USD : ${addCommas(usdToKrwRate.toFixed(1))}원
-		업비트 환산 USDT : ${addCommas(upbitUSDT.toFixed(1))}원 (${upbitTetherText}%) 
-		빗썸 USDT : ${addCommas(bithumbUsdtPrice.toFixed(1))}원 (${bithumbUsdtDiffText}%)
-		업비트 BTC : ${addCommas(upbitBTCPrice.toFixed(1))}원 (${upbitToBinanceDiffText}%) 
-		바이낸스 BTC (원화환산) : ${addCommas(binanceBTCinKrw.toFixed(1))}원 
-		바이낸스 BTC (USDT) : ${addCommas(binanceBTCPrice.toFixed(1))} USDT
+		USD: ${addCommas(usdToKrwRate.toFixed(1))}원
+		업비트 환산 USDT: ${addCommas(upbitUSDT.toFixed(1))}원 (${upbitTetherText}%) 
+		빗썸 USDT: ${addCommas(bithumbUsdtPrice.toFixed(1))}원 (${bithumbUsdtDiffText}%)
+		업비트 BTC: ${addCommas(upbitBTCPrice.toFixed(1))}원 (${upbitToBinanceDiffText}%) 
+		바이낸스 BTC (원화환산): ${addCommas(binanceBTCinKrw.toFixed(1))}원 
+		바이낸스 BTC (USDT): ${addCommas(binanceBTCPrice.toFixed(1))} USDT
 
-		⬇️ 김프 더보기 ⬇️
+		⬇️ 실시간 김프 더보기 ⬇️
 		${link}
       `;
 
 	  const message_en = `
 	  	🔥🔥 Kimp Update 🔥🔥
 
-		USD : ${addCommas(usdToKrwRate.toFixed(1))} KRW (₩)
-		Upbit USDT : ₩${addCommas(upbitUSDT.toFixed(1))} (${upbitTetherText}%) 
-		Bithumb USDT : ₩${addCommas(bithumbUsdtPrice.toFixed(1))} (${bithumbUsdtDiffText}%)
-		Upbit BTC : ₩${addCommas(upbitBTCPrice.toFixed(1))} (${upbitToBinanceDiffText}%) 
-		Binance BTC : ₩${addCommas(binanceBTCinKrw.toFixed(1))} 
-		Binance BTC : ${addCommas(binanceBTCPrice.toFixed(1))} USDT
+		USD: ${addCommas(usdToKrwRate.toFixed(1))} KRW (₩)
+		Upbit USDT: ₩${addCommas(upbitUSDT.toFixed(1))} (${upbitTetherText}%) 
+		Bithumb USDT: ₩${addCommas(bithumbUsdtPrice.toFixed(1))} (${bithumbUsdtDiffText}%)
+		Upbit BTC: ₩${addCommas(upbitBTCPrice.toFixed(1))} (${upbitToBinanceDiffText}%) 
+		Binance BTC: ₩${addCommas(binanceBTCinKrw.toFixed(1))} 
+		Binance BTC: ${addCommas(binanceBTCPrice.toFixed(1))} USDT
 
-		⬇️ More Kimp ⬇️
+		⬇️ Real-time Kimp ⬇️
 		${link}
       `;
 

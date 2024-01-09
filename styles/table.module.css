@@ -1,94 +1,128 @@
 /* Add this CSS to your stylesheet or style tag */
 .table {
-	width: 72%; /* Set your desired table width */
-	border-collapse: collapse;
-	margin: auto;
-	margin-top: 20px;
-	table-layout: fixed; /* Set the table layout to fixed */
+  width: 72%; /* Set your desired table width */
+  border-collapse: collapse;
+  margin: auto;
+  margin-top: 20px;
+  table-layout: fixed; /* Set the table layout to fixed */
+}
+.option {
+  margin-left: 15px;
+}
+
+.th,
+.td {
+  width: 16%; /* Set your desired column width */
+  padding: 18px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  line-height: 2;
+  font-family: sans-serif;
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflowing content */
+  text-overflow: ellipsis; /* Show ellipsis (...) for overflowing text */
+}
+.tableHeader {
+	color: rgb(87, 85, 85)
+}
+.tableHeader_symbol {
+  text-align: left;
+  padding-left: 4%;
+}
+/* Add this CSS to your styles */
+/* Style to add lines between table rows */
+.table tr {
+	border-bottom: 1px solid #eee; /* Light grey color for the border */
   }
-  .option {
-	margin-left: 15px;
+  .table tr:first-child {
+	border-top: 1px solid #eee; /* Light grey color for the border */
+  }
+  /* Style for the last row to remove the border */
+  .table tr:last-child {
+	border-bottom: none; /* Remove the border for the last row */
+  }
+  
+
+.thead,
+.tbody {
+  line-height: 3; /* Adjust the line-height to increase thickness */
+  text-align: center;
+  font-family: sans-serif;
+  color: rgb(87, 85, 85)
+}
+
+.h1 {
+  font-size: 25px;
+  margin-bottom: 20px;
+  margin-left: 15%;
+  text-align: left; /* Center the text */
+  font-family: sans-serif;
+  color: rgb(87, 85, 85)
+}
+
+.filterContainer {
+  display: flex;
+  justify-content: right; /* Right-align the content */
+  margin-right: 15%;
+}
+
+/* Styles for the selectContainer */
+.selectContainer {
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.selectContainer select {
+	border-radius: 10px; /* Add rounded corners to the select elements */
+	padding: 5px; /* Add some padding for better appearance */
+}
+/* Styles for the filterInput */
+.filterInput {
+  border-radius: 10px; /* Add rounded corners to the input element */
+  padding: 5px; /* Add some padding for better appearance */
+  width: 120px; /* Adjust the width as needed */
+  margin-left: 15px; /* Add margin to separate the input from selects */
+}
+
+@media only screen and (max-width: 768px) {
+  .table {
+    width: 90%;
+  }
+  .th,
+  .td {
+    padding: 8px; /* Adjust padding for smaller screens */
+    font-size: 5px; /* Adjust font size for smaller screens */
   }
 
-  .th, .td {
-	width: 16%; /* Set your desired column width */
-	padding: 18px;
-	text-align: center;
-	border-bottom: 1px solid #ddd;
-	line-height: 2;
-	font-family: sans-serif;
-	white-space: nowrap; /* Prevent text from wrapping */
-	overflow: hidden; /* Hide overflowing content */
-	text-overflow: ellipsis; /* Show ellipsis (...) for overflowing text */
-	
-  }
-  .tableHeader {
-	color: rgb(78, 117, 155); /* Change 'blue' to the desired color */
-  }
-  .tr:nth-child(even) {
-	background-color: #f2f2f2; /* Use a light color for even rows */
-  }
-  
-  .tr:nth-child(odd) {
-	background-color:#f2f2f2; /* Use a white color for odd rows */
-  }
-  
-  .thead, .tbody {
-	line-height: 2; /* Adjust the line-height to increase thickness */
-	text-align: center;
-	font-family: sans-serif;
-  }
-  
-
-  
   .h1 {
-	font-size: 22px;
-	margin-bottom: 20px;
-	text-align: center; /* Center the text */
-	font-family: sans-serif;
+    font-size: 12px; /* Adjust font size for smaller screens */
   }
-  @media only screen and (max-width: 768px) {
-	.table {
-		width: 90%;
-	}
-	.th, .td {
-	  padding: 8px; /* Adjust padding for smaller screens */
-	  font-size: 5px; /* Adjust font size for smaller screens */
-	}
-  
-	.h1 {
-	  font-size: 12px; /* Adjust font size for smaller screens */
-	}
-  }
+}
 
-  /* Add these styles to your CSS */
+/* Add these styles to your CSS */
 .priceIncrease {
-	color: green; /* Change to your desired color for price increase */
-  }
-  
-  .priceDecrease {
-	color: red; /* Change to your desired color for price decrease */
-  }
-  
-  .priceStable {
-	color: black; /* Change to your desired color for price stability */
-  }
+  color: green; /* Change to your desired color for price increase */
+}
 
-  .kimpColumn {
-	color: rgb(234, 42, 67)
-  }
+.priceDecrease {
+  color: red; /* Change to your desired color for price decrease */
+}
+
+.priceStable {
+  color: black; /* Change to your desired color for price stability */
+}
+
+.kimpColumn {
+  color: rgb(234, 42, 67);
+}
 
 .filteredRow {
-	background-color: rgb(224, 245, 200); /* Change to your desired highlight color */
-	font-weight: bold; /* Adjust font weight or other styles as needed */
-	color: black; /* Change text color if necessary */
-  }
-  .filterContainer {
-	display: flex;
-	gap: 10px; /* Adjust the gap as needed */
-	display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 5vh; /* Adjust as needed */
-  }
-  
+  background-color: rgb(
+    224,
+    245,
+    200
+  ); /* Change to your desired highlight color */
+  font-weight: bold; /* Adjust font weight or other styles as needed */
+  color: black; /* Change text color if necessary */
+}

@@ -1027,27 +1027,32 @@ export default function Table() {
         <h1 className={styles.h1}>김치 프리미엄 (Real-Time Kimchi Premium)</h1>
         {/* Dropdown for selecting the platform */}
         <div className={styles.filterContainer}>
-          <select
-            className={styles.option}
-            value={selectedPlatform}
-            onChange={(e) => setSelectedPlatform(e.target.value)}
-          >
-            <option value="upbit">업비트</option>
-            <option value="bithumb">빗썸</option>
-            {/* Add more options as needed */}
-          </select>
+          <div className={styles.selectContainer}>
+            {/* Select elements */}
+            <select
+              className={styles.option}
+              value={selectedPlatform}
+              onChange={(e) => setSelectedPlatform(e.target.value)}
+            >
+              <option value="upbit">업비트</option>
+              <option value="bithumb">빗썸</option>
+              {/* Add more options as needed */}
+            </select>
 
-          <select
-            className={styles.option}
-            value={selectedExchange}
-            onChange={(e) => setSelectedExchange(e.target.value)}
-          >
-            <option value="binance">바이낸스</option>
-            <option value="bybit">바이빗</option>
-            <option value="okex">okx</option>
-            <option value="bitget">비트젯</option>
-            {/* Add more options as needed */}
-          </select>
+            <select
+              className={styles.option}
+              value={selectedExchange}
+              onChange={(e) => setSelectedExchange(e.target.value)}
+            >
+              <option value="binance">바이낸스</option>
+              <option value="bybit">바이빗</option>
+              <option value="okex">okx</option>
+              <option value="bitget">비트젯</option>
+              {/* Add more options as needed */}
+            </select>
+          </div>
+
+          {/* Input */}
           <input
             ref={inputRef}
             type="text"
@@ -1055,13 +1060,14 @@ export default function Table() {
             value={filterValue}
             onChange={handleInputChange}
             className={styles.filterInput}
-            onFocus={() => setHighlightedRow(null)} // Remove highlight when input is focused
+            onFocus={() => setHighlightedRow(null)}
           />
         </div>
+
         <table className={styles.table}>
           <thead className={styles.thead}>
             <tr className={styles.tr}>
-              <th className={styles.tableHeader}>코인</th>
+              <th className={styles.tableHeader_symbol}>이름</th>
               <th className={styles.tableHeader}>
                 {selectedPlatform === "bithumb" ? "빗썸 (₩)" : "업비트 (₩)"}
               </th>
@@ -1085,12 +1091,12 @@ export default function Table() {
                 key={symbol}
                 className={shouldHighlightRow(symbol) ? styles.filteredRow : ""}
               >
-                <td className={styles.tableHeader}>{symbol}</td>
+                <td className={styles.tableHeader_symbol}>{symbol}</td>
 
                 <td className={getPriceChangeClass(symbol)}>
                   {selectedPlatform === "upbit"
                     ? ticker && ticker[symbol]
-                      ?  ticker[symbol].trade_price.toLocaleString()
+                      ? ticker[symbol].trade_price.toLocaleString()
                       : "N/A"
                     : bithumbTicker && bithumbTicker[symbol]
                     ? bithumbTicker[symbol].trade_price.toLocaleString()

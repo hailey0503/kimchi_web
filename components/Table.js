@@ -782,122 +782,129 @@ export default function Table() {
         console.log("Bithumb WebSocket opened");
         const request = {
           type: "ticker",
-          symbols: ["BTC_KRW", "ETH_KRW", "SOL_KRW", "DOGE_KRW", "XRP_KRW", "LUNA_KRW",
-          "EOS_KRW",
-          "ADA_KRW",
-          "IOST_KRW",
-          "SAND_KRW",
-          "LINK_KRW",
-          "AVAX_KRW",
-          "HPO_KRW",
-          "HIVE_KRW",
-          "DOT_KRW",
-          "MATIC_KRW",
-          "MASK_KRW",
-          "TRX_KRW",
-          "BCH_KRW",
-          "FIL_KRW",
-          "TON_KRW",
-          "CTC_KRW",
+          symbols: [
+            "BTC_KRW",
+            "ETH_KRW",
+            "SOL_KRW",
+            "DOGE_KRW",
+            "XRP_KRW",
+            "LUNA_KRW",
+            "EOS_KRW",
+            "ADA_KRW",
+            "IOST_KRW",
+            "SAND_KRW",
+            "LINK_KRW",
+            "AVAX_KRW",
+            "HPO_KRW",
+            "HIVE_KRW",
+            "DOT_KRW",
+            "MATIC_KRW",
+            "MASK_KRW",
+            "TRX_KRW",
+            "BCH_KRW",
+            "FIL_KRW",
+            "TON_KRW",
+            "CTC_KRW",
 
-          "NEO_KRW",
-          "MTL_KRW",
-          "ETC_KRW",
-          "SNT_KRW",
-          "WAVES_KRW",
-          "XEM_KRW",
-          "QTUM_KRW",
-          "LSK_KRW",
-          "STEEM_KRW",
-          "XLM_KRW",
-          "ARDR_KRW",
-          "ARK_KRW",
-          "STORJ_KRW",
-          "GRS_KRW",
-          "SBD_KRW",
-          "POWR_KRW",
-          "BTG_KRW",
-          "ICX_KRW",
-          "SC_KRW",
-          "ONT_KRW",
-          "ZIL_KRW",
-          "POLYX_KRW",
-          "ZRX_KRW",
-          "LOOM_KRW",
-          "BAT_KRW",
-          "CVC_KRW",
-          "IQ_KRW",
-          "IOTA_KRW",
-          "HIFI_KRW",
-          "ONG_KRW",
-          "GAS_KRW",
-          "UPP_KRW",
-          "ELF_KRW",
-          "KNC_KRW",
-          "BSV_KRW",
-          "THETA_KRW",
-          "QKC_KRW",
-          "BTT_KRW",
-          "MOC_KRW",
-          "TFUEL_KRW",
-          "MANA_KRW",
-          "ANKR_KRW",
-          "AERGO_KRW",
-          "TT_KRW",
-          "CRE_KRW",
-          "MBL_KRW",
-          "WAXP_KRW",
-          "HBAR_KRW",
-          "MED_KRW",
-          "MLK_KRW",
-          "STPT_KRW",
-          "ORBS_KRW",
-          "VET_KRW",
-          "CHZ_KRW",
-          "STMX_KRW",
-          "DKA_KRW",
-          "HIVE_KRW",
-          "KAVA_KRW",
-          "AHT_KRW",
-          "XTZ_KRW",
-          "BORA_KRW",
-          "JST_KRW",
-          "CRO_KRW",
-          "SXP_KRW",
-          "HUNT_KRW",
-          "PLA_KRW",
-          "MVL_KRW",
-          "STRAX_KRW",
-          "AQT_KRW",
-          "GLM_KRW",
-          "SSX_KRW",
-          "META_KRW",
-          "FCT2_KRW",
-          "CBK_KRW",
-          "HPO_KRW",
-          "STRK_KRW",
-          "PUNDIX_KRW",
-          "FLOW_KRW",
-          "WAXS_KRW",
-          "STX_KRW",
-          "XEC_KRW",
-          "AAVE_KRW",
-          "1INCH_KRW",
-          "ALGO_KRW",
-          "NEAR_KRW",
-          "T_KRW",
-          "CELO_KRW",
-          "GMT_KRW",
-          "APT_KRW",
-          "MASK_KRW",
-          "ARB_KRW",
-          "EGLD_KRW",
-          "SUI_KRW",
-          "GRT_KRW",
-          "BLUR_KRW",
-          "IMX_KRW",
-          "SEI_KRW",
-          "MINA_KRW",],
+            "NEO_KRW",
+            "MTL_KRW",
+            "ETC_KRW",
+            "SNT_KRW",
+            "WAVES_KRW",
+            "XEM_KRW",
+            "QTUM_KRW",
+            "LSK_KRW",
+            "STEEM_KRW",
+            "XLM_KRW",
+            "ARDR_KRW",
+            "ARK_KRW",
+            "STORJ_KRW",
+            "GRS_KRW",
+            "SBD_KRW",
+            "POWR_KRW",
+            "BTG_KRW",
+            "ICX_KRW",
+            "SC_KRW",
+            "ONT_KRW",
+            "ZIL_KRW",
+            "POLYX_KRW",
+            "ZRX_KRW",
+            "LOOM_KRW",
+            "BAT_KRW",
+            "CVC_KRW",
+            "IQ_KRW",
+            "IOTA_KRW",
+            "HIFI_KRW",
+            "ONG_KRW",
+            "GAS_KRW",
+            "UPP_KRW",
+            "ELF_KRW",
+            "KNC_KRW",
+            "BSV_KRW",
+            "THETA_KRW",
+            "QKC_KRW",
+            "BTT_KRW",
+            "MOC_KRW",
+            "TFUEL_KRW",
+            "MANA_KRW",
+            "ANKR_KRW",
+            "AERGO_KRW",
+            "TT_KRW",
+            "CRE_KRW",
+            "MBL_KRW",
+            "WAXP_KRW",
+            "HBAR_KRW",
+            "MED_KRW",
+            "MLK_KRW",
+            "STPT_KRW",
+            "ORBS_KRW",
+            "VET_KRW",
+            "CHZ_KRW",
+            "STMX_KRW",
+            "DKA_KRW",
+            "HIVE_KRW",
+            "KAVA_KRW",
+            "AHT_KRW",
+            "XTZ_KRW",
+            "BORA_KRW",
+            "JST_KRW",
+            "CRO_KRW",
+            "SXP_KRW",
+            "HUNT_KRW",
+            "PLA_KRW",
+            "MVL_KRW",
+            "STRAX_KRW",
+            "AQT_KRW",
+            "GLM_KRW",
+            "SSX_KRW",
+            "META_KRW",
+            "FCT2_KRW",
+            "CBK_KRW",
+            "HPO_KRW",
+            "STRK_KRW",
+            "PUNDIX_KRW",
+            "FLOW_KRW",
+            "WAXS_KRW",
+            "STX_KRW",
+            "XEC_KRW",
+            "AAVE_KRW",
+            "1INCH_KRW",
+            "ALGO_KRW",
+            "NEAR_KRW",
+            "T_KRW",
+            "CELO_KRW",
+            "GMT_KRW",
+            "APT_KRW",
+            "MASK_KRW",
+            "ARB_KRW",
+            "EGLD_KRW",
+            "SUI_KRW",
+            "GRT_KRW",
+            "BLUR_KRW",
+            "IMX_KRW",
+            "SEI_KRW",
+            "MINA_KRW",
+          ],
           tickTypes: ["24H", "MID"],
         };
         bithumbWS.send(JSON.stringify(request));
@@ -1008,7 +1015,6 @@ export default function Table() {
     setSelectedPlatform(event.target.value);
   };
 
- 
   const shouldHighlightRow = (symbol) => {
     return (
       highlightedRow === symbol ||
@@ -1055,11 +1061,11 @@ export default function Table() {
         <table className={styles.table}>
           <thead className={styles.thead}>
             <tr className={styles.tr}>
-              <th>코인</th>
-              <th>
+              <th className={styles.tableHeader}>코인</th>
+              <th className={styles.tableHeader}>
                 {selectedPlatform === "bithumb" ? "빗썸 (₩)" : "업비트 (₩)"}
               </th>
-              <th>
+              <th className={styles.tableHeader}>
                 {selectedExchange === "binance"
                   ? "바이낸스"
                   : selectedExchange === "bybit"
@@ -1069,7 +1075,7 @@ export default function Table() {
                   : "bitget"}{" "}
                 (USDT)
               </th>
-              <th>김프</th>
+              <th className={styles.tableHeader}>김프</th>
             </tr>
           </thead>
           {console.log("selected", selectedPlatform)}
@@ -1079,28 +1085,27 @@ export default function Table() {
                 key={symbol}
                 className={shouldHighlightRow(symbol) ? styles.filteredRow : ""}
               >
-                <td>{symbol}</td>
+                <td className={styles.tableHeader}>{symbol}</td>
 
                 <td className={getPriceChangeClass(symbol)}>
                   {selectedPlatform === "upbit"
                     ? ticker && ticker[symbol]
-                      ? ticker[symbol].trade_price.toLocaleString()
+                      ?  ticker[symbol].trade_price.toLocaleString()
                       : "N/A"
                     : bithumbTicker && bithumbTicker[symbol]
                     ? bithumbTicker[symbol].trade_price.toLocaleString()
                     : "N/A"}
                 </td>
 
-                <td className={styles.twoColumns}>
+                <td className={styles.tableHeader}>
                   $ {getExchangeData(symbol)}
                 </td>
 
                 <td className={styles.kimpColumn}>
-                 
-               
-                    {selectedPlatform == "upbit"? ticker &&
-                    ticker[symbol] &&
-                    tableData[symbol][selectedExchange]
+                  {selectedPlatform == "upbit"
+                    ? ticker &&
+                      ticker[symbol] &&
+                      tableData[symbol][selectedExchange]
                       ? (
                           ((ticker[symbol].trade_price -
                             tableData[symbol][selectedExchange] *
@@ -1112,21 +1117,20 @@ export default function Table() {
                           maximumFractionDigits: 2,
                         }) + "%"
                       : "N/A"
-                    :bithumbTicker &&
-                    bithumbTicker[symbol] &&
-                    tableData[symbol][selectedExchange]
-                      ? (
-                          ((bithumbTicker[symbol].trade_price -
-                            tableData[symbol][selectedExchange] *
-                              krwExchangeRate) /
-                            (tableData[symbol][selectedExchange] *
-                              krwExchangeRate)) *
-                          100
-                        ).toLocaleString(undefined, {
-                          maximumFractionDigits: 2,
-                        }) + "%"
-                      : "N/A"}
-                
+                    : bithumbTicker &&
+                      bithumbTicker[symbol] &&
+                      tableData[symbol][selectedExchange]
+                    ? (
+                        ((bithumbTicker[symbol].trade_price -
+                          tableData[symbol][selectedExchange] *
+                            krwExchangeRate) /
+                          (tableData[symbol][selectedExchange] *
+                            krwExchangeRate)) *
+                        100
+                      ).toLocaleString(undefined, {
+                        maximumFractionDigits: 2,
+                      }) + "%"
+                    : "N/A"}
                 </td>
               </tr>
             ))}

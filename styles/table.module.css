@@ -1,6 +1,6 @@
 /* Add this CSS to your stylesheet or style tag */
 .table {
-	width: 90%; /* Set your desired table width */
+	width: 72%; /* Set your desired table width */
 	border-collapse: collapse;
 	margin: auto;
 	margin-top: 20px;
@@ -9,6 +9,7 @@
   .option {
 	margin-left: 15px;
   }
+
   .th, .td {
 	width: 16%; /* Set your desired column width */
 	padding: 18px;
@@ -19,9 +20,11 @@
 	white-space: nowrap; /* Prevent text from wrapping */
 	overflow: hidden; /* Hide overflowing content */
 	text-overflow: ellipsis; /* Show ellipsis (...) for overflowing text */
+	
   }
-  
-  
+  .tableHeader {
+	color: rgb(78, 117, 155); /* Change 'blue' to the desired color */
+  }
   .tr:nth-child(even) {
 	background-color: #f2f2f2; /* Use a light color for even rows */
   }
@@ -45,6 +48,9 @@
 	font-family: sans-serif;
   }
   @media only screen and (max-width: 768px) {
+	.table {
+		width: 90%;
+	}
 	.th, .td {
 	  padding: 8px; /* Adjust padding for smaller screens */
 	  font-size: 5px; /* Adjust font size for smaller screens */

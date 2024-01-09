@@ -17,6 +17,9 @@ export default function Table() {
   const [selectedExchange, setSelectedExchange] = useState("binance");
   const [filterValue, setFilterValue] = useState(""); // State for filter value
   const [highlightedRow, setHighlightedRow] = useState(null); // New state for highlighted row
+  const [isKimpTableVisible, setIsKimpTableVisible] = useState(false);
+  const [isKoTableVisible, setIsKoTableVisible] = useState(false);
+
   const inputRef = useRef();
 
   async function watchTickerLoop(exchange, symbols, exchangeId) {
@@ -53,18 +56,7 @@ export default function Table() {
       await new Promise((resolve) => setTimeout(resolve, 5000)); // Delay for 1 second
     }
   }
-  /*
-  async function fetchData() {
-    const upbit = new ccxt.pro["upbit"]();
-    const [upbitSymbols] = await Promise.all([
-      upbit.loadMarkets().then((markets) => {
-        const symbolKeys = Object.keys(markets);
-        return symbolKeys.filter((symbol) => symbol.endsWith("/KRW"));
-      }),
-    ]);
-    return upbitSymbols;
-  }
-*/
+
   function getPriceChangeClass(symbol) {
     const currentPrice =
       ticker && ticker[symbol] ? ticker[symbol].trade_price : 0;
@@ -980,6 +972,7 @@ export default function Table() {
 
     fetchData();
   }, []); // The empty dependency array ensures that this effect runs once on component mount
+
   // Filtered data based on the filter value
   // Function to handle input change
   const handleInputChange = (e) => {
@@ -1016,132 +1009,243 @@ export default function Table() {
   };
 
   const shouldHighlightRow = (symbol) => {
-    return (
+      return (
       highlightedRow === symbol ||
       (filterValue && symbol.toLowerCase().includes(filterValue.toLowerCase()))
     );
   };
+
   return (
     <>
-      <div>
-        <h1 className={styles.h1}>김치 프리미엄 (Real-Time Kimchi Premium)</h1>
+      <div className={styles.tableOption}>
+        <h1
+          className={styles.h1}
+          onClick={() => setIsKimpTableVisible(!isKimpTableVisible)}
+        >
+          김치 프리미엄 보기(Real-Time Kimchi Premium) ➤
+        </h1>
         {/* Dropdown for selecting the platform */}
-        <div className={styles.filterContainer}>
-          <div className={styles.selectContainer}>
-            {/* Select elements */}
-            <select
-              className={styles.option}
-              value={selectedPlatform}
-              onChange={(e) => setSelectedPlatform(e.target.value)}
-            >
-              <option value="upbit">업비트</option>
-              <option value="bithumb">빗썸</option>
-              {/* Add more options as needed */}
-            </select>
+        {isKimpTableVisible && (
+          <div className={styles.slideDownShow}>
+            {/* Dropdown for selecting the platform */}
+            <div className={styles.filterContainer}>
+              <div className={styles.selectContainer}>
+                {/* Select elements */}
+                <select
+                  className={styles.option}
+                  value={selectedPlatform}
+                  onChange={(e) => setSelectedPlatform(e.target.value)}
+                >
+                  <option value="upbit">업비트</option>
+                  <option value="bithumb">빗썸</option>
+                  {/* Add more options as needed */}
+                </select>
 
-            <select
-              className={styles.option}
-              value={selectedExchange}
-              onChange={(e) => setSelectedExchange(e.target.value)}
-            >
-              <option value="binance">바이낸스</option>
-              <option value="bybit">바이빗</option>
-              <option value="okex">okx</option>
-              <option value="bitget">비트젯</option>
-              {/* Add more options as needed */}
-            </select>
+                <select
+                  className={styles.option}
+                  value={selectedExchange}
+                  onChange={(e) => setSelectedExchange(e.target.value)}
+                >
+                  <option value="binance">바이낸스</option>
+                  <option value="bybit">바이빗</option>
+                  <option value="okex">okx</option>
+                  <option value="bitget">비트젯</option>
+                  {/* Add more options as needed */}
+                </select>
+              </div>
+
+              {/* Input */}
+              <input
+                ref={inputRef}
+                type="text"
+                placeholder="Filter by coin name"
+                value={filterValue}
+                onChange={handleInputChange}
+                className={styles.filterInput}
+                onFocus={() => setHighlightedRow(null)}
+              />
+            </div>
+
+            <table className={styles.table}>
+              <thead className={styles.thead}>
+                <tr className={styles.tr}>
+                  <th className={styles.tableHeader_symbol}>이름</th>
+                  <th className={styles.tableHeader}>
+                    {selectedPlatform === "bithumb" ? "빗썸 (₩)" : "업비트 (₩)"}
+                  </th>
+                  <th className={styles.tableHeader}>
+                    {selectedExchange === "binance"
+                      ? "바이낸스"
+                      : selectedExchange === "bybit"
+                      ? "Bybit"
+                      : selectedExchange == "okex"
+                      ? "OKX"
+                      : "bitget"}{" "}
+                    (USDT)
+                  </th>
+                  <th className={styles.tableHeader}>김프</th>
+                </tr>
+              </thead>
+              {console.log("selected", selectedPlatform)}
+              <tbody className={styles.tbody}>
+                {filteredData.map((symbol) => (
+                  <tr
+                    key={symbol}
+                    className={shouldHighlightRow(symbol) ? styles.filteredRow : ""}
+                  >
+                    <td className={styles.tableHeader_symbol}>{symbol}</td>
+
+                    <td className={getPriceChangeClass(symbol)}>
+                      {selectedPlatform === "upbit"
+                        ? ticker && ticker[symbol]
+                          ? ticker[symbol].trade_price.toLocaleString()
+                          : "N/A"
+                        : bithumbTicker && bithumbTicker[symbol]
+                        ? bithumbTicker[symbol].trade_price.toLocaleString()
+                        : "N/A"}
+                    </td>
+
+                    <td className={styles.tableHeader}>
+                      $ {getExchangeData(symbol)}
+                    </td>
+
+                    <td className={styles.kimpColumn}>
+                      {selectedPlatform == "upbit"
+                        ? ticker &&
+                          ticker[symbol] &&
+                          tableData[symbol][selectedExchange]
+                          ? (
+                              ((ticker[symbol].trade_price -
+                                tableData[symbol][selectedExchange] *
+                                  krwExchangeRate) /
+                                (tableData[symbol][selectedExchange] *
+                                  krwExchangeRate)) *
+                              100
+                            ).toLocaleString(undefined, {
+                              maximumFractionDigits: 2,
+                            }) + "%"
+                          : "N/A"
+                        : bithumbTicker &&
+                          bithumbTicker[symbol] &&
+                          tableData[symbol][selectedExchange]
+                        ? (
+                            ((bithumbTicker[symbol].trade_price -
+                              tableData[symbol][selectedExchange] *
+                                krwExchangeRate) /
+                              (tableData[symbol][selectedExchange] *
+                                krwExchangeRate)) *
+                            100
+                          ).toLocaleString(undefined, {
+                            maximumFractionDigits: 2,
+                          }) + "%"
+                        : "N/A"}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
+        )}
+      </div>
 
-          {/* Input */}
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="Filter by coin name"
-            value={filterValue}
-            onChange={handleInputChange}
-            className={styles.filterInput}
-            onFocus={() => setHighlightedRow(null)}
-          />
-        </div>
+      <div className={styles.tableOption}>
+        <h1
+          className={styles.h1}
+          onClick={() => setIsKoTableVisible(!isKoTableVisible)}
+        >
+          거래소 가격 비교 (한국) (Price Comparison) ➤
+        </h1>
+        {isKoTableVisible && (
+          <div className={styles.slideDownShow}>
+            <div className={styles.filterContainer}>
+              <div className={styles.selectContainer}>
+                <select
+                  className={styles.option}
+                  value={selectedPlatform}
+                  onChange={(e) => setSelectedPlatform(e.target.value)}
+                >
+                  <option value="upbit">업비트</option>
+                  <option value="bithumb">빗썸</option>
+                  {/* Add more options as needed */}
+                </select>
 
-        <table className={styles.table}>
-          <thead className={styles.thead}>
-            <tr className={styles.tr}>
-              <th className={styles.tableHeader_symbol}>이름</th>
-              <th className={styles.tableHeader}>
-                {selectedPlatform === "bithumb" ? "빗썸 (₩)" : "업비트 (₩)"}
-              </th>
-              <th className={styles.tableHeader}>
-                {selectedExchange === "binance"
-                  ? "바이낸스"
-                  : selectedExchange === "bybit"
-                  ? "Bybit"
-                  : selectedExchange == "okex"
-                  ? "OKX"
-                  : "bitget"}{" "}
-                (USDT)
-              </th>
-              <th className={styles.tableHeader}>김프</th>
-            </tr>
-          </thead>
-          {console.log("selected", selectedPlatform)}
-          <tbody className={styles.tbody}>
-            {filteredData.map((symbol) => (
-              <tr
-                key={symbol}
-                className={shouldHighlightRow(symbol) ? styles.filteredRow : ""}
-              >
-                <td className={styles.tableHeader_symbol}>{symbol}</td>
+                <select
+                  className={styles.option}
+                  value={selectedExchange}
+                  onChange={(e) => setSelectedExchange(e.target.value)}
+                >
+                  <option value="upbit">업비트</option>
+                  <option value="bithumb">빗썸</option>
+                  {/* Add more options as needed */}
+                </select>
+              </div>
 
-                <td className={getPriceChangeClass(symbol)}>
-                  {selectedPlatform === "upbit"
-                    ? ticker && ticker[symbol]
-                      ? ticker[symbol].trade_price.toLocaleString()
-                      : "N/A"
-                    : bithumbTicker && bithumbTicker[symbol]
-                    ? bithumbTicker[symbol].trade_price.toLocaleString()
-                    : "N/A"}
-                </td>
+              <input
+                type="text"
+                placeholder="Filter by coin name"
+                value={filterValue}
+                onChange={(e) => setFilterValue(e.target.value)}
+                className={styles.filterInput}
+              />
+            </div>
 
-                <td className={styles.tableHeader}>
-                  $ {getExchangeData(symbol)}
-                </td>
+            <table className={styles.table}>
+              <thead className={styles.thead}>
+                <tr className={styles.tr}>
+                  <th className={styles.tableHeader_symbol}>이름</th>
+                  <th className={styles.tableHeader}>
+                    {selectedPlatform === "bithumb" ? "빗썸 (₩)" : "업비트 (₩)"}
+                  </th>
+                  <th className={styles.tableHeader}>
+                    {selectedExchange === "bithumb" ? "빗썸 (₩)" : "업비트 (₩)"}
+                  </th>
+                  <th className={styles.tableHeader}>거래소</th>
+                </tr>
+              </thead>
+              <tbody className={styles.tbody}>
+              {filteredData.map((symbol) => (
+  <tr
+    key={symbol}
+    className={shouldHighlightRow(symbol) ? styles.redRow : ""}
+  >
+    <td className={styles.tableHeader_symbol}>{symbol}</td>
 
-                <td className={styles.kimpColumn}>
-                  {selectedPlatform == "upbit"
-                    ? ticker &&
-                      ticker[symbol] &&
-                      tableData[symbol][selectedExchange]
-                      ? (
-                          ((ticker[symbol].trade_price -
-                            tableData[symbol][selectedExchange] *
-                              krwExchangeRate) /
-                            (tableData[symbol][selectedExchange] *
-                              krwExchangeRate)) *
-                          100
-                        ).toLocaleString(undefined, {
-                          maximumFractionDigits: 2,
-                        }) + "%"
-                      : "N/A"
-                    : bithumbTicker &&
-                      bithumbTicker[symbol] &&
-                      tableData[symbol][selectedExchange]
-                    ? (
-                        ((bithumbTicker[symbol].trade_price -
-                          tableData[symbol][selectedExchange] *
-                            krwExchangeRate) /
-                          (tableData[symbol][selectedExchange] *
-                            krwExchangeRate)) *
-                        100
-                      ).toLocaleString(undefined, {
-                        maximumFractionDigits: 2,
-                      }) + "%"
-                    : "N/A"}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <td
+      className={`${selectedPlatform === "upbit" ? styles.upbitColumn : styles.bithumbColumn} ${
+        shouldHighlightRow(symbol) ? "smaller" : ""
+      }`}
+    >
+      {selectedPlatform === "upbit"
+        ? ticker && ticker[symbol]
+          ? ticker[symbol].trade_price.toLocaleString()
+          : "N/A"
+        : bithumbTicker && bithumbTicker[symbol]
+        ? bithumbTicker[symbol].trade_price.toLocaleString()
+        : "N/A"}
+    </td>
+
+    <td
+      className={`${selectedExchange === "upbit" ? styles.upbitColumn : styles.bithumbColumn} ${
+        shouldHighlightRow(symbol) ? "smaller" : ""
+      }`}
+    >
+      {selectedExchange === "upbit"
+        ? ticker && ticker[symbol]
+          ? ticker[symbol].trade_price.toLocaleString()
+          : "N/A"
+        : bithumbTicker && bithumbTicker[symbol]
+        ? bithumbTicker[symbol].trade_price.toLocaleString()
+        : "N/A"}
+    </td>
+
+    <td className={styles.kimpColumn}>바로가기</td>
+  </tr>
+))}
+
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </>
   );
